@@ -25,7 +25,11 @@ public class LastNameFirstNameGE01Calculations
         System.out.println("I am a first generation stident. Currently, my biggest goal is to graduate as a college student and inspire future generations in my community.");
         System.out.println("I work at Chipotle as a crew member. I'll admit that I am a hard working individual and plan to do the same in college to achieve my goals.");
         System.out.println("Lastly, I am an introvert who likes to listen to others and an amicable human being.");
-	
+        System.out.println("");
+        System.out.println("");
+        
+       
+        
 	}	
 
 }
