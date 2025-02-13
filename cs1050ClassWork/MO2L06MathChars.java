@@ -38,8 +38,16 @@ public class MO2L06MathChars
 	    System.out.println("Enter a char");
 	    char someChar = input.next().charAt(0);
 	    System.out.printf("A char was enetred with ascii value %d\n", someChar);
-	
-	    String firstName = "Bu5tos";
+	    
+	    String firstName = "Bustos";
+	    
+	    int myStringLength = myString.length();
+	    System.out.println("The length of my string is = " + myStringLength);
+	    
+	    System.out.println("The 1st letter in student's name is " + myStringLength);
+	    System.out.println("The last letter is " + myString.charAt(myString.length()-1));
+	    
+	    System.out.println("The last letter is " + myString.charAt(myString.length()+1));
 	
 	}
 
