@@ -3,14 +3,17 @@
  * random number generated
  */
 
-import java.util.Scanner; 
 
-public class GuessNumber {
+import java.util.Scanner; //Import Scanner class
+
+public class GuessNumber //Class Identifier: "GuessNumber"
+{
 
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		// Main method
 	    int number = (int)(Math.random() * 101);
 
