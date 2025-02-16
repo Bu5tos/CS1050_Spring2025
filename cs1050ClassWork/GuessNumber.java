@@ -16,15 +16,21 @@ public class GuessNumber //Class Identifier: "GuessNumber"
 	{
 		// Main method
 	    int number = (int)(Math.random() * 101);
-
-	    Scanner input = new Scanner(System.in);
+        //Data type: "int" Variable: "number"
+	   
+	    Scanner input = new Scanner(System.in); 
 	    System.out.println("Guess a magic number between 0 and 100");
-
+       
+	    // Declare an "int" to store the "guess"
+	    // Initialize "guess" 
 	    int guess = -1;
-	    while (guess != number) {
-	      
+	    // If guess doesn't match to number, the code will run repeatedly until the number is correct
+	    while (guess != number)
+	    {
+	      //
 	      System.out.print("\nEnter your guess: ");
-	      if (input.hasNextInt()) {
+	      if (input.hasNextInt())
+	      {
 	      guess = input.nextInt();
 
 	      if (guess == number)
@@ -33,7 +39,8 @@ public class GuessNumber //Class Identifier: "GuessNumber"
 	        System.out.println("Your guess is too high");
 	      else
 	        System.out.println("Your guess is too low");
-	      } else {
+	      } else 
+	      {
 	    	  System.out.println("Invalid input. Please enter an integer.");
 	    	  input.next();
 	      }
