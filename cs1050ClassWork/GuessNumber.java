@@ -5,6 +5,7 @@
 
 
 import java.util.Scanner; //Import Scanner class
+       // Package 
 
 public class GuessNumber //Class Identifier: "GuessNumber"
 { // The start of program
@@ -20,7 +21,8 @@ public class GuessNumber //Class Identifier: "GuessNumber"
 	   
 	    Scanner input = new Scanner(System.in); 
 	    System.out.println("Guess a magic number between 0 and 100");
-       
+                  //Method to display output
+	    
 	    // Declare an "int" to store the "guess"
 	    // Initialize "guess" 
 	    int guess = -1;
