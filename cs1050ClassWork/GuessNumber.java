@@ -15,10 +15,15 @@ public class GuessNumber //Class Identifier: "GuessNumber"
 	 */
 	public static void main(String[] args)
 	{
+		int MIN = -1;
+		int MAX = 101;
+		
 		// Main method
-	    int number = (int)(Math.random() * 101);
+	    int number = (int)(MIN + Math.random() * MAX);
         //Data type: "int" Variable: "number"
 	   
+	 
+	    		
 	    Scanner input = new Scanner(System.in); 
 	    System.out.println("Guess a magic number between 0 and 100");
                   //Method to display output
