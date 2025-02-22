@@ -17,6 +17,7 @@ public class BodyMassIndex
 		double height; // The user's height
 		double bmi; // The user's BMI
 		
+		//MIN and MAX's limits to initialize variables 
 		double MAX_UNDER_WEIGHT = 18.4;
 		double MIN_NORMAL = 18.5;
 		double MIN_OVER_WEIGHT = 25.0;
