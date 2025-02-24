@@ -26,6 +26,7 @@ public class BustosGE02StringsChars {
 		System.out.println("Enter student 2 last name: " );
 		String lastName2 = input.next();
 		
+		System.out.println("Students in alphabetical order by last name:" );
 		
 		
 		
