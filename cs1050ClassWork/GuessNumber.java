@@ -53,7 +53,7 @@ public class GuessNumber //Class Identifier: "GuessNumber"
 	      else 
 	      {
 	    	  System.out.println("Invalid input. Please enter an integer.");
-	    	  input.next();
+	    	  input.next();   	  
 	      }
 	    } 
 		input.close();
