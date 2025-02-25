@@ -5,6 +5,9 @@
 /**
  * 
  */
+
+import java.util.Scanner;
+
 public class BustosGE02StringsChars {
 
 	/**

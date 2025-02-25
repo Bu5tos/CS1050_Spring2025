@@ -22,8 +22,10 @@ public class SwitchDemo
       // Determine which character the user entered.
       switch (choice)
       {
+         // Switch statement 
          case 'A':
             System.out.println("You entered A.");
+            // "False through" the next code if it is not selected
             break;
          case 'B':
             System.out.println("You entered B.");
@@ -37,8 +39,10 @@ public class SwitchDemo
          case 'F':
         	System.out.println("You entered F. You must retake the class");
         	break;
+         // Used to perform an action if none of the letters get selected (line 45)
          default:
-            System.out.println("That's not A, B, C, D, or F!");
+            // If user inputs a letter that is NOT listed
+        	System.out.println("That's not A, B, C, D, or F!");
             
             
       }
