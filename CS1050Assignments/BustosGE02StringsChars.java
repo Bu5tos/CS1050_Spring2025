@@ -29,5 +29,4 @@ public class BustosGE02StringsChars {
 	String lastName2 = input.next();
 	
 	System.out.println("Students in alphabetical order by last name:" );
-	
 }
