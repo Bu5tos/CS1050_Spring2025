@@ -58,6 +58,7 @@ public class BustosGE02StringsChars
         System.out.println("Student 1: " + firstInitial1 + ". " + lastInitial1 + ".");
         System.out.println("Student 2: " + firstInitial2 + ". " + lastInitial2 + ".");  
         
+        //Irrelevant of the program, but these are two string functions
         String upperCase = "Hello";
         String lowerCase = "HELLO";
         
