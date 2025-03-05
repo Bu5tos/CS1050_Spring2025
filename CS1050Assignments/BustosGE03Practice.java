@@ -7,10 +7,11 @@ public class BustosGE03Practice {
 		int total = 0;
 		int sum = 0;
 		
-		while (sum <= 6) {
+		while (sum < 6) {
 			counter = counter + 1;
 			total = total + counter;
 			sum++;
+			System.out.println("Counter is " + counter + " and total is " + total);
 		}
 		
 	}
