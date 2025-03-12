@@ -5,17 +5,15 @@ public class RockPaperOrSciccors {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
+	int oddNumbers = 0;
+	int counter = 0;
 	
-		int oddNumber = 0;
-		int oddCounter = 0;
-		int max = 7;
+	for (int sum = 0; sum < 5; sum++) {
+	
+		counter = counter + 1;
+		oddNumbers = oddNumbers + counter;
 		
-		for (int sum = 0; sum <= max; sum++) {
-			
-			oddCounter = oddCounter + 1;
-			oddNumber = oddNumber + oddCounter;
-			
-			System.out.println("Total odd number: " + oddNumber);
+		System.out.println("Total odd number is: " + (oddNumbers / 2));
 		
 	}
   }
