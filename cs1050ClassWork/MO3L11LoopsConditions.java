@@ -14,5 +14,29 @@ public class MO3L11LoopsConditions {
 		System.out.println("Counter: " + counter);
 		System.out.println("Total: " + total);
 	}
+	
+	max (total);
+	
 	}
-}
+
+	
+	public static void max(int total) 
+	{
+		System.out.println(" ");
+		System.out.println("Calling max method");
+		System.out.println(" ");
+		
+		int max = 0;
+		max = max + total; 
+		System.out.println(max);
+		
+		for (int sum = 1; sum <= max; sum++)
+		{
+			System.out.println(max);
+		}
+	}
+	
+	
+  }
+
+
