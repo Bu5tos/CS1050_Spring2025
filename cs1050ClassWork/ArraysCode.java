@@ -23,9 +23,9 @@ public class ArraysCode {
 		int[] randomNumbers = new int [LENGTH_NUMBERS];
 		int length = randomNumbers.length;
 		
-		for(length = 0; length < LENGTH_NUMBERS; length++);
+		for(int number = 0; number < LENGTH_NUMBERS; number++);
 		   
-		   System.out.println("Smallest number is: " + length);
+		   System.out.println();
 		
 		
 		
