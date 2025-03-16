@@ -32,23 +32,24 @@ public class GradeCalculator {
 	  System.out.println("final exam grade: ");
 	  int finalExam = input.nextInt();	  
 	  
-	  
 	  double finalGrade = (CLASS_WEIGHT * classParticipation) +
 	                      (GUIDED_WEIGHT * guidedExploration) +
 	                      (QUIZZES_WEIGHT * quizzes) +
 	                      (PROJECT_WEIGHT * projectIteration) +
 	                      (FINAL_WEIGHT * finalExam);
+	 
+	  System.out.println("Final grade: " + finalGrade);
 	  
-	  System.out.println("Final garde: " + finalGrade);
+	  //Final letter grade
+	  char letterGrade;
+	  if (finalGrade >= 90) 
+		  System.out.println("Letter grade: " + 'A');
 	  
-	  //Letter grade range
-	  if (finalGrade >= 90) {
-		  System.out.println("Final letter grade: "); 
-	  }
 	}
+	  
 	  public static double getValidGrade(int min, int max, Scanner inputKeyboard) {
 	  
-		  
+		
 	  
 	}//end main
 }//end class
