@@ -15,6 +15,11 @@ public class GradeCalculator {
 	  final double PROJECT_WEIGHT = .25;
 	  final double FINAL_WEIGHT = .2;
 	  
+	  //Valid grade range
+	  final int min = 0;
+	  final int max = 105;
+	  
+	  //Use keyboard to enter integer numbers for grade
 	  Scanner input = new Scanner(System.in); 
 	  System.out.println("Class participation grade: ");
 	  int classParticipation = input.nextInt();
@@ -26,6 +31,7 @@ public class GradeCalculator {
 	  int projectIteration = input.nextInt();
 	  System.out.println("final exam grade: ");
 	  int finalExam = input.nextInt();	  
+	  
 	  
 	  double finalGrade = (CLASS_WEIGHT * classParticipation) +
 	                      (GUIDED_WEIGHT * guidedExploration) +
@@ -39,6 +45,10 @@ public class GradeCalculator {
 	  if (finalGrade >= 90) {
 		  System.out.println("Final letter grade: "); 
 	  }
-	
+	}
+	  public static double getValidGrade(int min, int max, Scanner inputKeyboard) {
+	  
+		  
+	  
 	}//end main
 }//end class
