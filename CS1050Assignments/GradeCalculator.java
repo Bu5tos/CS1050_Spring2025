@@ -17,7 +17,7 @@ public class GradeCalculator {
 	  
 	//Use keyboard to enter integer numbers for grade
 	  Scanner input = new Scanner(System.in);
-	  char anotherGrade =  input.next().charAt(0);
+	  char anotherGrade;
 	  
 	  do {
 	  //Valid grade range
