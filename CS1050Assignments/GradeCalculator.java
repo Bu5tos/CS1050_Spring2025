@@ -22,24 +22,25 @@ public class GradeCalculator {
 	  //Use keyboard to enter integer numbers for grade
 	  Scanner input = new Scanner(System.in); 
 	  System.out.println("Class participation grade: ");
-	  int classParticipation = input.nextInt();
+	  double classParticipation = getValidGrade(min, max, input);
 	  System.out.println("Guided exploration grade: ");
-	  int guidedExploration = input.nextInt();
+	  double guidedExploration = getValidGrade(min, max, input);
 	  System.out.println("quizzes grade: ");
-	  int quizzes = input.nextInt();
+	  double quizzes = getValidGrade(min, max, input);
 	  System.out.println("project grade: ");
-	  int projectIteration = input.nextInt();
+	  double projectIteration = getValidGrade(min, max, input);
 	  System.out.println("final exam grade: ");
-	  int finalExam = input.nextInt();	  
+	  double finalExam = getValidGrade(min, max, input);	  
 	  
+	 
+	  //Percentages * user's input grade will be firstly multiplied, then added in different categories
 	  double finalGrade = (CLASS_WEIGHT * classParticipation) +
 	                      (GUIDED_WEIGHT * guidedExploration) +
 	                      (QUIZZES_WEIGHT * quizzes) +
 	                      (PROJECT_WEIGHT * projectIteration) +
 	                      (FINAL_WEIGHT * finalExam);
-	 
 	  
-	  
+	  //Overall grade
 	  System.out.println("Final grade: " + finalGrade);
 	  
 	  //Final letter grade
@@ -59,26 +60,28 @@ public class GradeCalculator {
 	  else if (finalGrade <= 59){
 	      System.out.println("Letter grade: " + 'F');
 	  }
+	  System.out.println(" ");
+	  System.out.println("Would you like to calculate another student's grade?");
+	  System.out.println("Enter y for yes or n for no: ");
+      char yOrn = input.next().charAt(0);
 	}
 	  
 	  // A method of getting valid grades within range 
 	  public static double getValidGrade(int min, int max, Scanner inputKeyboard) {
 	  
-	  
-      double grade;
+      double grade;//Store user's input
       
       //Continues until the input is correct
       while(true) {
-	      System.out.println("Enter a number between" + min + max + ":");
 	      grade = inputKeyboard.nextDouble();
       
 	      // Checks if the user inputs a number out of the range
 	      if (grade < min && grade > max) {
-          System.out.println("Invalid input. Enter a number between" + min + max + ":");
+          System.out.println("Invalid input. Enter a number between " + min + "-" + max + ":");
       } else {
     	  return grade; //Returns valid grades
       }
-      }
+      }//end loop
       
       }//end main
 }//end class
