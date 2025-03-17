@@ -38,18 +38,47 @@ public class GradeCalculator {
 	                      (PROJECT_WEIGHT * projectIteration) +
 	                      (FINAL_WEIGHT * finalExam);
 	 
+	  
+	  
 	  System.out.println("Final grade: " + finalGrade);
 	  
 	  //Final letter grade
 	  char letterGrade;
-	  if (finalGrade >= 90) 
+	  if (finalGrade >= 90) {
 		  System.out.println("Letter grade: " + 'A');
-	  
+	  }
+	  else if (finalGrade >= 80) {
+		  System.out.println("Letter grade: " + 'B');
+	  }
+	  else if (finalGrade >= 70) {
+		  System.out.println("Letter grade: " + 'C');
+	  }
+	  else if (finalGrade >= 60) {
+		  System.out.println("Letter grade: " + 'D');
+	  }
+	  else if (finalGrade <= 59){
+	      System.out.println("Letter grade: " + 'F');
+	  }
 	}
 	  
+	  // A method of getting valid grades within range 
 	  public static double getValidGrade(int min, int max, Scanner inputKeyboard) {
 	  
-		
 	  
-	}//end main
+      double grade;
+      
+      //Continues until the input is correct
+      while(true) {
+	      System.out.println("Enter a number between" + min + max + ":");
+	      grade = inputKeyboard.nextDouble();
+      
+	      // Checks if the user inputs a number out of the range
+	      if (grade < min && grade > max) {
+          System.out.println("Invalid input. Enter a number between" + min + max + ":");
+      } else {
+    	  return grade; //Returns valid grades
+      }
+      }
+      
+      }//end main
 }//end class
