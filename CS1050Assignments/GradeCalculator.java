@@ -15,12 +15,16 @@ public class GradeCalculator {
 	  final double PROJECT_WEIGHT = .25;
 	  final double FINAL_WEIGHT = .2;
 	  
+	//Use keyboard to enter integer numbers for grade
+	  Scanner input = new Scanner(System.in);
+	  char anotherGrade =  input.next().charAt(0);
+	  
+	  do {
 	  //Valid grade range
 	  final int min = 0;
 	  final int max = 105;
 	  
-	  //Use keyboard to enter integer numbers for grade
-	  Scanner input = new Scanner(System.in); 
+	  //Valid grade numbers 
 	  System.out.println("Class participation grade: ");
 	  double classParticipation = getValidGrade(min, max, input);
 	  System.out.println("Guided exploration grade: ");
@@ -60,28 +64,28 @@ public class GradeCalculator {
 	  else if (finalGrade <= 59){
 	      System.out.println("Letter grade: " + 'F');
 	  }
+	
 	  System.out.println(" ");
 	  System.out.println("Would you like to calculate another student's grade?");
 	  System.out.println("Enter y for yes or n for no: ");
-      char yOrn = input.next().charAt(0);
-	}
+	  anotherGrade = input.next().charAt(0);
 	  
+	  } while(anotherGrade == 'y');
+	    System.out.println("Goodbye");
+	    
+	    
+	}
+	
 	  // A method of getting valid grades within range 
 	  public static double getValidGrade(int min, int max, Scanner inputKeyboard) {
 	  
-      double grade;//Store user's input
-      
-      //Continues until the input is correct
-      while(true) {
-	      grade = inputKeyboard.nextDouble();
-      
-	      // Checks if the user inputs a number out of the range
-	      if (grade < min && grade > max) {
-          System.out.println("Invalid input. Enter a number between " + min + "-" + max + ":");
-      } else {
-    	  return grade; //Returns valid grades
+		  double currentGrade = inputKeyboard.nextDouble();
+		  
+      while(currentGrade < min || currentGrade > max) {
+    	  System.out.println("Invalid input. Choose between " + min + "-" + max);
+    	  currentGrade = inputKeyboard.nextDouble();
+    	  
       }
-      }//end loop
-      
-      }//end main
-}//end class
+            return currentGrade; 
+}
+}
