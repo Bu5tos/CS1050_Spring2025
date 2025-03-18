@@ -49,21 +49,28 @@ public class GradeCalculator {
 	  
 	  //Final letter grade
 	  char letterGrade;
+	 
 	  if (finalGrade >= 90) {
-		  System.out.println("Letter grade: " + 'A');
+		  letterGrade = 'A';
+		  System.out.println("Letter grade: " + letterGrade);
 	  }
 	  else if (finalGrade >= 80) {
-		  System.out.println("Letter grade: " + 'B');
+		  letterGrade = 'B';
+		  System.out.println("Letter grade: " + letterGrade);
 	  }
 	  else if (finalGrade >= 70) {
-		  System.out.println("Letter grade: " + 'C');
+		  letterGrade = 'C';
+		  System.out.println("Letter grade: " + letterGrade);
 	  }
 	  else if (finalGrade >= 60) {
-		  System.out.println("Letter grade: " + 'D');
+		  letterGrade = 'D';
+		  System.out.println("Letter grade: " + letterGrade);
 	  }
 	  else if (finalGrade <= 59){
-	      System.out.println("Letter grade: " + 'F');
+		  letterGrade = 'F';
+	      System.out.println("Letter grade: " + letterGrade);
 	  }
+	     
 	
 	  System.out.println(" ");
 	  System.out.println("Would you like to calculate another student's grade?");
