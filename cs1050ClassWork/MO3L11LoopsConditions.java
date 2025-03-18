@@ -4,39 +4,26 @@ public class MO3L11LoopsConditions {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-	int total = 0;
-	int counter = 0;
+	int max = 5;
 	
-	for (int sum = 1; sum <= 5; sum++)
-	{
-		counter = counter + 1;
-		total = total + counter;
-		System.out.println("Counter: " + counter);
-		System.out.println("Total: " + total);
-	}
-	
-	max (total);
 	
 	}
 
 	
-	public static void max(int total) 
+	public static void sumOneToMax(int max)
 	{
-		System.out.println(" ");
-		System.out.println("Calling max method");
-		System.out.println(" ");
-		
-		int max = 0;
-		max = max + total; 
-		System.out.println(max);
+		int total = 0;
+		int counter = 0;
 		
 		for (int sum = 1; sum <= max; sum++)
 		{
-			System.out.println(max);
+			counter = counter + 1;
+			total = total + counter;
+			System.out.println("Counter: " + counter);
+			System.out.println("Total: " + total);
 		}
-	}
-	
-	
+			
+		}	
   }
 
 
