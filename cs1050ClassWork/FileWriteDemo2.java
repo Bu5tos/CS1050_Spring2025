@@ -16,7 +16,8 @@ public class FileWriteDemo2
 		
 		//Add comments to explain the code.
 		
-		//Use the debugger		
+		//Use the debugger
+		//Storing non-primitive data types of Strings. Array of arrays
 		String[] gradeCategories = {"Class Participation","Guided Exploration",
 				"Quizzes","Project Percent","Final Exam"};
 		double[] gradePercentWeights = {.12,.22,.22,.22,.22};
