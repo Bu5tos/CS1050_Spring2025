@@ -18,7 +18,9 @@ public class RockPaperOrSciccors {
 	
 	public static void computerOpponent(char rockPaperScissors) {
 	
-		
+		int[] array1 = {10, 100, 1000};
+		int[] array2;
+		array2 = array1;
 		
 		
 }

@@ -19,6 +19,10 @@ public class UnitTestGym {
 	int topAthlete = getTopAthlete(arrayCalories);
 	System.out.println("Top athlete is " + topAthlete);
 	
+	int[] array1 = {10, 100, 1000};
+	int[] array2;
+	array2 = array1;
+	
 	}
 		
 	public static int getTopAthlete(int[] arrayCalories) {
