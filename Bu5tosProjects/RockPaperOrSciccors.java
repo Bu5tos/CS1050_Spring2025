@@ -17,7 +17,6 @@ public class RockPaperOrSciccors {
   }
 	
 	public static void computerOpponent(char rockPaperScissors) {
-	
 		
 		
 }
