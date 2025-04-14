@@ -27,9 +27,5 @@ public class MO4PassArrays {
 		
 	}
 	
-	public static void displayArrayValue(int[] array) {
-		
-		
-		
-	}
+
 }
