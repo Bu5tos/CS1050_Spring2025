@@ -70,9 +70,9 @@ public class FileWriteDemo2
 			System.out.println("\nAdd comments to the code.");
 			// 
 			outputFile.close();
+		
 		}//end else
+		
 	}
-
-	
 	
 }//end FileWriteDemo2
