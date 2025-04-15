@@ -25,7 +25,7 @@ public class TestSimpleCircle {
 
 // Define the circle class with two constructors
 class SimpleCircle {
-  double radius;
+  private double radius;
 
   /** Construct a circle with radius 1 */
   SimpleCircle() {
@@ -38,17 +38,26 @@ class SimpleCircle {
   }
 
   /** Return the area of this circle */
-  double getArea() {
+  public double getArea() {
     return radius * radius * Math.PI;
   }
 
   /** Return the perimeter of this circle */
-  double getPerimeter() {
+  public double getPerimeter() {
     return 2 * radius * Math.PI;
   }
 
   /** Set a new radius for this circle */
-  void setRadius(double newRadius) {
+  public void setRadius(double newRadius) {
     radius = newRadius;
   }
+  
+  public void setRadius(double newRadius) {
+	  if (radius > 0) {
+		  newRadius = radius;
+	  }
+	  
+	  
+  }
+  
 }
