@@ -10,7 +10,7 @@ public class MO3L11LoopsConditions {
 	}
 
 	
-	public static void sumOneToMax(int max)
+	public static int sumOneToMax(int max)
 	{
 		int total = 0;
 		int counter = 0;

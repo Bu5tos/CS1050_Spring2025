@@ -6,11 +6,10 @@ public static void main(String[] args) {
 //User Story 1
 	
 	Scanner input = new Scanner(System.in);
-	int numberOfAthletes = getValidData(0, input);
+	int numberOfAthletes = getValidNumAthletes(0, input);
 	int[] arrayOfAthletes = new int[numberOfAthletes];
 	
-	System.out.println("Athlete's weight: ");
-	double weight = input.nextInt();
+	double weight = getValidWeight(0, input);
 	System.out.println("Athlete's height(inches): ");
 	double height = input.nextInt();
 	System.out.println("Athlete's age: ");
@@ -32,7 +31,9 @@ public static int[] caloriesBurned(Scanner input) {
 	return day;
 }//End caloriesBurned method
 
-public static int getValidData(int numberOfAthletes, Scanner input) {
+public static int getValidNumAthletes(int numberOfAthletes, Scanner input) {
+	int totalAthletes;
+	
 	do {
 		
 		System.out.println("Enter number of athletes: ");
@@ -43,9 +44,21 @@ public static int getValidData(int numberOfAthletes, Scanner input) {
 		}
 		
 }   while (numberOfAthletes <= 0);	
-	return numberOfAthletes;
-	
-	
-	
-}//End getValidData
+	totalAthletes = numberOfAthletes;
+	return totalAthletes;
+}//End getValidNumAthletes
+
+public static double getValidWeight(int weight, Scanner input) {
+	do {
+		
+		System.out.println("Athlete's weight: ");
+		weight = input.nextInt();
+		
+		if(weight <= 0) {
+			System.out.println("Error: value must be greater than 0");
+		}
+	} while (weight <= 0);
+	return weight;
+}
+
 }//End class
