@@ -5,6 +5,8 @@ public static void main(String[] args) {
 	
 //User Story 1
 	
+	System.out.println("     Welcome to the Gym Athlete Fitness Tracker     ");
+	System.out.println(" ");
 	Scanner input = new Scanner(System.in);
 	int numberOfAthletes = getValidNumAthletes(0, input);
 	int[] arrayOfAthletes = new int[numberOfAthletes];
@@ -15,6 +17,9 @@ public static void main(String[] args) {
 	System.out.println("Athlete's age: ");
 	int age = input.nextInt();
 	int[] dailyBurnedCalories = caloriesBurned(input);
+	System.out.println(" ");
+	
+	System.out.println("     Gym Weekly Fitness Summary     ");
 
 }//End main
 
@@ -32,8 +37,6 @@ public static int[] caloriesBurned(Scanner input) {
 }//End caloriesBurned method
 
 public static int getValidNumAthletes(int numberOfAthletes, Scanner input) {
-	int totalAthletes;
-	
 	do {
 		
 		System.out.println("Enter number of athletes: ");
@@ -44,8 +47,7 @@ public static int getValidNumAthletes(int numberOfAthletes, Scanner input) {
 		}
 		
 }   while (numberOfAthletes <= 0);	
-	totalAthletes = numberOfAthletes;
-	return totalAthletes;
+	return numberOfAthletes;
 }//End getValidNumAthletes
 
 public static double getValidWeight(int weight, Scanner input) {
@@ -59,6 +61,8 @@ public static double getValidWeight(int weight, Scanner input) {
 		}
 	} while (weight <= 0);
 	return weight;
-}
+}//End getValidWeight
+
+
 
 }//End class
