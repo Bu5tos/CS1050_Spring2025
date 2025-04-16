@@ -17,9 +17,16 @@ public static void main(String[] args) {
 	System.out.println("Athlete's age: ");
 	int age = input.nextInt();
 	int[] dailyBurnedCalories = caloriesBurned(input);
+	final int maxHeartRate = 220;
 	System.out.println(" ");
 	
 	System.out.println("     Gym Weekly Fitness Summary     ");
+	System.out.println(" ");
+	
+	calculateMaxHeartRate(age, maxHeartRate);
+	double avgCalories = avgCaloriesBurned(dailyBurnedCalories);
+	System.out.println("Average Daily Calories Burned: " + avgCalories);
+
 
 }//End main
 
@@ -63,6 +70,21 @@ public static double getValidWeight(int weight, Scanner input) {
 	return weight;
 }//End getValidWeight
 
+public static int calculateMaxHeartRate(int age, final int maxHeartRate) {
+	int bpm = (maxHeartRate - age);
+	System.out.println("Max Heart Rate: " + bpm + " bpm");
+	return bpm;
+}//End calculateMaxHeartRate
 
+public static double avgCaloriesBurned(int[] dailyBurnedCalories) {
+	double totalCalories = 0;
+	int sum = 0;
+	
+	for (int index = 0; index < dailyBurnedCalories.length; index++) {
+		sum = 0 + dailyBurnedCalories[index];
+		totalCalories = totalCalories + sum;
+	}
+	return totalCalories/7;
+}
 
 }//End class
