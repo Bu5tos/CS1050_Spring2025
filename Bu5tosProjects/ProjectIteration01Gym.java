@@ -11,8 +11,6 @@ public static void main(String[] args) {
 	int numberOfAthletes = getValidNumAthletes(0, input);
 	int[] arrayOfAthletes = new int[numberOfAthletes];
 	
-	for (int nextAthlete = 0; nextAthlete < numberOfAthletes; nextAthlete++) {
-	
 	double weight = getValidWeight(0, input);
 	System.out.println("Athlete's height(inches): ");
 	double height = input.nextDouble();
@@ -34,8 +32,6 @@ public static void main(String[] args) {
 	bmi = Math.round(bmi);
 	System.out.print("BMI: " + bmi);
 	System.out.print("     Category: " + bmiCategory(bmi));	
-
-	}
 	
 }//End main
 
