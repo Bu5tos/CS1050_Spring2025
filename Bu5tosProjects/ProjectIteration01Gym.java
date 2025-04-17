@@ -11,9 +11,11 @@ public static void main(String[] args) {
 	int numberOfAthletes = getValidNumAthletes(0, input);
 	int[] arrayOfAthletes = new int[numberOfAthletes];
 	
+	for (int nextAthlete = 0; nextAthlete < numberOfAthletes; nextAthlete++) {
+	
 	double weight = getValidWeight(0, input);
 	System.out.println("Athlete's height(inches): ");
-	double height = input.nextInt();
+	double height = input.nextDouble();
 	System.out.println("Athlete's age: ");
 	int age = input.nextInt();
 	int[] dailyBurnedCalories = caloriesBurned(input);
@@ -31,9 +33,10 @@ public static void main(String[] args) {
 	double bmi = weight * BMI / (height * height);
 	bmi = Math.round(bmi);
 	System.out.print("BMI: " + bmi);
-	System.out.print("     Category: " + bmiCategory(bmi));
+	System.out.print("     Category: " + bmiCategory(bmi));	
 
-
+	}
+	
 }//End main
 
 public static int[] caloriesBurned(Scanner input) {
@@ -114,7 +117,6 @@ public static String bmiCategory(double bmi) {
 			category = "Normal";
 		}
 	return category;
-	
 }//End bmiCategory
 
 }//End class
