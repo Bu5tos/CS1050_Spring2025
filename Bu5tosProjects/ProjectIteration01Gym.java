@@ -25,7 +25,13 @@ public static void main(String[] args) {
 	
 	calculateMaxHeartRate(age, maxHeartRate);
 	double avgCalories = avgCaloriesBurned(dailyBurnedCalories);
+	avgCalories = Math.round(avgCalories);
 	System.out.println("Average Daily Calories Burned: " + avgCalories);
+	final int BMI = 703;
+	double bmi = weight * BMI / (height * height);
+	bmi = Math.round(bmi);
+	System.out.print("BMI: " + bmi);
+	System.out.print("     " + bmiCategory(bmi));
 
 
 }//End main
@@ -60,7 +66,7 @@ public static int getValidNumAthletes(int numberOfAthletes, Scanner input) {
 public static double getValidWeight(int weight, Scanner input) {
 	do {
 		
-		System.out.println("Athlete's weight: ");
+		System.out.println("Athlete's weight (lbs): ");
 		weight = input.nextInt();
 		
 		if(weight <= 0) {
@@ -85,6 +91,34 @@ public static double avgCaloriesBurned(int[] dailyBurnedCalories) {
 		totalCalories = totalCalories + sum;
 	}
 	return totalCalories/7;
-}
+}//End avgCaloriesBurned
+
+public static String bmiCategory(double bmi) {
+	double MAX_UNDER_WEIGHT = 18.4;
+	double MIN_NORMAL = 18.5;
+	double MIN_OVER_WEIGHT = 25.0;
+	double MIN_OBESE = 40.0;
+	
+	String category = "?";
+	
+	if (bmi <= MAX_UNDER_WEIGHT){
+		    category = "underweight";
+		System.out.println("Category: " + category);
+		}
+		else if (bmi >= MIN_OBESE ){
+			category = "obese";
+		System.out.println("Category: Obese");
+		}
+		else if (bmi >= MIN_OVER_WEIGHT){
+			category = "overweight";
+		System.out.println("Category: Overweight");
+		}
+		else if (bmi >= MIN_NORMAL){
+			category = "Normal";
+		System.out.println("Category: Normal");
+		}
+	return category;
+	
+}//End bmiCategory
 
 }//End class
