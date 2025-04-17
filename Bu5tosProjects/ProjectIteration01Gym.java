@@ -31,7 +31,7 @@ public static void main(String[] args) {
 	double bmi = weight * BMI / (height * height);
 	bmi = Math.round(bmi);
 	System.out.print("BMI: " + bmi);
-	System.out.print("     " + bmiCategory(bmi));
+	System.out.print("     Category: " + bmiCategory(bmi));
 
 
 }//End main
@@ -103,19 +103,15 @@ public static String bmiCategory(double bmi) {
 	
 	if (bmi <= MAX_UNDER_WEIGHT){
 		    category = "underweight";
-		System.out.println("Category: " + category);
 		}
 		else if (bmi >= MIN_OBESE ){
 			category = "obese";
-		System.out.println("Category: Obese");
 		}
 		else if (bmi >= MIN_OVER_WEIGHT){
 			category = "overweight";
-		System.out.println("Category: Overweight");
 		}
 		else if (bmi >= MIN_NORMAL){
 			category = "Normal";
-		System.out.println("Category: Normal");
 		}
 	return category;
 	
