@@ -9,43 +9,54 @@ public static void main(String[] args) {
 	System.out.println(" ");
 	Scanner input = new Scanner(System.in);
 	int numberOfAthletes = getValidNumAthletes(0, input);
+	double[] bmis = new double[numberOfAthletes];
+	int[] maxHeartRates = new int[numberOfAthletes];
+	double[] averageDailyCaloriesBurned = new double[numberOfAthletes];
 	
-	double weight = getValidWeight(0, input);
-	System.out.println("Athlete's height(inches): ");
-	double height = input.nextDouble();
-	System.out.println("Athlete's age: ");
-	int age = input.nextInt();
-	double[] caloriesPerDay = getDailyCalories(input);
-	final int maxHeartRate = 220;
+	for (int i = 0; i < numberOfAthletes; i++) {
+	
+		double weight = getValidWeight(0, input);
+		System.out.println("Athlete's height(inches): ");
+		double height = input.nextDouble();
+		System.out.println("Athlete's age: ");
+		int age = input.nextInt();
+		double[] caloriesPerDay = getDailyCalories(input);
+	
+		maxHeartRates[i] = calculateMaxHeartRate(age);
+		averageDailyCaloriesBurned[i] = calculateAverageCaloriesBurned(caloriesPerDay);
+		bmis[i] = weight * 703 / (height * height);
+	}
+	
 	System.out.println(" ");
-	
 	System.out.println("     Gym Weekly Fitness Summary     ");
 	System.out.println(" ");
 	
-	calculateMaxHeartRate(age, maxHeartRate);
-	double averageDailyCaloriesBurned = calculateAverageCaloriesBurned(caloriesPerDay);
-	averageDailyCaloriesBurned = Math.round(averageDailyCaloriesBurned);
-	System.out.println("Average Daily Calories Burned: " + averageDailyCaloriesBurned);
-	final int BMI = 703;
-	double bmi = weight * BMI / (height * height);
-	bmi = Math.round(bmi);
-	System.out.print("BMI: " + bmi);
-	System.out.print("     Category: " + bmiCategory(bmi));	
+	displayAthletesSummary(averageDailyCaloriesBurned, bmis, maxHeartRates);
+
+	
+	//calculateMaxHeartRate(age, maxHeartRate);
+	//
+	//	System.out.println("Average Daily Calories Burned: " + averageDailyCaloriesBurned);
+	//	final int BMI = 703;
+	// double bmi = weight * BMI / (height * height);
+	// bmi = Math.round(bmi);
+	// System.out.print("BMI: " + bmi);
+	// System.out.print("     Category: " + getBMICategory(bmi));	
 	
 }//End main
 
 public static double[] getDailyCalories(Scanner scanKeyboard) {
 	
-	double[] day = new double[7];
+	double[] caloriesPerday = new double[7];
 	
-	for(int index = 0; index < day.length; index++) {
+	for(int index = 0; index < caloriesPerday.length; index++) {
 			
 		System.out.println("Enter Calories burned on day " + (index + 1) + ":");
-		day[index] = scanKeyboard.nextInt();
+		caloriesPerday[index] = scanKeyboard.nextInt();
 	}
 	
-	return day;
-}//End caloriesBurned method
+	return caloriesPerday;
+}//End getDailyCalories
 
 public static int getValidNumAthletes(int numberOfAthletes, Scanner input) {
 	do {
@@ -74,7 +85,8 @@ public static double getValidWeight(int weight, Scanner input) {
 	return weight;
 }//End getValidWeight
 
-public static int calculateMaxHeartRate(int age, final int maxHeartRate) {
+public static int calculateMaxHeartRate(int age) {
+	int maxHeartRate = 220;
 	int bpm = (maxHeartRate - age);
 	System.out.println("Max Heart Rate: " + bpm + " bpm");
 	return bpm;
@@ -89,9 +101,9 @@ public static double calculateAverageCaloriesBurned(double dailyBurnedCalories[]
 		totalCalories = totalCalories + sum;
 	}
 	return totalCalories/7;
-}//End avgCaloriesBurned
+}//End calculateAverageCaloriesBurned
 
-public static String bmiCategory(double bmi) {
+public static String getBMICategory(double bmi) {
 	double MAX_UNDER_WEIGHT = 18.4;
 	double MIN_NORMAL = 18.5;
 	double MIN_OVER_WEIGHT = 25.0;
@@ -114,4 +126,14 @@ public static String bmiCategory(double bmi) {
 	return category;
 }//End bmiCategory
 
+public static void displayAthletesSummary(double[] averageCalories, double[] bmi, int[] maxHeartRates) {
+    for (int i = 0; i < bmi.length; i++) {
+	System.out.println("Max Heart Rate: " + maxHeartRates[i] + " bpm");
+	System.out.println("Average Daily Calories Burned: " + averageCalories[i]);
+	System.out.println("BMI: " + bmi[i] + "     Category: " + getBMICategory(bmi[i]));
+    }
+}
+
 }//End class
+//double averageDailyCaloriesBurned = calculateAverageCaloriesBurned(caloriesPerDay);
+//averageDailyCaloriesBurned = Math.round(averageDailyCaloriesBurned);
