@@ -9,14 +9,13 @@ public static void main(String[] args) {
 	System.out.println(" ");
 	Scanner input = new Scanner(System.in);
 	int numberOfAthletes = getValidNumAthletes(0, input);
-	int[] arrayOfAthletes = new int[numberOfAthletes];
 	
 	double weight = getValidWeight(0, input);
 	System.out.println("Athlete's height(inches): ");
 	double height = input.nextDouble();
 	System.out.println("Athlete's age: ");
 	int age = input.nextInt();
-	int[] dailyBurnedCalories = caloriesBurned(input);
+	double[] caloriesPerDay = getDailyCalories(input);
 	final int maxHeartRate = 220;
 	System.out.println(" ");
 	
@@ -24,9 +23,9 @@ public static void main(String[] args) {
 	System.out.println(" ");
 	
 	calculateMaxHeartRate(age, maxHeartRate);
-	double avgCalories = avgCaloriesBurned(dailyBurnedCalories);
-	avgCalories = Math.round(avgCalories);
-	System.out.println("Average Daily Calories Burned: " + avgCalories);
+	double averageDailyCaloriesBurned = calculateAverageCaloriesBurned(caloriesPerDay);
+	averageDailyCaloriesBurned = Math.round(averageDailyCaloriesBurned);
+	System.out.println("Average Daily Calories Burned: " + averageDailyCaloriesBurned);
 	final int BMI = 703;
 	double bmi = weight * BMI / (height * height);
 	bmi = Math.round(bmi);
@@ -35,14 +34,14 @@ public static void main(String[] args) {
 	
 }//End main
 
-public static int[] caloriesBurned(Scanner input) {
+public static double[] getDailyCalories(Scanner scanKeyboard) {
 	
-	int[] day = new int[7];
+	double[] day = new double[7];
 	
 	for(int index = 0; index < day.length; index++) {
 			
 		System.out.println("Enter Calories burned on day " + (index + 1) + ":");
-		day[index] = input.nextInt();
+		day[index] = scanKeyboard.nextInt();
 	}
 	
 	return day;
@@ -81,9 +80,9 @@ public static int calculateMaxHeartRate(int age, final int maxHeartRate) {
 	return bpm;
 }//End calculateMaxHeartRate
 
-public static double avgCaloriesBurned(int[] dailyBurnedCalories) {
+public static double calculateAverageCaloriesBurned(double dailyBurnedCalories[]) {
 	double totalCalories = 0;
-	int sum = 0;
+	double sum = 0;
 	
 	for (int index = 0; index < dailyBurnedCalories.length; index++) {
 		sum = 0 + dailyBurnedCalories[index];
