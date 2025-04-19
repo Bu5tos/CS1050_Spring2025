@@ -11,7 +11,6 @@ public static void main(String[] args) {
 	double[] bmis = new double[numberOfAthletes];
 	int[] maxHeartRates = new int[numberOfAthletes];
 	double[] averageDailyCaloriesBurned = new double[numberOfAthletes];
-	//int athleteNumber = 0;
 	
 	for (int i = 0; i < numberOfAthletes; i++) {
 		
@@ -122,11 +121,14 @@ public static String getBMICategory(double bmi) {
 }//End getBMICategory
 
 public static void displayAthletesSummary(double[] averageCalories, double[] bmi, int[] maxHeartRates) {
+	int nextAthlete = 0;
     for (int i = 0; i < bmi.length; i++) {
-	System.out.println("Max Heart Rate: " + maxHeartRates[i] + " bpm");
-	System.out.println("Average Daily Calories Burned: " + averageCalories[i]);
-	System.out.println("BMI: " + bmi[i] + "     Category: " + getBMICategory(bmi[i]));
-	System.out.println(" ");
+    	nextAthlete = nextAthlete + 1;
+    	System.out.println("Athlete " + nextAthlete);
+	    System.out.println("        Max Heart Rate: " + maxHeartRates[i] + " bpm");
+	    System.out.println("        Average Daily Calories Burned: " + averageCalories[i]);
+	    System.out.println("        BMI: " + bmi[i] + "     Category: " + getBMICategory(bmi[i]));
+	    System.out.println(" ");
     }
 }//End displayAthletesSummary
 
