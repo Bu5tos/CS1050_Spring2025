@@ -6,19 +6,23 @@ public static void main(String[] args) {
 	System.out.println("     Welcome to the Gym Athlete Fitness Tracker     ");
 	System.out.println(" ");
 	Scanner input = new Scanner(System.in);
-	int numberOfAthletes = getValidNumAthletes(0, input);
+	System.out.println("Enter number of athletes: ");
+	int numberOfAthletes = getValidIntegers(input);
 	double[] bmis = new double[numberOfAthletes];
 	int[] maxHeartRates = new int[numberOfAthletes];
 	double[] averageDailyCaloriesBurned = new double[numberOfAthletes];
+	//int athleteNumber = 0;
 	
 	for (int i = 0; i < numberOfAthletes; i++) {
 		
 		System.out.println(" ");
+		System.out.println("Enter data for Athlete " + numberOfAthletes + ":");
+		System.out.println("Enter athlete's weight (lbs): ");
 		double weight = getValidDoubles(input);
 		System.out.println("Athlete's height(inches): ");
-		double height = input.nextDouble();
+		double height = getValidDoubles(input);
 		System.out.println("Athlete's age: ");
-		int age = input.nextInt();
+		int age = getValidIntegers(input);
 		double[] caloriesPerDay = getDailyCalories(input);
 	
 		maxHeartRates[i] = calculateMaxHeartRate(age);
@@ -31,6 +35,8 @@ public static void main(String[] args) {
 	System.out.println(" ");
 	
 	displayAthletesSummary(averageDailyCaloriesBurned, bmis, maxHeartRates);
+	
+	System.out.println("Top Athlete (Most Average Daily Calories Burned): " + findTopAthleteIndex(averageDailyCaloriesBurned));
 	
 }//End main
 
@@ -47,35 +53,32 @@ public static double[] getDailyCalories(Scanner scanKeyboard) {
 	return caloriesPerday;
 }//End getDailyCalories
 
-public static int getValidNumAthletes(int numberOfAthletes, Scanner input) {
-	do {
-		
-		System.out.println("Enter number of athletes: ");
-		numberOfAthletes = input.nextInt();
-		
-		if(numberOfAthletes <= 0) {
-			System.out.println("Error: value must be greater than 0");
-		}
-		
-}   while (numberOfAthletes <= 0);	
-	return numberOfAthletes;
-}//End getValidNumAthletes
-
-public static double getValidDoubles(Scanner input) {
-double validNum = 0;
+public static int getValidIntegers(Scanner input) {
+int validNumber = 0;
 	
-	while(validNum <= 0) {
-		System.out.println("Enter athlete's weight (lbs): ");
+	while(validNumber <= 0) {
 		if (input.hasNextDouble()) {
-			validNum = input.nextDouble();
-			if (validNum <= 0) {
+			validNumber = input.nextInt();
+			if (validNumber <= 0) {
 				System.out.println("Error: Value must be greater than 0");
 			}
-
-	}
-		
+	}	
 }
-	return validNum;
+	return validNumber;
+}//End getValidIntegers
+
+public static double getValidDoubles(Scanner input) {
+double validNumber2 = 0;
+	
+	while(validNumber2 <= 0) {
+		if (input.hasNextDouble()) {
+			validNumber2 = input.nextDouble();
+			if (validNumber2 <= 0) {
+				System.out.println("Error: Value must be greater than 0");
+			}
+	}	
+}
+	return validNumber2;
 }//End getValidDouble
 
 public static int calculateMaxHeartRate(int age) {
@@ -116,14 +119,26 @@ public static String getBMICategory(double bmi) {
 			category = "Normal";
 		}
 	return category;
-}//End bmiCategory
+}//End getBMICategory
 
 public static void displayAthletesSummary(double[] averageCalories, double[] bmi, int[] maxHeartRates) {
     for (int i = 0; i < bmi.length; i++) {
 	System.out.println("Max Heart Rate: " + maxHeartRates[i] + " bpm");
 	System.out.println("Average Daily Calories Burned: " + averageCalories[i]);
 	System.out.println("BMI: " + bmi[i] + "     Category: " + getBMICategory(bmi[i]));
+	System.out.println(" ");
     }
 }//End displayAthletesSummary
+
+public static double findTopAthleteIndex(double[] averageDailyCaloriesBurned) {
+	double largestCalories = averageDailyCaloriesBurned[0];
+	
+	for (int i = 1; i < averageDailyCaloriesBurned.length; i++) {
+		if (averageDailyCaloriesBurned[i] > largestCalories) {
+			largestCalories = averageDailyCaloriesBurned[i];
+	}
+}
+	return largestCalories;
+}//End findTopAthleteIndex
 
 }//End class
