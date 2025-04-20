@@ -35,7 +35,9 @@ public static void main(String[] args) {
 	
 	displayAthletesSummary(averageDailyCaloriesBurned, bmis, maxHeartRates);
 	
-	System.out.println("Top Athlete (Most Average Daily Calories Burned): " + findTopAthleteIndex(averageDailyCaloriesBurned));
+	System.out.println("Top Athlete (Most Average Daily Calories Burned): Athlete " + findTopAthleteIndex(averageDailyCaloriesBurned));
+	System.out.println(" ");
+	System.out.println("Underweight Athlete: Athlete " + findUnderweightAthletes(averageDailyCaloriesBurned));
 	
 }//End main
 
@@ -106,13 +108,13 @@ public static String getBMICategory(double bmi) {
 	String category = "?";
 	
 	if (bmi <= MAX_UNDER_WEIGHT){
-		    category = "underweight";
+		    category = "Underweight";
 		}
 		else if (bmi >= MIN_OBESE ){
-			category = "obese";
+			category = "Obese";
 		}
 		else if (bmi >= MIN_OVER_WEIGHT){
-			category = "overweight";
+			category = "Overweight";
 		}
 		else if (bmi >= MIN_NORMAL){
 			category = "Normal";
@@ -132,15 +134,30 @@ public static void displayAthletesSummary(double[] averageCalories, double[] bmi
     }
 }//End displayAthletesSummary
 
-public static double findTopAthleteIndex(double[] averageDailyCaloriesBurned) {
+public static int findTopAthleteIndex(double[] averageDailyCaloriesBurned) {
 	double largestCalories = averageDailyCaloriesBurned[0];
+	int topAthlete = 1;
 	
 	for (int i = 1; i < averageDailyCaloriesBurned.length; i++) {
 		if (averageDailyCaloriesBurned[i] > largestCalories) {
 			largestCalories = averageDailyCaloriesBurned[i];
+			topAthlete = i + 1;
 	}
 }
-	return largestCalories;
+	return topAthlete;
 }//End findTopAthleteIndex
+
+public static int findUnderweightAthletes(double[] averageDailyCaloriesBurned) {
+	double lowestCalories = averageDailyCaloriesBurned[0];
+	int underweightAthletes = 1;
+	
+	for (int i = 0; i < averageDailyCaloriesBurned.length; i++) {
+		if(averageDailyCaloriesBurned[i] < lowestCalories) {
+			lowestCalories = averageDailyCaloriesBurned[i];
+			underweightAthletes = i;		
+		} 
+	}
+	return underweightAthletes;
+}
 
 }//End class
