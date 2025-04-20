@@ -40,20 +40,16 @@ public static void main(String[] args) {
 		bmis[i] = Math.round(weight * 703 / (height * height));
 	}//End for loop
 	
-	System.out.println(" ");
-	System.out.println("     Gym Weekly Fitness Summary     ");
-	System.out.println(" ");
+	System.out.println("\n     Gym Weekly Fitness Summary     \n");
 	
 	//Display each athlete's fitness summary and category
 	displayAthletesSummary(averageDailyCaloriesBurned, bmis, maxHeartRates);
 	
 	System.out.println("Top Athlete (Most Average Daily Calories Burned): Athlete " + findTopAthleteIndex(averageDailyCaloriesBurned));
-	System.out.println(" ");
 }//End main
 
 public static double[] getDailyCalories(Scanner scanKeyboard) {
-	//Initialize array to store daily calories for 7 days
-	double[] caloriesPerday = new double[7];
+	double[] caloriesPerday = new double[7]; //Initialize array to store daily calories for 7 days
 	
 	//Use for loop to collect calorie data from user for each day
 	for(int index = 0; index < caloriesPerday.length; index++) {	
