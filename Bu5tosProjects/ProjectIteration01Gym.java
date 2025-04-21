@@ -31,7 +31,7 @@ public static void main(String[] args) {
 		System.out.println("Athlete's age: ");
 		int age = getValidIntegers(input);
 		
-		//An array to store athlete's daily burned calories in a week
+		//An array to store each athlete's daily burned calories in a week
 		double[] caloriesPerDay = getDailyCalories(input);
 	
 		//Calculate and store athlete's data 
