@@ -38,7 +38,6 @@ public class TestArrayRectangle {
 		
 		System.out.println("Number of rectangles: " + RectangleL23.getNumberOfRectangles());
 		
-
 		//3 Declare an array called rectangles to store 3 rectangles
 		final int arraySize = 3;
 		RectangleL23[] rectangles = new RectangleL23[arraySize];
@@ -48,7 +47,6 @@ public class TestArrayRectangle {
 		rectangles[1] = rectangle2;
 		rectangles[2] = rectangle3;
 		
-		
 		//the following are hard coded to see how to access methods of objects in an array 
 		//5 set the length of the last rectangle using the index
 		rectangles[2].setLength(10.4);
@@ -56,19 +54,16 @@ public class TestArrayRectangle {
 		//6 Display the area of the first rectangle using the index
 		System.out.printf("\nThe area of the rectangle at index 2 is %.2f", rectangles[2].getArea());
 		
-
 		//7 Call method to display dimensions of each rectangle in the array of rectangles
 		printRectangleInformation(rectangles);
 		
-
-
 		//8 Create a method to find  the  index of the rectangle with the largest length 
 
 		int largestLengthIndex = getLargestLengthIndex(rectangles);
 		System.out.println("\nThe rectangle with the largest length is at index " + largestLengthIndex);
 
-		//9 Call a method to return the sum all the rectanlges perimeters
-
+		//9 Call a method to return the sum all the rectangles perimeters
+		
 		  
 
 	}// end main
