@@ -68,7 +68,43 @@ public class ProjectIter02Gym
 
 
 // Athlete class
-class athlete {
+class Athlete {
+	
+	//Instance variables
+	private String firstName;
+	private String lastName;
+	private double weight;
+	private double height;
+	private int age;
+	private int[] dailyCaloriesBurned;
+	
+	public Athlete(String firstName, String lastName, double weight, double height, int age, int[] dailyCaloriesBurned) {
+		
+	}
+	
+	public String getFirstName() {
+		
+	}
+	
+	public String getLastName() {
+		
+	}
+	
+	public double getAverageCaloriesBurned() {
+		
+	}
+	
+	public int calculateMaxHeartRate() {
+		
+	}
+	
+	public double calculateBMI() {
+		
+	}
+	
+	public String getBMICategory() {
+		
+	}
 	
 }
 
