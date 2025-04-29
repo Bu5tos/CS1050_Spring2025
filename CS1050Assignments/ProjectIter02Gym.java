@@ -36,7 +36,7 @@ public class ProjectIter02Gym
 			System.out.println("Error: File not found.");
 		}
 
-	}
+	}//End main
 
 	/**
 	 * 
@@ -63,10 +63,13 @@ public class ProjectIter02Gym
 		}
 	}// end add athletes
 
-}
+} //End Class
 
 
 
 // Athlete class
+class athlete {
+	
+}
 
 // Gym Class
