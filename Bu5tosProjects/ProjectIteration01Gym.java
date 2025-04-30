@@ -46,6 +46,8 @@ public static void main(String[] args) {
 	displayAthletesSummary(averageDailyCaloriesBurned, bmis, maxHeartRates);
 	
 	System.out.println("Top Athlete (Most Average Daily Calories Burned): Athlete " + findTopAthleteIndex(averageDailyCaloriesBurned));
+	System.out.println("");
+	System.out.println("Underweight Athlete: Athlete " + underweightAthlete(averageDailyCaloriesBurned));
 }//End main
 
 public static double[] getDailyCalories(Scanner scanKeyboard) {
@@ -157,5 +159,27 @@ public static int findTopAthleteIndex(double[] averageDailyCaloriesBurned) {
 }
 	return topAthlete;
 }//End findTopAthleteIndex
+
+public static int underweightAthlete(double[] averageDailyCaloriesBurned) {
+	double lowestCalories = averageDailyCaloriesBurned[0];
+	int underweightAthlete = 1;
+	boolean underweight = true;
+	
+	for (int i = 1; i < averageDailyCaloriesBurned.length; i++) {
+		if (averageDailyCaloriesBurned[i] < lowestCalories) {
+			lowestCalories = averageDailyCaloriesBurned[i];
+			underweightAthlete = i + 1;
+			underweight = false;
+		}
+		else if (lowestCalories != averageDailyCaloriesBurned[i]){
+			underweight = true;
+		}
+		else {
+			System.out.println("No underweight Athlete");
+		}
+				
+			}
+	return underweightAthlete;
+}//End underweightAthlete
 
 }//End class
