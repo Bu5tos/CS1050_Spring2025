@@ -88,11 +88,11 @@ class Athlete {
 	}
 	
 	public String getFirstName() {
-		
+		return firstName;
 	}
 	
 	public String getLastName() {
-		
+		return lastName;
 	}
 	
 	public double getAverageCaloriesBurned(double dailyBurnedCalories[]) {

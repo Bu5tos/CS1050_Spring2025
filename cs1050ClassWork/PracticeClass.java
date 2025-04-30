@@ -15,6 +15,7 @@ public class PracticeClass {
 
 		int[] calorieArray = {0, 400, 400, 300, 250, 450, 450};
 		Athlete athlete1 = new Athlete("Heap", "Shit", 100.5, 64, 22, calorieArray);
+		
 		System.out.println("first name: " + athlete1.getFirstName());
 		System.out.println("last name: " + athlete1.getLastName());
 		System.out.println("BMI: " + athlete1.calculateBMI());
@@ -24,6 +25,8 @@ public class PracticeClass {
 		
 		System.out.println("");
 		
+		int[] athleteArray = {0, 1, 2};
+		Gym gym1 = new Gym("Gym Rats", athleteArray, 3);
 		
 	}
 
