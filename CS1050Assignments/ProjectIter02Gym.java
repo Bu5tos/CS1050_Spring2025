@@ -105,16 +105,17 @@ class Athlete {
 			totalCalories = totalCalories + sum;
 		}
 		return totalCalories/7;
-	}
+	}//getAverageCaloriesBurned
 	
 	public int calculateMaxHeartRate(int age) {
 		final int MAX_HEART_RATE = 220; //Constant max heart rate
 		int bpm = (MAX_HEART_RATE - age);
 		return bpm;
-	}
+	}//End calculateMaxHeartRate
 	
-	public double calculateBMI() {
-		
+	public double calculateBMI(double weight, double height) {
+		double bmi = Math.round(weight * 703 / (height * height));
+		return bmi;
 	}
 	
 	public String getBMICategory(double bmi) {
@@ -139,7 +140,7 @@ class Athlete {
 				category = "Normal";
 			}
 		return category;
-	}
+	}//End calculateBMI
 	
 }//End class Athlete
 
