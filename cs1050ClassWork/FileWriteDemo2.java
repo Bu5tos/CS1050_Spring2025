@@ -1,4 +1,5 @@
 import java.util.Scanner;   // Scanner class to read input
+import java.io.PrintWriter;
 
 //import input/output package classes to write to a file 
 import java.io.*;
@@ -50,7 +51,7 @@ public class FileWriteDemo2
 			
 		}else
 		{
-
+			try {
 			//
 			PrintWriter outputFile = new PrintWriter(gradeFile);
 	
@@ -70,7 +71,9 @@ public class FileWriteDemo2
 			System.out.println("\nAdd comments to the code.");
 			// 
 			outputFile.close();
-		
+			
+			catch (IOExeption)
+			} 
 		}//end else
 		
 	}
