@@ -52,6 +52,7 @@ public class ProjectIter02Gym
 			fileScanner = new Scanner(new File(filename));
 
 			//Add code to read from file
+			
 
 
 		} finally
@@ -78,6 +79,7 @@ class Athlete {
 	private int age;
 	private int[] dailyCaloriesBurned;
 	
+	//Constructors 
 	public Athlete(String firstName, String lastName, double weight, double height, int age, int[] dailyCaloriesBurned) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -87,6 +89,7 @@ class Athlete {
 		this.dailyCaloriesBurned = dailyCaloriesBurned;
 	}
 	
+	//Methods
 	public String getFirstName() {
 		return firstName;
 	}
@@ -95,36 +98,37 @@ class Athlete {
 		return lastName;
 	}
 	
-	public double getAverageCaloriesBurned(double dailyBurnedCalories[]) {
+	public double calculateBMI() {
+		double bmi = Math.round(weight * 703 / (height * height));
+		return bmi;
+	}
+	
+	public double getAverageCaloriesBurned() {
 		double totalCalories = 0;
 		double sum = 0;
 		
 		//Sum daily burned calories 
-		for (int index = 0; index < dailyBurnedCalories.length; index++) {
-			sum = 0 + dailyBurnedCalories[index];
+		for (int index = 0; index < dailyCaloriesBurned.length; index++) {
+			sum = 0 + dailyCaloriesBurned[index];
 			totalCalories = totalCalories + sum;
 		}
 		return totalCalories/7;
 	}//getAverageCaloriesBurned
 	
-	public int calculateMaxHeartRate(int age) {
+	public int calculateMaxHeartRate() {
 		final int MAX_HEART_RATE = 220; //Constant max heart rate
 		int bpm = (MAX_HEART_RATE - age);
 		return bpm;
 	}//End calculateMaxHeartRate
 	
-	public double calculateBMI(double weight, double height) {
-		double bmi = Math.round(weight * 703 / (height * height));
-		return bmi;
-	}
-	
-	public String getBMICategory(double bmi) {
+	public String getBMICategory() {
 		final double MAX_UNDER_WEIGHT = 18.4;
 		final double MIN_NORMAL = 18.5;
 		final double MIN_OVER_WEIGHT = 25.0;
 		final double MIN_OBESE = 40.0;
 		
 		String category = " ";
+		double bmi = calculateBMI();
 		
 		//Determine BMI category
 		if (bmi <= MAX_UNDER_WEIGHT){
@@ -142,6 +146,33 @@ class Athlete {
 		return category;
 	}//End calculateBMI
 	
-}//End class Athlete
+}//End Athlete Class
 
 // Gym Class
+class Gym {
+	
+	private String name;
+	private Athlete[] athletes;
+	private int numAthletes;
+	
+	public Gym(String name, Athlete[] athletes, int numAthletes) {
+		this.name = name;
+		this.athletes = athletes;
+		this.numAthletes = numAthletes;
+	}
+	
+	public String getGymName() {
+		return name;
+	}
+	
+	//public void saveReportToFile()
+	
+	//public void addAthlete(Athlete athlete)
+	
+	//public void displayAthletesSummary()
+	
+	//private int findTopAthlete()
+	
+	//private void displayUnderweightAthletes()
+	
+}//End Gym Class 

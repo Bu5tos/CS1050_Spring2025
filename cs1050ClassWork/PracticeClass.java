@@ -12,7 +12,9 @@ public class PracticeClass {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		
+		
+		
 		int[] calorieArray = {0, 400, 400, 300, 250, 450, 450};
 		Athlete athlete1 = new Athlete("Heap", "Shit", 100.5, 64, 22, calorieArray);
 		
@@ -34,7 +36,7 @@ public class PracticeClass {
 		
 		System.out.println("Gym: " + gym1.getGymName());
 		
-
+		
 		
 	}//End Main
 
