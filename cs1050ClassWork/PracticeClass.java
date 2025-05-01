@@ -25,10 +25,18 @@ public class PracticeClass {
 		
 		System.out.println("");
 		
-		int[] athleteArray = {0, 1, 2};
+		Athlete[] athleteArray = new Athlete[3];
+		athleteArray[0] = athlete1;
+		athleteArray[1] = new Athlete("Alexis", "Bustos", 50.1, 222, 37, calorieArray);
+		athleteArray[2] = new Athlete("Bella", "Donke", 25.9, 111, 18, calorieArray);
+		
 		Gym gym1 = new Gym("Gym Rats", athleteArray, 3);
 		
-	}
+		System.out.println("Gym: " + gym1.getGymName());
+		
+
+		
+	}//End Main
 
 }
 
@@ -128,5 +136,11 @@ class Gym {
 	public String getGymName() {
 		return name;
 	}
+	
+	//public void saveReportToFile()
+	
+	//public void addAthlete(Athlete athlete)
+	
+	//public void displayAthletesSummary()
 	
 }//End Gym Class 
