@@ -143,4 +143,8 @@ class Gym {
 	
 	//public void displayAthletesSummary()
 	
+	//private int findTopAthlete()
+	
+	//private void displayUnderweightAthletes()
+	
 }//End Gym Class 
