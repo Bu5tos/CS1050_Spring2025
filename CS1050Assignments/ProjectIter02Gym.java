@@ -8,7 +8,7 @@ public class ProjectIter02Gym
 {
 	public static void main(String[] args)
 	{
-		int MAX_GYM_MEMBERS = 3;
+		final int MAX_GYM_MEMBERS = 3;
 		
 		Gym gym1 = new Gym("Elite Fitness", MAX_GYM_MEMBERS);
 

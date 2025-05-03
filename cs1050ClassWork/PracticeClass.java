@@ -141,11 +141,35 @@ class Gym {
 	
 	//public void saveReportToFile()
 	
-	//public void addAthlete(Athlete athlete)
+	public void addAthlete(Athlete athletes) {
+		if (numAthletes < athletes.length) {
+			athletes[numAthletes] = athletes;
+			numAthletes++;
+		} else {
+			System.out.println("Gym is full. ");
+		}
+	}//End addAthlete
 	
-	//public void displayAthletesSummary()
+	public static void displayAthleteSummaries() {
+		int nextAthlete = 0;
+		double bmi = CalculateBMI();
+		int bpm = calculateMaxHeartRate();
+		double averageCalories = getAverageCaloriesBurned();
+		String getBMICategory = getBMICategory();
+		
+		//Use for loop to iterate through each athlete's data
+	    for (int i = 0; i < bmi.length; i++) {
+	    	//Print summary for each athlete #
+	    	nextAthlete = nextAthlete + 1;
+	    	System.out.println("Athlete " + nextAthlete);
+		    System.out.println("        Max Heart Rate: " + bpm[i] + " bpm");
+		    System.out.println("        Average Daily Calories Burned: " + averageCalories[i]);
+		    System.out.println("        BMI: " + bmi[i] + "     Category: " + getBMICategory(bmi[i]));
+		    System.out.println(" ");
+	    }
+	}//End displayAthletesSummary
 	
-	//private int findTopAthlete()
+	//private int findTopAthlete() {
 	
 	//private void displayUnderweightAthletes()
 	
