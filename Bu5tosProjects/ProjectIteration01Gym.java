@@ -178,7 +178,7 @@ public static int underweightAthlete(double[] averageDailyCaloriesBurned) {
 			System.out.println("No underweight Athlete");
 		}
 			}
-	return underweightAthlete;
+	  return underweightAthlete;
 }//End underweightAthlete
 
 }//End class

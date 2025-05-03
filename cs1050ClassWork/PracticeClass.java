@@ -32,6 +32,8 @@ public class PracticeClass {
 		athleteArray[1] = new Athlete("Alexis", "Bustos", 50.1, 222, 37, calorieArray);
 		athleteArray[2] = new Athlete("Bella", "Donke", 25.9, 111, 18, calorieArray);
 		
+		
+		
 		//Gym gym1 = new Gym("Gym Rats", athleteArray, 3);
 		
 		//System.out.println("Gym: " + gym1.getGymName());
@@ -151,6 +153,10 @@ class Gym {
 			System.out.println("Gym is full. ");
 		}
 	}//End addAthlete
+	
+	public void displayAthleteSummaries() {
+		
+	}
 	
 	private void findTopAthlete() {
 		double largestCalories = athletes[0].getAverageCaloriesBurned();
