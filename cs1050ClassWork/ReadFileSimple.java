@@ -24,7 +24,6 @@ public class ReadFileSimple {
                 double weight = fileScanner.nextDouble();
                 double height = fileScanner.nextDouble();
                 int age = fileScanner.nextInt();// Display it to the console
-                
             }
             // Always close the file when done
             fileScanner.close();
