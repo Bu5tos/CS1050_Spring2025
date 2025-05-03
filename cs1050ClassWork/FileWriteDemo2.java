@@ -31,7 +31,7 @@ public class FileWriteDemo2
 	}//end main
 	
 	public static void writeToFile(String filename, String[] categories, double[] percentWeights)
-			throws IOException
+			throws IOException 
 	{
 		//
 		File gradeFile = new File(filename);
@@ -68,7 +68,7 @@ public class FileWriteDemo2
 			catch (IOExeption e)
 			} 
 		}//end else
-		
+	
 	}
 	
 }//end FileWriteDemo2
