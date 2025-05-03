@@ -1,14 +1,7 @@
 import java.util.Scanner;   // Scanner class to read input
 import java.io.PrintWriter;
-
-//import input/output package classes to write to a file 
-import java.io.*;
-
-/**
-   This program writes data to a file using arrays. 
-   It makes sure the
-   specified file does not exist before opening it.
- */
+import java.io.File;
+import java.io.IOException;
 
 public class FileWriteDemo2
 {
@@ -72,7 +65,7 @@ public class FileWriteDemo2
 			// 
 			outputFile.close();
 			
-			catch (IOExeption)
+			catch (IOExeption e)
 			} 
 		}//end else
 		

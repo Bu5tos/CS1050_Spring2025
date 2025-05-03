@@ -32,9 +32,9 @@ public class PracticeClass {
 		athleteArray[1] = new Athlete("Alexis", "Bustos", 50.1, 222, 37, calorieArray);
 		athleteArray[2] = new Athlete("Bella", "Donke", 25.9, 111, 18, calorieArray);
 		
-		Gym gym1 = new Gym("Gym Rats", athleteArray, 3);
+		//Gym gym1 = new Gym("Gym Rats", athleteArray, 3);
 		
-		System.out.println("Gym: " + gym1.getGymName());
+		//System.out.println("Gym: " + gym1.getGymName());
 		
 		
 		
@@ -129,11 +129,13 @@ class Gym {
 	private Athlete[] athletes;
 	private int numAthletes;
 	
-	public Gym(String name, Athlete[] athletes, int numAthletes) {
+	public Gym(String name, int maxAthletes) {
 		this.name = name;
-		this.athletes = athletes;
-		this.numAthletes = numAthletes;
+		athletes = new Athlete[maxAthletes];
+		numAthletes = 0;
 	}
+	
+	
 	
 	public String getGymName() {
 		return name;
