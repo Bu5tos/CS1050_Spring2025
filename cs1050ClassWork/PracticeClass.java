@@ -155,8 +155,16 @@ class Gym {
 	}//End addAthlete
 	
 	public void displayAthleteSummaries() {
-		
-	}
+		for (int i = 0; i < numAthletes; i++) {
+			Athlete athlete = athletes[i];
+			//Print summary for each athlete #
+	    	System.out.println(name);
+		    System.out.println("        Max Heart Rate: " + athlete.calculateMaxHeartRate() + " bpm");
+		    System.out.println("        Average Daily Calories Burned: " + athlete.getAverageCaloriesBurned());
+		    System.out.println("        BMI: " + athlete.calculateBMI() + "     Category: " + athlete.getBMICategory());
+		    System.out.println(" ");
+		}
+	}//End displayAthleteSummaries
 	
 	private void findTopAthlete() {
 		double largestCalories = athletes[0].getAverageCaloriesBurned();
