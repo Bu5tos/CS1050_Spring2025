@@ -16,11 +16,11 @@ public class ProjectIter02Gym
 		{
 			readGymAthletesInfoFromFile("gym1.txt", gym1);
 			gym1.displayAthleteSummaries();
-			gym1.saveReportToFile();
+			//gym1.saveReportToFile();
 			
 		} catch (FileNotFoundException e)
 		{
-			System.out.println("Error: File not found.");
+			System.out.println("Error: gym1.txt file not found.");
 		}
 		
 		Gym gym2 = new Gym("Work in Progress", MAX_GYM_MEMBERS);
@@ -29,11 +29,11 @@ public class ProjectIter02Gym
 		{
 			readGymAthletesInfoFromFile("gym2.txt", gym2);
 			gym2.displayAthleteSummaries();
-			gym2.saveReportToFile();
+			//gym2.saveReportToFile();
 			
 		} catch (FileNotFoundException e)
 		{
-			System.out.println("Error: File not found.");
+			System.out.println("Error: gym2.txt file not found.");
 		}
 
 	}//End main
@@ -58,8 +58,8 @@ public class ProjectIter02Gym
                 double weight = fileScanner.nextDouble();
                 double height = fileScanner.nextDouble();
                 int age = fileScanner.nextInt();
-                Athlete currentAthlete = new Athlete(firstName, lastName, weight, height, age);
-                currentGym.addAthlete (currentAthlete);
+                //Athlete currentAthlete = new Athlete(firstName, lastName, weight, height, age);
+                //currentGym.addAthlete (currentAthlete);
 			}
 		} finally
 		{
