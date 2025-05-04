@@ -1,3 +1,8 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
 /**
  * 
  */
@@ -143,8 +148,6 @@ class Gym {
 		return name;
 	}
 	
-	//public void saveReportToFile()
-	
 	public void addAthlete(Athlete athlete) {
 		if (numAthletes < athletes.length) {
 			athletes[numAthletes] = athlete;
@@ -156,7 +159,10 @@ class Gym {
 	
 	public void displayAthleteSummaries() {
 		for (int i = 0; i < numAthletes; i++) {
+			
+			//
 			Athlete athlete = athletes[i];
+			
 			//Print summary for each athlete #
 	    	System.out.println(name);
 		    System.out.println("        Max Heart Rate: " + athlete.calculateMaxHeartRate() + " bpm");
@@ -165,6 +171,8 @@ class Gym {
 		    System.out.println(" ");
 		}
 	}//End displayAthleteSummaries
+	
+	//public void saveReportToFile()
 	
 	private void findTopAthlete() {
 		double largestCalories = athletes[0].getAverageCaloriesBurned();
