@@ -16,7 +16,7 @@ public class ProjectIter02Gym
 		{
 			readGymAthletesInfoFromFile("gym1.txt", gym1);
 			gym1.displayAthleteSummaries();
-			//gym1.saveReportToFile();
+			gym1.saveReportToFile();
 			
 		} catch (FileNotFoundException e)
 		{
@@ -29,7 +29,7 @@ public class ProjectIter02Gym
 		{
 			readGymAthletesInfoFromFile("gym2.txt", gym2);
 			gym2.displayAthleteSummaries();
-			//gym2.saveReportToFile();
+			gym2.saveReportToFile();
 			
 		} catch (FileNotFoundException e)
 		{
@@ -58,8 +58,8 @@ public class ProjectIter02Gym
                 double weight = fileScanner.nextDouble();
                 double height = fileScanner.nextDouble();
                 int age = fileScanner.nextInt();
-                //Athlete currentAthlete = new Athlete(firstName, lastName, weight, height, age);
-                //currentGym.addAthlete (currentAthlete);
+                Athlete currentAthlete = new Athlete(firstName, lastName, weight, height, age);
+                currentGym.addAthlete (currentAthlete);
 			}
 		} finally
 		{
@@ -71,8 +71,6 @@ public class ProjectIter02Gym
 	}// end add athletes
 
 }//End Class
-
-
 
 // Athlete class
 class Athlete {
