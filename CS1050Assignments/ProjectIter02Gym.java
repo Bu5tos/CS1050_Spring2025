@@ -48,7 +48,7 @@ public class ProjectIter02Gym
 		{
 			fileScanner = new Scanner(new File(filename));
 
-			//Add code to read from file
+			//Read from file
 			while (fileScanner.hasNextLine()) {
 				String line = fileScanner.nextLine();// Read the full line
                 System.out.println(line);
@@ -173,51 +173,51 @@ class Gym {
 	
 	//public void saveReportToFile()
 	
-		public void addAthlete(Athlete athlete) {
-			if (numAthletes < athletes.length) {
-				athletes[numAthletes] = athlete;
-				numAthletes++;
-			} else {
-				System.out.println("Gym is full. ");
-			}
-		}//End addAthlete
-		
-		public void displayAthleteSummaries() {
-			
+	public void addAthlete(Athlete athlete) {
+		if (numAthletes < athletes.length) {
+			athletes[numAthletes] = athlete;
+			numAthletes++;
+		} else {
+			System.out.println("Gym is full. ");
 		}
+	}//End addAthlete
 		
-		private void findTopAthlete() {
-			double largestCalories = athletes[0].getAverageCaloriesBurned();
-			int topAthlete = 1;
-			
-			for (int i = 1; i < numAthletes; i++) {
-				if (athletes[i].getAverageCaloriesBurned() > largestCalories) {
-					largestCalories = athletes[i].getAverageCaloriesBurned();
-					topAthlete = i + 1;
-			}
+	public void displayAthleteSummaries() {
+		
+	}
+		
+	private void findTopAthlete() {
+		double largestCalories = athletes[0].getAverageCaloriesBurned();
+		int topAthlete = 1;
+		
+		for (int i = 1; i < numAthletes; i++) {
+			if (athletes[i].getAverageCaloriesBurned() > largestCalories) {
+				largestCalories = athletes[i].getAverageCaloriesBurned();
+				topAthlete = i + 1;
 		}
-			  System.out.println("Top Athlete: " + athletes[topAthlete]);
-		}//End findTopAthlete
+	}
+			 System.out.println("Top Athlete: " + athletes[topAthlete]);
+	}//End findTopAthlete
 		
-		private void displayUnderweightAthletes() {
-			double lowestCalories = athletes[0].getAverageCaloriesBurned();
-			int underweightAthlete = 1;
-			boolean underweight = true;
-			
-			for (int i = 1; i < numAthletes; i++) {
-				if (athletes[i].getAverageCaloriesBurned() < lowestCalories) {
-					lowestCalories = athletes[i].getAverageCaloriesBurned();
-					underweightAthlete = i + 1;
-					underweight = false;
+	private void displayUnderweightAthletes() {
+		double lowestCalories = athletes[0].getAverageCaloriesBurned();
+		int underweightAthlete = 1;
+		boolean underweight = true;
+		
+		for (int i = 1; i < numAthletes; i++) {
+			if (athletes[i].getAverageCaloriesBurned() < lowestCalories) {
+				lowestCalories = athletes[i].getAverageCaloriesBurned();
+				underweightAthlete = i + 1;
+				underweight = false;
+			}
+			else if (lowestCalories != athletes[i].getAverageCaloriesBurned()){
+				underweight = true;
+			}
+			else {
+				System.out.println("No underweight Athlete");
+			}
 				}
-				else if (lowestCalories != athletes[i].getAverageCaloriesBurned()){
-					underweight = true;
-				}
-				else {
-					System.out.println("No underweight Athlete");
-				}
-					}
-			  System.out.println("Underweight Athlete: " + athletes[underweightAthlete]);
-		}//End displayUnderweightAthletes
+			 System.out.println("Underweight Athlete: " + athletes[underweightAthlete]);
+	}//End displayUnderweightAthletes
 	
 }//End Gym Class 
