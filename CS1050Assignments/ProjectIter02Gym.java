@@ -193,7 +193,9 @@ public void displayAthleteSummaries() {
 	}
 }//End displayAthleteSummaries
 	
-//public void saveReportToFile()
+public void saveReportToFile() {
+	
+}
 	
 private void findTopAthlete() {
 	double largestCalories = athletes[0].getAverageCaloriesBurned();
