@@ -10,7 +10,7 @@ public class ProjectIter02Gym
 	{
 		final int MAX_GYM_MEMBERS = 3;
 		
-		Gym gym1 = new Gym("Elite Fitness", MAX_GYM_MEMBERS);
+		Gym gym1 = new Gym("Gym Rats", MAX_GYM_MEMBERS);
 
 		try
 		{
@@ -157,67 +157,78 @@ class Athlete {
 // Gym Class
 class Gym {
 	
-	private String name;
-	private Athlete[] athletes;
-	private int numAthletes;
+private String name;
+private Athlete[] athletes;
+private int numAthletes;
 	
-	public Gym(String name, Athlete[] athletes, int numAthletes) {
-		this.name = name;
-		this.athletes = athletes;
-		this.numAthletes = numAthletes;
+public Gym(String name, int maxAthletes) {
+	this.name = name;
+	athletes = new Athlete[maxAthletes];
+	numAthletes = 0;
+}
+	
+public String getGymName() {
+	return name;
+}
+	
+public void addAthlete(Athlete athlete) {
+	if (numAthletes < athletes.length) {
+		athletes[numAthletes] = athlete;
+		numAthletes++;
+	} else {
+		System.out.println("Gym is full. ");
 	}
+}//End addAthlete
 	
-	public String getGymName() {
-		return name;
+public void displayAthleteSummaries() {
+	for (int i = 0; i < numAthletes; i++) {
+			
+		//
+		Athlete athlete = athletes[i];
+			
+		//Print summary for each athlete #
+	   	System.out.println(name);
+	    System.out.println("        Max Heart Rate: " + athlete.calculateMaxHeartRate() + " bpm");
+	    System.out.println("        Average Daily Calories Burned: " + athlete.getAverageCaloriesBurned());
+	    System.out.println("        BMI: " + athlete.calculateBMI() + "     Category: " + athlete.getBMICategory());
+	    System.out.println(" ");
 	}
+}//End displayAthleteSummaries
 	
-	//public void saveReportToFile()
+//public void saveReportToFile()
 	
-	public void addAthlete(Athlete athlete) {
-		if (numAthletes < athletes.length) {
-			athletes[numAthletes] = athlete;
-			numAthletes++;
-		} else {
-			System.out.println("Gym is full. ");
+private void findTopAthlete() {
+	double largestCalories = athletes[0].getAverageCaloriesBurned();
+	int topAthlete = 1;
+		
+	for (int i = 1; i < numAthletes; i++) {
+		if (athletes[i].getAverageCaloriesBurned() > largestCalories) {
+			largestCalories = athletes[i].getAverageCaloriesBurned();
+			topAthlete = i + 1;
+	}
+}
+		 System.out.println("Top Athlete: " + athletes[topAthlete]);
+}//End findTopAthlete
+	
+private void displayUnderweightAthletes() {
+	double lowestCalories = athletes[0].getAverageCaloriesBurned();
+	int underweightAthlete = 1;
+	boolean underweight = true;
+		
+	for (int i = 1; i < numAthletes; i++) {
+		if (athletes[i].getAverageCaloriesBurned() < lowestCalories) {
+			lowestCalories = athletes[i].getAverageCaloriesBurned();
+			underweightAthlete = i + 1;
+			underweight = false;
 		}
-	}//End addAthlete
-		
-	public void displayAthleteSummaries() {
-		
-	}
-		
-	private void findTopAthlete() {
-		double largestCalories = athletes[0].getAverageCaloriesBurned();
-		int topAthlete = 1;
-		
-		for (int i = 1; i < numAthletes; i++) {
-			if (athletes[i].getAverageCaloriesBurned() > largestCalories) {
-				largestCalories = athletes[i].getAverageCaloriesBurned();
-				topAthlete = i + 1;
+		else if (lowestCalories != athletes[i].getAverageCaloriesBurned()){
+			underweight = true;
 		}
-	}
-			 System.out.println("Top Athlete: " + athletes[topAthlete]);
-	}//End findTopAthlete
-		
-	private void displayUnderweightAthletes() {
-		double lowestCalories = athletes[0].getAverageCaloriesBurned();
-		int underweightAthlete = 1;
-		boolean underweight = true;
-		
-		for (int i = 1; i < numAthletes; i++) {
-			if (athletes[i].getAverageCaloriesBurned() < lowestCalories) {
-				lowestCalories = athletes[i].getAverageCaloriesBurned();
-				underweightAthlete = i + 1;
-				underweight = false;
+		else {
+			System.out.println("No underweight Athlete");
+		}
 			}
-			else if (lowestCalories != athletes[i].getAverageCaloriesBurned()){
-				underweight = true;
-			}
-			else {
-				System.out.println("No underweight Athlete");
-			}
-				}
-			 System.out.println("Underweight Athlete: " + athletes[underweightAthlete]);
-	}//End displayUnderweightAthletes
+	  System.out.println("Underweight Athlete: " + athletes[underweightAthlete]);
+}//End displayUnderweightAthletes
 	
 }//End Gym Class 
