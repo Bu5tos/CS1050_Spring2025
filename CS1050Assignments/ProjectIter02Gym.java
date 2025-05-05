@@ -8,12 +8,14 @@ public class ProjectIter02Gym
 {
 	public static void main(String[] args)
 	{
-		final int MAX_GYM_MEMBERS = 3;
+		System.out.println("****** Gym Fitness Report ******\n");
 		
+		final int MAX_GYM_MEMBERS = 3;
 		Gym gym1 = new Gym("Gym Rats", MAX_GYM_MEMBERS);
-
+		
 		try
 		{
+			System.out.println("Gym: " + gym1.getGymName());
 			readGymAthletesInfoFromFile("gym1.txt", gym1);
 			gym1.displayAthleteSummaries();
 			gym1.saveReportToFile();
@@ -50,8 +52,7 @@ public class ProjectIter02Gym
 
 			//Read from file
 			while (fileScanner.hasNextLine()) {
-				String line = fileScanner.nextLine();// Read the full line
-                System.out.println(line);
+				
 				
 				String firstName = fileScanner.next().trim();
                 String lastName = fileScanner.next().trim();
@@ -126,6 +127,9 @@ class Athlete {
 	}//getAverageCaloriesBurned
 	
 	public int calculateMaxHeartRate() {
+		
+		System.out.println("Athlete: " + firstName + " " + lastName);
+		
 		final int MAX_HEART_RATE = 220; //Constant max heart rate
 		int bpm = (MAX_HEART_RATE - age);
 		return bpm;
@@ -180,7 +184,7 @@ public void addAthlete(Athlete athlete) {
 		athletes[numAthletes] = athlete;
 		numAthletes++;
 	} else {
-		System.out.println("Gym is full. ");
+		System.out.println("Gym is full. Can't add ");
 	}
 }//End addAthlete
 	
@@ -200,7 +204,7 @@ public void displayAthleteSummaries() {
 }//End displayAthleteSummaries
 	
 public void saveReportToFile() {
-	
+
 }
 	
 private void findTopAthlete() {
