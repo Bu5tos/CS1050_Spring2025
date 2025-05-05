@@ -73,8 +73,6 @@ public class CarDealershipTest
 	}
 }
 
-
-
 /**
  * Represents a single Car with make, model, and price attributes.
  */
@@ -125,8 +123,6 @@ class Dealership
 		cars = new Car[maxNumCars];
 		currentNumberCars = 0;
 	}
-
-
 
 	public String getName()
 	{

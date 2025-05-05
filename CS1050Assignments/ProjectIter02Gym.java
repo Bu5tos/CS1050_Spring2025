@@ -8,13 +8,13 @@ public class ProjectIter02Gym
 {
 	public static void main(String[] args)
 	{
-		System.out.println("****** Gym Fitness Report ******\n");
 		
 		final int MAX_GYM_MEMBERS = 3;
 		Gym gym1 = new Gym("Gym Rats", MAX_GYM_MEMBERS);
 		
 		try
 		{
+			System.out.println("****** Gym Fitness Report ******\n");
 			System.out.println("Gym: " + gym1.getGymName());
 			readGymAthletesInfoFromFile("gym1.txt", gym1);
 			gym1.displayAthleteSummaries();
@@ -25,19 +25,23 @@ public class ProjectIter02Gym
 			System.out.println("Error: gym1.txt file not found.");
 		}
 		
-		Gym gym2 = new Gym("Work in Progress", MAX_GYM_MEMBERS);
+		Gym gym2 = new Gym("Mystery Muscle gym", MAX_GYM_MEMBERS);
 
 		try
 		{
+			System.out.println("****** Gym Fitness Report ******\n");
+			System.out.println("Gym: " + gym2.getGymName());
 			readGymAthletesInfoFromFile("gym2.txt", gym2);
 			gym2.displayAthleteSummaries();
 			gym2.saveReportToFile();
 			
 		} catch (FileNotFoundException e)
 		{
-			System.out.println("Error: gym2.txt file not found.");
+			System.out.println("\nError: gym2.txt file not found.");
 		}
-
+		
+		
+		
 	}//End main
 
 	/**
@@ -184,7 +188,7 @@ public void addAthlete(Athlete athlete) {
 		athletes[numAthletes] = athlete;
 		numAthletes++;
 	} else {
-		System.out.println("Gym is full. Can't add ");
+		System.out.println("Gym is full. Can't add " + athlete.getFirstName() + " " + athlete.getLastName());
 	}
 }//End addAthlete
 	
@@ -195,40 +199,42 @@ public void displayAthleteSummaries() {
 		Athlete athlete = athletes[i];
 			
 		//Print summary for each athlete #
-	   	System.out.println(name);
 	    System.out.println("        Max Heart Rate: " + athlete.calculateMaxHeartRate() + " bpm");
-	    System.out.println("        Average Daily Calories Burned: " + athlete.getAverageCaloriesBurned());
+	    System.out.println("        Average Daily Calories Burned: " + Math.round(athlete.getAverageCaloriesBurned()));
 	    System.out.println("        BMI: " + athlete.calculateBMI() + "     Category: " + athlete.getBMICategory());
-	    System.out.println(" ");
 	}
+	System.out.println(" ");
+	findTopAthlete();
+    displayUnderweightAthletes();
+    
 }//End displayAthleteSummaries
 	
 public void saveReportToFile() {
-
+	
 }
 	
 private void findTopAthlete() {
 	double largestCalories = athletes[0].getAverageCaloriesBurned();
-	int topAthlete = 1;
+	int topAthlete = 0;
 		
 	for (int i = 1; i < numAthletes; i++) {
 		if (athletes[i].getAverageCaloriesBurned() > largestCalories) {
 			largestCalories = athletes[i].getAverageCaloriesBurned();
-			topAthlete = i + 1;
+			topAthlete = i;
 	}
 }
-		 System.out.println("Top Athlete: " + athletes[topAthlete]);
+		 System.out.println("Top Athlete: " + athletes[topAthlete].getFirstName() + " " + athletes[topAthlete].getLastName());
 }//End findTopAthlete
 	
 private void displayUnderweightAthletes() {
 	double lowestCalories = athletes[0].getAverageCaloriesBurned();
-	int underweightAthlete = 1;
+	int underweightAthlete = 0;
 	boolean underweight = true;
 		
 	for (int i = 1; i < numAthletes; i++) {
 		if (athletes[i].getAverageCaloriesBurned() < lowestCalories) {
 			lowestCalories = athletes[i].getAverageCaloriesBurned();
-			underweightAthlete = i + 1;
+			underweightAthlete = i;
 			underweight = false;
 		}
 		else if (lowestCalories != athletes[i].getAverageCaloriesBurned()){
@@ -238,7 +244,8 @@ private void displayUnderweightAthletes() {
 			System.out.println("No underweight Athlete");
 		}
 			}
-	  System.out.println("Underweight Athlete: " + athletes[underweightAthlete]);
+	  System.out.println("Underweight Athlete: " + athletes[underweightAthlete].getFirstName() + " " + athletes[underweightAthlete].getLastName() + "\n");
+	
 }//End displayUnderweightAthletes
 	
 }//End Gym Class 
