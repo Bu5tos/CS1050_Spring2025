@@ -58,7 +58,13 @@ public class ProjectIter02Gym
                 double weight = fileScanner.nextDouble();
                 double height = fileScanner.nextDouble();
                 int age = fileScanner.nextInt();
-                Athlete currentAthlete = new Athlete(firstName, lastName, weight, height, age);
+               
+                int[] dailyBurnedCalories = new int[7];
+                
+                for(int i = 0; i < 7; i++) {
+                	dailyBurnedCalories[i] = fileScanner.nextInt();
+                }
+                Athlete currentAthlete = new Athlete(firstName, lastName, weight, height, age, dailyBurnedCalories);
                 currentGym.addAthlete (currentAthlete);
 			}
 		} finally
@@ -83,7 +89,7 @@ class Athlete {
 	private int age;
 	private int[] dailyCaloriesBurned;
 	
-	//Constructors 
+	//Constructor
 	public Athlete(String firstName, String lastName, double weight, double height, int age, int[] dailyCaloriesBurned) {
 		this.firstName = firstName;
 		this.lastName = lastName;
