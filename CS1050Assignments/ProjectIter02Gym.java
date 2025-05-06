@@ -210,8 +210,22 @@ public void displayAthleteSummaries() {
 }//End displayAthleteSummaries
 	
 public void saveReportToFile() {
-	
-}
+	String fileName = "Report.txt";
+	try (PrintWriter writer = new PrintWriter(fileName);){
+
+		for (int i = 0; i < numAthletes; i++ ) {
+			Athlete thisAthlete = athletes[i];
+			writer.println("        Athlete: " + thisAthlete.getFirstName() + " " + thisAthlete.getLastName());
+			writer.println("        Max Heart Rate: " + thisAthlete.calculateMaxHeartRate() + " bpm");
+		    writer.println("        Average Daily Calories Burned: " + Math.round(thisAthlete.getAverageCaloriesBurned()));
+		    writer.println("        BMI: " + thisAthlete.calculateBMI() + "     Category: " + thisAthlete.getBMICategory());
+		}
+		  System.out.println("Report saved to: " + fileName);
+	} catch (FileNotFoundException e)
+	{
+		System.out.println("\nError: " + fileName + " file not found.");
+	}
+}//End saveReportFile
 	
 private void findTopAthlete() {
 	double largestCalories = athletes[0].getAverageCaloriesBurned();
