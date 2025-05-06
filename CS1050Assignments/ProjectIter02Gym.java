@@ -231,7 +231,7 @@ public void displayAthleteSummaries() {
 //Save athlete's report to Report.txt file
 public void saveReportToFile() {
 	String fileName = "Report.txt";
-	try (PrintWriter writer = new PrintWriter(fileName);){
+	try (PrintWriter writer = new PrintWriter(fileName)){
 
 		for (int i = 0; i < numAthletes; i++ ) {
 			Athlete thisAthlete = athletes[i];
