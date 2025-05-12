@@ -130,7 +130,7 @@ class Athlete {
 		return bmi;
 	}
 	
-	//Calculates avg calories burned over 7 days of the week
+	//Calculates average calories burned over 7 days of the week
 	public double getAverageCaloriesBurned() {
 		double totalCalories = 0;
 		double sum = 0;
@@ -247,7 +247,7 @@ public void saveReportToFile() {
 	}
 }//End saveReportFile
 
-//Identify athlete with the highest avg calories burn
+//Identify athlete with the highest average calories burn
 private void findTopAthlete() {
 	double largestCalories = athletes[0].getAverageCaloriesBurned();
 	int topAthlete = 0;
