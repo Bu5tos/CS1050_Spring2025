@@ -145,7 +145,7 @@ class Athlete {
 		final double MIN_NORMAL = 18.5;
 		final double MIN_OVER_WEIGHT = 25.0;
 		final double MIN_OBESE = 40.0;
-
+		
 		String category = " ";
 		double bmi = calculateBMI();
 
