@@ -7,7 +7,7 @@ public class RockPaperOrSciccors {
 		
 		char[] rockPaperOrScissors = {'R', 'P', 'S'};
 		
-		System.out.println("Welcome to rock, paper, or scissors!");
+		System.out.println("Welcome to rock, paper, or scissors! \n");
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter name: ");
 		String player = input.next();
