@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.random.*;
 
 public class RockPaperOrSciccors {
 
@@ -11,7 +12,7 @@ public class RockPaperOrSciccors {
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter name: ");
 		String player = input.next();
-		System.out.println("Hello " + player + ", you will be up against the computer!");
+		System.out.println("Hello " + player + ", you will be up against the computer");
 		System.out.println("Enter R, P, or S (for short): ");
 
   }
