@@ -1,10 +1,12 @@
 import java.util.Scanner;
-import java.util.random.*;
+import java.util.Random;
 
 public class RockPaperOrSciccors {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		
+		Random comp = new Random();
 		
 		char[] rockPaperOrScissors = {'R', 'P', 'S'};
 		
