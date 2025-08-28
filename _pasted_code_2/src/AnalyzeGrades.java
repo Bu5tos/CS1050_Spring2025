@@ -5,12 +5,13 @@ public class AnalyzeGrades {
 
           double[] grades = {10, 7, 8}; // array of  grades
           double sumGrades = 0; 
-
+          
           System.out.print("Enter the numbers: ");
           for (int i = 0; i< grades.length; i++) 
           {
               sumGrades += grades[i];
           }
+          
           double average = sumGrades / grades.length;
 
           int countAboveAverage = 0; // The numbers of elements above average
@@ -25,4 +26,5 @@ public class AnalyzeGrades {
           System.out.println("Number of elements above the average is "
               + countAboveAverage);
     }// end of main method
+     
 }// end of driver class
