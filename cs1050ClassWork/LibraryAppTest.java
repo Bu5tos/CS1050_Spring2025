@@ -1,10 +1,4 @@
-/**
- * 
- */
 
-/**
- * 
- */
 public class LibraryAppTest {
 
 	/**
@@ -13,6 +7,8 @@ public class LibraryAppTest {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		Book bookTest = new Book("Busots", "How to Code", 2025);
+		
 	}//End main
 	
 class Book{
@@ -41,9 +37,7 @@ class Book{
 	public int getYear() {
 		return year;
 	}
-	
-	
 
 }//End Book class
 
-}
+}//End Class
