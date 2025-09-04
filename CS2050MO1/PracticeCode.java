@@ -23,6 +23,15 @@ public class PracticeCode {
 		   }
 		}// End loop
 		
+		Example.method();//Calling method from class Example without needing an object.
+		
 	}//Main End
+	
+	class Example{
+		static void method() {
+			System.out.println("Static method called");
+		}
+		
+	}//End class
 
 }//PracticeClass End
