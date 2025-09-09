@@ -2,7 +2,7 @@ public class SelectionSortTDD
 {
 	public static void main(String[] args)
 	{
-		System.out.println("Testing Selection Sort");
+		System.out.println("Testing Selection Sort\n");
 
 		int[][] testCases = { 
 				{ 4, 2, 7, 1, 5 }, // Regular case
@@ -21,14 +21,26 @@ public class SelectionSortTDD
 			System.out.println("After Sorting:");
 			printArray(testCases[i]);
 			System.out.println();
+						
 		}
+		
+		
+
 	}
 
 
 
 	public static void selectionSort(int[] array)
 	{
-	    
+		//Still needs fixing, need to update if statement.
+		int smallestNum = array[4];
+		for (int i = 1; i < array.length; i++) {
+			if(array[4] < array[i]) {
+				smallestNum = array[4];
+				System.out.println("Smallest number is " + smallestNum);
+			}
+		}
+		
 	}
 
 	public static void printArray(int[] array)
