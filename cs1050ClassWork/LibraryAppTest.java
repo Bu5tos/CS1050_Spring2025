@@ -98,15 +98,26 @@ class Library {
 		this.name = name;
 		this.numberOfShelves = numberOfShelves;
 		this.shelfCapacity = shelfCapacity;
-	}
+		
+		//Initializing 2D Array 
+		bookShelf = new Book [shelfCapacity][numberOfShelves];
+		
+		//Fills bookShelf's rows and columns
+		for(int row = 0; row < shelfCapacity; row++) {
+			for(int col = 0; col < numberOfShelves; col++) {			
+				bookShelf[row][col] = (row + 1) * (col + 1);
+			}
+		}
+			
+	}//End Library
 	
 	public String getName() {
 		return name;
 	}
 	
 	public boolean addBook(Book bookShelf) {
-		for (int i = 0; i < shelfCapacity.length; i++) {
-			if (shelfCapacity > shelfCapacity.length) {
+		for (int i = 0; i < shelfCapacity; i++) {
+			if (shelfCapacity > shelfCapacity) {
 				System.out.println(isFull);
 			}
 			
@@ -115,8 +126,20 @@ class Library {
 	}
 	
 	public void printALlBooks() {
+		for (int slot = 0; slot < shelfCapacity; slot++) {
+			if (shelfCapacity == null) {
+				return false;
+			}
+			
+			Book bookShelf = shelfCapacity[slot];
+			
+			System.out.println()
+		}
 		
-		
+	}
+	
+	public void oldestBook() {
+		int oldestYear = bookShelf[0].getYear;
 	}
 	
 }//End Library class
