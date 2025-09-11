@@ -24,7 +24,6 @@ public class SelectionSortTDD
 						
 		}
 		
-		
 
 	}
 
@@ -32,15 +31,14 @@ public class SelectionSortTDD
 
 	public static void selectionSort(int[] array)
 	{
-		//Still needs fixing, need to update if statement.
-		int smallestNum = array[4];
+		int shortestNumber = array[0];
 		for (int i = 1; i < array.length; i++) {
-			if(array[4] < array[i]) {
-				smallestNum = array[4];
-				System.out.println("Smallest number is " + smallestNum);
+			if (array[i] < shortestNumber) {
+				shortestNumber = array[i];
 			}
+			
 		}
-		
+		System.out.println("Shortest number is " + shortestNumber);
 	}
 
 	public static void printArray(int[] array)
