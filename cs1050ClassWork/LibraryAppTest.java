@@ -18,18 +18,18 @@ public class LibraryAppTest {
 		System.out.println("Total capacity: " + (numberOfShelves * shelfCapacity));
 		System.out.println();
 		Library library = new Library("Test Library", numberOfShelves, shelfCapacity);
-		library.displayCountPerShelf();
+		library.countPerShelf();
 		library.printAllBooks();
-		library.displayOldest();
+		library.oldestBook();
 		// Row 0
 		library.addBook(null);
 		library.addBook(new Book("Unmasking AI", "Joy Buolamwini", 2023));
 		library.addBook(new Book("Hello World", "Hannah Fry", 2018));
 		library.addBook(new Book("Race After Technology", "Ruha Benjamin", 2019));
 		library.addBook(new Book("Deep Learning", "Ian Goodfellow", 2016));
-		library.displayCountPerShelf();
+		library.countPerShelf();
 		library.printAllBooks();
-		library.displayOldest();
+		library.oldestBook();
 		// Row 1
 		library.addBook(new Book("Algorithms to Live By", "Brian Christian", 2016));
 		library.addBook(new Book("Weapons of Math Destruction", "Cathy O'Neil", 2016));
@@ -39,15 +39,15 @@ public class LibraryAppTest {
 		library.addBook(new Book("The Pragmatic Programmer", "Andrew Hunt & David Thomas", 1999));
 		library.addBook(new Book("Peopleware", "Tom DeMarco & Tim Lister", 1987));
 		library.addBook(new Book("Computer Lib / Dream Machines", "Ted Nelson", 1975));
-		library.displayCountPerShelf();
+		library.countPerShelf();
 		library.printAllBooks();
-		library.displayOldest();
+		library.oldestBook();
 		System.out.println();
 		System.out.println("Test add more books than capacity...");
 		library.addBook(new Book("Extra Title", "Extra Author", 2024)); // should trigger "full" message
-		library.displayCountPerShelf();
+		library.countPerShelf();
 		library.printAllBooks();
-		library.displayOldest();
+		library.oldestBook();
 		
 	}//End main
 	
@@ -118,7 +118,7 @@ class Library {
 		
 		//Return false if book is null
 		if (book == null) {
-			System.out.println("No Book");
+			System.out.println("Invalid Book");
 			return false;
 		}
 		
@@ -128,26 +128,51 @@ class Library {
 			return false;
 		}
 		
+		bookShelf[currentShelf][currentSlot] = book;
+		System.out.println("Added" + book.stringOfBookDetails() + "at shelf" + (currentShelf + 1) + "slot" + (currentSlot + 1));
+		currentTotalBooks = currentTotalbooks + 1;
+		
+		if (currentTotalBooks >= totalBookCapacity) {
+			isFull = true;
+		} else {
+			int nextIndex = currentTotalBooks;
+			currentShelf = nextIndex / shelfCapacity;
+			currentSlot = nextIndex % shelfCapacity;
+		}
+		return true;
+		
 		for (int i = 0; i < shelfCapacity; i++) {
 			if (shelfCapacity > shelfCapacity) {
 				System.out.println(isFull);
-			}
-					
+			}		
 		}
 	}
 	
-	public void printALlBooks() {
+	public void printAllBooks() {
+		
+		System.out.println("All books in " + getName() + "\n");
+		System.out.println("Shelf   Slot   Book Details");
 		
 		//For each slot it would display book details
-		for (int slot = 0; slot < bookShelf; slot++) {
+		for (int shelfIndex = 0; shelfIndex < numberOfShelves; shelfIndex++) {
 			
-				Book bookShelf = shelfCapacity[slot];
-				
-				System.out.println(bookShelf.getAuthor());
-				System.out.println(bookShelf.getTitle());
-				System.out.println(bookShelf.getYear());
+			//
+			printListBooks(bookShelf[shelfIndex], shelfIndex + 1);
+			
+		}
+		System.out.println("(" + currentTotalBooks + " of " + (numberOfShelves * shelfCapacity) + "slots filled)\n");
+
+		}
+	
+	private void printListBooks(Book[]shelf, int shelfIndex) {
+		
+		for (int columnIndex = 0; columnIndex < shelf.length; columnIndex++) {
+			Book currentBook = shelf[columnIndex];
+			if (currentBook != null) {
+				System.out.println(shelfIndex, columnIndex + 1, currentBook.stringOfBookDetails());
 			}
 		}
+	}
 	
 	public void oldestBook() {
 		
@@ -163,20 +188,45 @@ class Library {
 		}
 	}
 	
-	public int countPerShelf() {
-		for(int row = 0; row < shelf.length; row++) {
-			int sum = 0;
-		}
+	private Book[] convertOneDimension() {
+		Book[] oneDimension = new Book[currentTotalBooks];
+		int index = 0;
 		
-		for (int col 0; col < shelfCapacity[row].length; col++) {
-			sum += shelfCapacity[row][col];
+		for (int shelfIndex = 0; shelfIndex < numberOfShelves; shelfIndex++) {
+			for (int slotIndex = 0; slotIndex < shelfCapacity; slotIndex++) {
+				if ( bookShelf[shelfIndex][slotIndex] != null) {
+					oneDimension[index] = bookShelf[shelfIndex][slotIndex];
+					index = index + 1;
+					if (index >= currentTotalBooks) {
+						return oneDimension; //Once all books are copied, exit early
+					}
+				}
+			}
+		}
+		return oneDimension;
+	}
+	
+	public int countPerShelf() {
+		int rows = currentTotalBooks / shelfCapacity;
+		int remainder = currentTotalBooks % shelfCapacity;
+		
+		for(int rowIndex = 0; rowIndex < numberOfShelves; rowIndex++) {
+			int thisShelf;
+			
+			if (rowIndex < rows) 
+			{
+				thisShelf = shelfCapacity;
+			} else if (rowIndex == rows) 
+			{
+				thisShelf = remainder;
+			} else
+			{
+				thisShelf = 0;
+			}
+			System.out.println("Shelf " + (rowIndex + 1) + " has " + booksOnThisShelf + " books");
 		}
 	}
 	
-	
-	
 }//End Library class
-
-
 
 }//End Class
