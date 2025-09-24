@@ -6,6 +6,10 @@ public class TestShapesInheritance
 {
 
 	public static void main(String[] args) {
+		
+		/**
+		 * Circle is a reference because it holds an address
+		 */
 		CircleFromSimpleGeometricShape circle = 
 				new CircleFromSimpleGeometricShape(1);
 		System.out.println("circle toString: " + circle.toString());
@@ -41,7 +45,8 @@ class SimpleGeometricShape {
 
 
 	/**
-	 * Construct a default geometric object
+	 * parent default constructor
+	 * Automatically called from child class
 	 */
 	public SimpleGeometricShape() {
 		dateCreated = new java.util.Date();
@@ -101,6 +106,8 @@ class SimpleGeometricShape {
 		return dateCreated;
 	}
 	
+	@Override
+	//Printing the parent class, the specifics of all shapes
 	public String toString () {
 		System.out.println("In SimpleGeometricShape toString method");
 		return "created on" + dateCreated +  "\ncolor:" + color + "and filled:" + filled;
@@ -176,5 +183,52 @@ extends SimpleGeometricShape {
 	public double getPerimeter() {
 		return 2 * radius * Math.PI;
 	}
+	
+	@Override
+	public String toString() {
+		System.out.println("In CircleFromSimpleGeomatricShape toString method");
+		return super.toString() + "radius: " + radius;
+	}
+	
+	class RectangleFromSimpleGeometricShape
+	extends SimpleGeometricShape
+	{
+		private double length;
+		private double width;
+		
+		public RectangleFromSimpleGeometricShape() {	
+		}
+		
+		public RectangleFromSimpleGeometricShape(double length, double width) {
+			this.length = length;
+			this.width = width;
+		}
+		
+		public RectangleFromSimpleGeometricShape(double length, double width, String color, boolean fill) {
+			this.length = length;
+			this.width = width;
+			setColor(color);
+			setFilled(filled);
+		}
+		
+		public double getLength() {
+			return length;
+		}
+		
+		public void setLength(double length) {
+			this.length = length;
+		}
+		
+		public double getWidth() {
+			return width;
+		}
+		
+		public void setWidth(double width) {
+			this.width = width;
+		}
+		
+		
+		
+	}//End RectangleFromSimpleGeometricShape
 
 }//end CircleFromSimpleGeometricShape class
