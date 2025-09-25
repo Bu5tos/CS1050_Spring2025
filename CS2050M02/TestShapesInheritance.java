@@ -204,7 +204,7 @@ extends SimpleGeometricShape {
 			this.width = width;
 		}
 		
-		public RectangleFromSimpleGeometricShape(double length, double width, String color, boolean fill) {
+		public RectangleFromSimpleGeometricShape(double length, double width, String color, boolean filled) {
 			this.length = length;
 			this.width = width;
 			setColor(color);
