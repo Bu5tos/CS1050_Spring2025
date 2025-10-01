@@ -51,7 +51,7 @@ public class LibraryAppTest {
 		
 	}//End main
 	
-class Book {
+abstract class Book {
 	
 	//Instance variables
 	private String author;
@@ -78,9 +78,31 @@ class Book {
 		return year;
 	}
 	
-	public String stringOfBookDetails() {
+	@Override
+	public String toString() {
 		return author + title + year;
 	}
+	
+	//Shared behavior using polymorphism
+	/** Calculates the late fee based on subclass policy */
+	public final double calculateLateFee(int daysLate) {
+		double lateFee = 0;
+		
+		if (lateFee > 0) {
+			lateFee = daysLate * getDailyLateFee();
+		}
+		return lateFee;	
+	}
+	
+	public abstract int getLoanDays() {
+		
+	}
+	
+	public abstract double getDailyLateFee() {
+		
+	}
+	
+	
 }//End Book class
 	
 class Library {
@@ -228,5 +250,13 @@ class Library {
 	}
 	
 }//End Library class
+
+class PrintBook extends Book {
+	
+	public Book(String title, String author, int year) {
+		
+	}
+	
+}
 
 }//End Class

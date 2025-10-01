@@ -20,11 +20,15 @@ public class abstractGeometricShapeExample
 
 		// Display rectangle
 		displayGeometricObject(geoObject2);
+		
+		/**Cannot make an instance of an abstract*/
+		//GeometricObject someGeoObject = new GeometricObject();
 	}
 
 	/** A method for comparing the areas of two geometric objects */
 	public static boolean equalArea(GeometricObject object1, GeometricObject object2)
 	{
+		
 		return object1.getArea() == object2.getArea();
 	}
 
