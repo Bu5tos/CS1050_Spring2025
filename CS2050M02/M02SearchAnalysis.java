@@ -9,7 +9,7 @@ public class M02SearchAnalysis
 	{
 		// Array sizes to test
 		int[] sizes =
-		{ 10, 100, 1000, 10000 };
+		{ 1, 10, 100, 1000, 10000 };
 
 		/**
 		 * Enhanced for loop (for-each loop)
