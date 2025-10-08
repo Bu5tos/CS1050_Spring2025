@@ -67,16 +67,55 @@ abstract class Book {
 		return lateFee;	
 	}
 	
-	public abstract int getLoanDays() {
-		
-	}
+	public abstract int getLoanDays();
 	
-	public abstract double getDailyLateFee() {
-		
-	}
-	
+	public abstract double getDailyLateFee();
 	
 }//End Book class
+
+class PrintBook extends Book {
+	
+	public PrintBook(String title, String author, int year) {
+	}
+		
+	@Override
+	public String toString() {
+		System.out.println(Book[][].toString);
+	}
+	
+	public int getLoandays() {
+			int loanDays = 21;
+			return loanDays;
+		}
+		
+	public double getDailyLateFee() {
+		double lateFee = 0.25;
+		return lateFee;
+	}
+		
+}//End PrintBook class
+
+class EBook extends Book {
+	
+	public EBook(String title, String author, int year) {
+	}
+	
+	@Override
+	public String toString() {
+		
+	}
+	
+	public int getLoandays() {
+		int loanDays = 14;
+		return loanDays;
+	}
+	
+	public double getDailyLateFee() {
+		double lateFee = 0.10;
+		return lateFee;
+	}
+	
+}//End EBook
 	
 class Library {
 	
@@ -86,15 +125,19 @@ class Library {
 	private int shelfCapacity;
 	private int currentShelf;
 	private int currentSlot;
+	private int currentTotalBooks;
+	private int totalBookCapacity;
 	private boolean isFull;
 	
 	public Library(String name, int numberOfShelves, int shelfCapacity) {
 		this.name = name;
 		this.numberOfShelves = numberOfShelves;
 		this.shelfCapacity = shelfCapacity;
+		this.currentTotalBooks = 0;
+		this.totalBookCapacity = numberOfShelves * shelfCapacity;
 		
 		//Initializing 2D Array 
-		bookShelf = new Book [shelfCapacity][numberOfShelves];
+		bookShelf = new Book [numberOfShelves][shelfCapacity];
 		
 		//Fills bookShelf's rows and columns
 		for(int row = 0; row < shelfCapacity; row++) {
@@ -103,7 +146,7 @@ class Library {
 			}
 		}
 			
-	}//End Library
+	}
 	
 	public String getName() {
 		return name;
@@ -119,13 +162,13 @@ class Library {
 		
 		//Can't add certain book if library is full
 		if (isFull) {
-			System.out.println("Library is full, can't add " + book.stringOfBookDetails());
+			System.out.println("Library is full, can't add " + book.toString());
 			return false;
 		}
 		
 		bookShelf[currentShelf][currentSlot] = book;
-		System.out.println("Added" + book.stringOfBookDetails() + "at shelf" + (currentShelf + 1) + "slot" + (currentSlot + 1));
-		currentTotalBooks = currentTotalbooks + 1;
+		System.out.println("Added" + book.toString() + "at shelf" + (currentShelf + 1) + "slot" + (currentSlot + 1));
+		currentTotalBooks = currentTotalBooks + 1;
 		
 		if (currentTotalBooks >= totalBookCapacity) {
 			isFull = true;
@@ -134,13 +177,13 @@ class Library {
 			currentShelf = nextIndex / shelfCapacity;
 			currentSlot = nextIndex % shelfCapacity;
 		}
-		return true;
 		
 		for (int i = 0; i < shelfCapacity; i++) {
 			if (shelfCapacity > shelfCapacity) {
 				System.out.println(isFull);
 			}		
-		}
+		}	
+		return true;
 	}
 	
 	public void printAllBooks() {
@@ -151,10 +194,11 @@ class Library {
 		//For each slot it would display book details
 		for (int shelfIndex = 0; shelfIndex < numberOfShelves; shelfIndex++) {
 			
-			//
+			//Reuse helper method for each shelf row
 			printListBooks(bookShelf[shelfIndex], shelfIndex + 1);
 			
 		}
+		System.out.println();
 		System.out.println("(" + currentTotalBooks + " of " + (numberOfShelves * shelfCapacity) + "slots filled)\n");
 
 		}
@@ -164,7 +208,7 @@ class Library {
 		for (int columnIndex = 0; columnIndex < shelf.length; columnIndex++) {
 			Book currentBook = shelf[columnIndex];
 			if (currentBook != null) {
-				System.out.println(shelfIndex, columnIndex + 1, currentBook.stringOfBookDetails());
+				System.out.println(shelfIndex, columnIndex + 1, currentBook.toString());
 			}
 		}
 	}

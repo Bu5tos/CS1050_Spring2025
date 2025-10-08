@@ -11,13 +11,17 @@ public class M02SearchAnalysis
 		int[] sizes =
 		{ 10, 100, 1000, 10000 };
 
+		/**Enhanced for loop (for-each loop)
+		 * Goes through each element in the sizes array
+		 * 10, then 100, then 1000, then 10000 that are declared to n
+		 */
 		for (int n : sizes)
 		{
 			// Build a sorted array [1, 2, 3, ..., n]
 			int[] data = new int[n];
 			for (int i = 0; i < n; i++)
 			{
-				data[i] = i + 1;
+				data[i] = i + 1; //Fills the array [1, 2, 3, ..., n]
 			}
 
 			System.out.println("\n=== Array size " + n + " ===");
@@ -30,17 +34,17 @@ public class M02SearchAnalysis
 
 			// Run Linear Search
 			System.out.println("-- Linear Search --");
-			linearSearch(data, firstKey);
-			linearSearch(data, middleKey);
-			linearSearch(data, lastKey);
-			linearSearch(data, absentKey);
+			linearSearch(data, firstKey); //Best case
+			linearSearch(data, middleKey); //Average 
+			linearSearch(data, lastKey); // Worst case
+			linearSearch(data, absentKey); //No value in the array
 
 			// Run Binary Search
 			System.out.println("-- Binary Search --");
 			binarySearch(data, firstKey);
-			binarySearch(data, middleKey);
+			binarySearch(data, middleKey); //Best case
 			binarySearch(data, lastKey);
-			binarySearch(data, absentKey);
+			binarySearch(data, absentKey); //Worst case
 		}
 	}
 
@@ -73,12 +77,12 @@ public class M02SearchAnalysis
 		{
 			int mid = (low + high) / 2;
 			comparisons++;
-			if (data[mid] == key)
+			if (data[mid] == key)//One comparison
 			{
 				System.out.println(
 						"Binary: key " + key + " found at index " + mid + " after " + comparisons + " comparisons.");
 				return mid;
-			} else if (data[mid] < key)
+			} else if (data[mid] < key)//Two comparisons
 			{
 				comparisons++;
 				low = mid + 1;
