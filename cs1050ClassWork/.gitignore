@@ -33,3 +33,5 @@
 /LibraryAppTest$Book$Library.class
 /LibraryAppTest$Library.class
 /LibraryAppTest$PrintBook.class
+/LibraryAppTest$PrintBook$EBook.class
+/LibraryAppTest$PrintBook$Library.class

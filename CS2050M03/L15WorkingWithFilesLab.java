@@ -1,33 +1,29 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class LibraryAppTest {
+public class L15WorkingWithFilesLab {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 
-		//Create s Scanner object for scanning input from keyboard
-		Scanner input = new Scanner(System.in);
-		System.out.print("Enter the year");
-		//read integer from keyboard for year
-		int year = input.nextInt();
-		
-		Book nullBook = null;
-		System.out.println(nullBook.getTitle());
-		
-		// --- unit test checks for Book ---
-		System.out.println("Unit Test Book Class");
-		Book unitTestBook = new Book("Unmasking AI", "Joy Buolamwini", 2023);
-		System.out.println("getTitle():   " + unitTestBook.getTitle());
-		System.out.println("getAuthor():  " + unitTestBook.getAuthor());
-		System.out.println("getYear():    " + unitTestBook.getYear());
-		System.out.println("stringOfBookDetails():   " + unitTestBook.stringOfBookDetails());
-		System.out.println();
-		System.out.println("Setting up Test Library");
 		int numberOfShelves = 3;
 		int shelfCapacity = 4;
 		
+		Library library = new Library("Test Library", numberOfShelves, shelfCapacity);
+		System.out.println("Loading books from file: library_books.csv");
+		LibraryLoader.loadFromCsv(library, "library_books.csv");
+		library.displayCountPerShelf();
+		library.printAllBooks();
+		library.displayOldest();
 		
-	}//End main
+	} //End Main
 	
+} //End Class
+
 abstract class Book {
 	
 	//Instance variables
@@ -81,16 +77,6 @@ abstract class Book {
 	
 	
 }//End Book class
-
-class PrintBook extends Book {
-	
-	public Book(String title, String author, int year) {
-		
-	}
-	
-class EBook extends Book{
-	
-}
 	
 class Library {
 	
@@ -183,7 +169,7 @@ class Library {
 		}
 	}
 	
-	public void oldestBook() {
+	public void displayOldest() {
 		
 		//get details of book and lowest year will be declared
 		int oldestYear = bookShelf[0].getYear();
@@ -215,7 +201,7 @@ class Library {
 		return oneDimension;
 	}
 	
-	public int countPerShelf() {
+	public int displayCountPerShelf() {
 		int rows = currentTotalBooks / shelfCapacity;
 		int remainder = currentTotalBooks % shelfCapacity;
 		
@@ -237,9 +223,60 @@ class Library {
 	}
 	
 }//End Library class
-	
-//Class Library Loader HERE
-	
-}
 
-}//End Class
+class LibraryLoader
+{
+public static void loadFromCsv(Library library, String filename)
+{
+    try (Scanner fileScan = new Scanner(new File(filename))){
+	int lineNumber = 0;
+	while (fileScan.hasNextLine()){
+		String line = fileScan.nextLine();
+		lineNumber++;
+		Book parsed = parseBookLine(line, lineNumber);
+		if (parsed != null){
+		     boolean added = library.addBook(parsed);
+		     if (!added){
+			System.out.println("Line " + lineNumber + ": library full or invalid book.");
+			}
+		}
+	}
+      } catch (FileNotFoundException ex){
+		System.out.println("Could not open file: " + filename);
+     }
+}
+/**
+* Parses one CSV line into a Book or returns null if invalid. Expected:
+* title,author,year,type (type = P or E) Keeps logic simple for lecture.
+*/
+private static Book parseBookLine(String line, int lineNumber){
+	if (line == null){
+		System.out.println("Line " + lineNumber + ": empty line.");
+		return null; // early return
+	}
+	String[] parts = line.split(",");
+	if (parts.length != 4){
+	      System.out.println("Line " + lineNumber + ": wrong number of fields → " + line);
+	      return null; // early return
+	}
+	String title = parts[0].trim();
+	String author = parts[1].trim();
+	String yearText = parts[2].trim();
+	String type = parts[3].trim();
+	int year;
+	try{
+		year = Integer.parseInt(yearText);
+	} catch (NumberFormatException ex){
+	     System.out.println("Line " + lineNumber + ": invalid year \"" + yearText + "\" → skipping line.");
+	     return null; // early return
+	}
+	if (type.equalsIgnoreCase("P")){
+		return new PrintBook(title, author, year);
+	} else if (type.equalsIgnoreCase("E")){
+		return new EBook(title, author, year);
+	} else{
+	     System.out.println("Line " + lineNumber + ": invalid type \"" + type + "\" (use P or E).");
+	     return null; // early return
+	}
+}
+}//End LibrariLoader
