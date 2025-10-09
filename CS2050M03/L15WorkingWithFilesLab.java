@@ -140,9 +140,9 @@ class Library {
 		bookShelf = new Book [numberOfShelves][shelfCapacity];
 		
 		//Fills bookShelf's rows and columns
-		for(int row = 0; row < shelfCapacity; row++) {
-			for(int col = 0; col < numberOfShelves; col++) {			
-				bookShelf[row][col] = (row + 1) * (col + 1);
+		for(int row = 0; row < numberOfShelves; row++) {
+			for(int col = 0; col < shelfCapacity; col++) {			
+				bookShelf[row][col] = null; //(row + 1) * (col + 1)
 			}
 		}
 			
@@ -150,6 +150,14 @@ class Library {
 	
 	public String getName() {
 		return name;
+	}
+	
+	public int getCurrentTotalBooks() {
+		return currentTotalBooks;
+	}
+	
+	public int getTotalBookCapacity() {
+		return totalBookCapacity;
 	}
 	
 	public boolean addBook(Book book) {
@@ -168,7 +176,7 @@ class Library {
 		
 		bookShelf[currentShelf][currentSlot] = book;
 		System.out.println("Added" + book.toString() + "at shelf" + (currentShelf + 1) + "slot" + (currentSlot + 1));
-		currentTotalBooks = currentTotalBooks + 1;
+		currentTotalBooks++;
 		
 		if (currentTotalBooks >= totalBookCapacity) {
 			isFull = true;
@@ -177,12 +185,6 @@ class Library {
 			currentShelf = nextIndex / shelfCapacity;
 			currentSlot = nextIndex % shelfCapacity;
 		}
-		
-		for (int i = 0; i < shelfCapacity; i++) {
-			if (shelfCapacity > shelfCapacity) {
-				System.out.println(isFull);
-			}		
-		}	
 		return true;
 	}
 	
@@ -208,7 +210,7 @@ class Library {
 		for (int columnIndex = 0; columnIndex < shelf.length; columnIndex++) {
 			Book currentBook = shelf[columnIndex];
 			if (currentBook != null) {
-				System.out.println(shelfIndex, columnIndex + 1, currentBook.toString());
+				System.out.println("Shelf" + shelfIndex + " Slot " + (columnIndex + 1) + " " + currentBook.toString());
 			}
 		}
 	}
@@ -262,7 +264,7 @@ class Library {
 			{
 				thisShelf = 0;
 			}
-			System.out.println("Shelf " + (rowIndex + 1) + " has " + booksOnThisShelf + " books");
+			System.out.println("Shelf " + (rowIndex + 1) + " has " + thisShelf + " books");
 		}
 	}
 	
