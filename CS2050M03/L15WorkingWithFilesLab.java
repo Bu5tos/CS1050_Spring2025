@@ -145,7 +145,6 @@ class Library {
 				bookShelf[row][col] = null; //(row + 1) * (col + 1)
 			}
 		}
-			
 	}
 	
 	public String getName() {
@@ -247,7 +246,7 @@ class Library {
 		return oneDimension;
 	}
 	
-	public int displayCountPerShelf() {
+	public void displayCountPerShelf() {
 		int rows = currentTotalBooks / shelfCapacity;
 		int remainder = currentTotalBooks % shelfCapacity;
 		

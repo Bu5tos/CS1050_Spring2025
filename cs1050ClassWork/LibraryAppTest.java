@@ -19,7 +19,7 @@ public class LibraryAppTest {
 		System.out.println("getTitle():   " + unitTestBook.getTitle());
 		System.out.println("getAuthor():  " + unitTestBook.getAuthor());
 		System.out.println("getYear():    " + unitTestBook.getYear());
-		System.out.println("stringOfBookDetails():   " + unitTestBook.stringOfBookDetails());
+		System.out.println("stringOfBookDetails():   " + unitTestBook.toString());
 		System.out.println();
 		System.out.println("Setting up Test Library");
 		int numberOfShelves = 3;
