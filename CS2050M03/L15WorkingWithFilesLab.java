@@ -75,12 +75,13 @@ abstract class Book {
 
 class PrintBook extends Book {
 	
-	public PrintBook(String title, String author, int year) {
+	public PrintBook(String author, String title, int year) {
+		super(author, title, year);
 	}
 		
 	@Override
 	public String toString() {
-		System.out.println(Book[][].toString);
+		return "Author: " + getAuthor() + "Book title: " + getTitle() + "Year: " + getYear();
 	}
 	
 	public int getLoandays() {
@@ -98,11 +99,12 @@ class PrintBook extends Book {
 class EBook extends Book {
 	
 	public EBook(String title, String author, int year) {
+		super(author, title, year);
 	}
 	
 	@Override
 	public String toString() {
-		
+		return "Author: " + getAuthor() + "Book title: " + getTitle() + "Year: " + getYear();
 	}
 	
 	public int getLoandays() {
@@ -216,14 +218,31 @@ class Library {
 	
 	public void displayOldest() {
 		
-		//get details of book and lowest year will be declared
-		int oldestYear = bookShelf[0].getYear();
-		int oldestBook = 0;
-		
-		for (int i = 1; i < shelfCapacity; i++) {
-			if (bookShelf.getYear() > oldestYear) {
-				oldestYear = bookShelf[i].getYear();
-				oldestBook = i;
+		Book[] allBooks = convertOneDimension();
+		if (allBooks.length == 0)
+		{
+			System.out.println("Display Oldest: Library is empty.");
+			return;
+		}
+		// Pass 1: find min year
+		int earliestYear = allBooks[0].getYear();
+		for (int i = 1; i < allBooks.length; i++)
+		{
+			if (allBooks[i].getYear() < earliestYear)
+			{
+				earliestYear = allBooks[i].getYear();
+			}
+		}
+		// Pass 2: print all matches
+		System.out.println("------------------------------------------------------------");
+		System.out.println("Oldest books in " + getName());
+		System.out.println("Earliest publication year: " + earliestYear);
+		System.out.println();
+		for (int i = 0; i < allBooks.length; i++)
+		{
+			if (allBooks[i].getYear() == earliestYear)
+			{
+				System.out.println(allBooks[i].toString());
 			}
 		}
 	}

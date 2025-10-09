@@ -100,11 +100,25 @@ public class PetAdoptionCenter
 		public String toString() {
 			
 	    }
-	}
+	}//End Animal class
 	
-	class Spider extends interface pet {
+	class Spider extends Animal { //subclass
 		
-	}
+		private String getName;
+		private String eat;
+		
+		@Override
+		public String toString() {
+			return "Spider name: " + getName + 
+		}
+		
+	}//End Spider class
+	
+	class Marmot extends Animal { //subclass 2
+		
+		
+	}//End Marmot class
+	
 
 	// Helper Method: demonstrate calling abstract-class behavior safely
 	private static void feedAll(ArrayList<Pet> pets)
