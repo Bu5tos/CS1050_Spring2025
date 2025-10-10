@@ -10,15 +10,37 @@ public class L15WorkingWithFilesLab {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		Book unitTestPrintBook = new PrintBook ("Unmasking AI", "Joy Buolamwini", 2023);
+		Book unitTestEBook = new EBook ("Deep Learning", "Ian Goodfellow", 2016);
+	
+
+		
+		//Library setup
+		System.out.println("Setting up Test Library");
 		int numberOfShelves = 3;
 		int shelfCapacity = 4;
-		
+		System.out.println("Shelves (rows): " + numberOfShelves);
+		System.out.println("Slots per shelf (columns): " + shelfCapacity);
+		System.out.println("Total capacity: " + (numberOfShelves * shelfCapacity));
+
+		/**
 		Library library = new Library("Test Library", numberOfShelves, shelfCapacity);
 		System.out.println("Loading books from file: library_books.csv");
 		LibraryLoader.loadFromCsv(library, "library_books.csv");
 		library.displayCountPerShelf();
 		library.printAllBooks();
 		library.displayOldest();
+		*/
+		
+		//Output test for PrintBook
+		System.out.print("[Print, " + unitTestPrintBook.toString() + unitTestPrintBook.getLoanDays() + " days, ");
+		System.out.printf("$" + unitTestPrintBook.getDailyLateFee() + "/day]");
+		System.out.println();
+		
+		//Output test for EBook
+		System.out.print("[EBook, " + unitTestEBook.getLoanDays() + " days, ");
+		System.out.printf("$" + unitTestEBook.getDailyLateFee() + "/day]");
+		System.out.println();
 		
 	} //End Main
 	
@@ -30,6 +52,10 @@ abstract class Book {
 	private String author;
 	private String title;
 	private int year;
+	
+	public Book() {
+		
+	}
 	
 	//Constructor
 	public Book (String author, String title, int year) {
@@ -43,12 +69,25 @@ abstract class Book {
 		return author;
 	}
 	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	
 	public String getTitle() {
 		return title;
 	}
 	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 	public int getYear() {
 		return year;
+	}
+	
+	public void setYear(int year) {
+		this.year = year;
 	}
 	
 	@Override
@@ -67,6 +106,7 @@ abstract class Book {
 		return lateFee;	
 	}
 	
+	//Abstract method
 	public abstract int getLoanDays();
 	
 	public abstract double getDailyLateFee();
@@ -75,8 +115,16 @@ abstract class Book {
 
 class PrintBook extends Book {
 	
+	public PrintBook() {
+		
+	}
+	
 	public PrintBook(String author, String title, int year) {
-		super(author, title, year);
+		//super(author, title, year);
+		
+		setTitle(title);
+		setAuthor(author);
+		setYear(year);
 	}
 		
 	@Override
@@ -84,7 +132,7 @@ class PrintBook extends Book {
 		return "Author: " + getAuthor() + "Book title: " + getTitle() + "Year: " + getYear();
 	}
 	
-	public int getLoandays() {
+	public int getLoanDays() {
 			int loanDays = 21;
 			return loanDays;
 		}
@@ -104,13 +152,15 @@ class EBook extends Book {
 	
 	@Override
 	public String toString() {
-		return "Author: " + getAuthor() + "Book title: " + getTitle() + "Year: " + getYear();
+		return "Author " + getAuthor() + "Title " + getTitle() + "Year " + getYear();
 	}
 	
-	public int getLoandays() {
+	
+	public int getLoanDays() {
 		int loanDays = 14;
 		return loanDays;
 	}
+	
 	
 	public double getDailyLateFee() {
 		double lateFee = 0.10;
