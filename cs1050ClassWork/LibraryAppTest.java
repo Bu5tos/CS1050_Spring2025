@@ -1,39 +1,59 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class LibraryAppTest {
 
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
+		// TODO Auto-generated method stub
 
-		//Create s Scanner object for scanning input from keyboard
-		Scanner input = new Scanner(System.in);
-		System.out.print("Enter the year");
-		//read integer from keyboard for year
-		int year = input.nextInt();
+		Book unitTestPrintBook = new PrintBook ("Unmasking AI", "Joy Buolamwini", 2023);
+		Book unitTestEBook = new EBook ("Deep Learning", "Ian Goodfellow", 2016);
 		
-		Book nullBook = null;
-		System.out.println(nullBook.getTitle());
-		
-		// --- unit test checks for Book ---
-		System.out.println("Unit Test Book Class");
-		Book unitTestBook = new Book("Unmasking AI", "Joy Buolamwini", 2023);
-		System.out.println("getTitle():   " + unitTestBook.getTitle());
-		System.out.println("getAuthor():  " + unitTestBook.getAuthor());
-		System.out.println("getYear():    " + unitTestBook.getYear());
-		System.out.println("stringOfBookDetails():   " + unitTestBook.toString());
-		System.out.println();
+		//Library setup
 		System.out.println("Setting up Test Library");
 		int numberOfShelves = 3;
 		int shelfCapacity = 4;
+		System.out.println("Shelves (rows): " + numberOfShelves);
+		System.out.println("Slots per shelf (columns): " + shelfCapacity);
+		System.out.println("Total capacity: " + (numberOfShelves * shelfCapacity));
+
+		/**
+		Library library = new Library("Test Library", numberOfShelves, shelfCapacity);
+		System.out.println("Loading books from file: library_books.csv");
+		LibraryLoader.loadFromCsv(library, "library_books.csv");
+		library.displayCountPerShelf();
+		library.printAllBooks();
+		library.displayOldest();
+		*/
 		
+		//Output test for PrintBook
+		System.out.print("[Print, " + unitTestPrintBook.toString() + unitTestPrintBook.getLoanDays() + " days, ");
+		System.out.printf("$" + unitTestPrintBook.getDailyLateFee() + "/day]");
+		System.out.println();
 		
-	}//End main
+		//Output test for EBook
+		System.out.print("[EBook, " + unitTestEBook.toString() + unitTestEBook.getLoanDays() + " days, ");
+		System.out.printf("$" + unitTestEBook.getDailyLateFee() + "/day]");
+		System.out.println();
+		
+	} //End Main
 	
+} //End Class
+
 abstract class Book {
 	
 	//Instance variables
 	private String author;
 	private String title;
 	private int year;
+	
+	public Book() {
+		
+	}
 	
 	//Constructor
 	public Book (String author, String title, int year) {
@@ -47,12 +67,25 @@ abstract class Book {
 		return author;
 	}
 	
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	
 	public String getTitle() {
 		return title;
 	}
 	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
 	public int getYear() {
 		return year;
+	}
+	
+	public void setYear(int year) {
+		this.year = year;
 	}
 	
 	@Override
@@ -71,26 +104,68 @@ abstract class Book {
 		return lateFee;	
 	}
 	
-	public abstract int getLoanDays() {
-		
-	}
+	//Abstract method
+	public abstract int getLoanDays();
 	
-	public abstract double getDailyLateFee() {
-		
-	}
-	
+	public abstract double getDailyLateFee();
 	
 }//End Book class
 
 class PrintBook extends Book {
 	
-	public Book(String title, String author, int year) {
+	public PrintBook() {
 		
 	}
 	
-class EBook extends Book{
+	public PrintBook(String author, String title, int year) {
+		super(author, title, year);
+		
+		setTitle(title);
+		setAuthor(author);
+		setYear(year);
+	}
+		
+	@Override
+	public String toString() {
+		return "Author: " + getAuthor() + ", Title: " + getTitle() + ", Year: " + getYear() + ", ";
+	}
 	
-}
+	public int getLoanDays() {
+			int loanDays = 21;
+			return loanDays;
+		}
+		
+	public double getDailyLateFee() {
+		double lateFee = 0.25;
+		return lateFee;
+	}
+		
+}//End PrintBook class
+
+class EBook extends Book {
+	
+	public EBook(String title, String author, int year) {
+		super(author, title, year);
+	}
+	
+	@Override
+	public String toString() {
+		return "Author: " + getAuthor() + ", Title: " + getTitle() + ", Year: " + getYear() + ", ";
+	}
+	
+	
+	public int getLoanDays() {
+		int loanDays = 14;
+		return loanDays;
+	}
+	
+	
+	public double getDailyLateFee() {
+		double lateFee = 0.10;
+		return lateFee;
+	}
+	
+}//End EBook
 	
 class Library {
 	
@@ -100,27 +175,38 @@ class Library {
 	private int shelfCapacity;
 	private int currentShelf;
 	private int currentSlot;
+	private int currentTotalBooks;
+	private int totalBookCapacity;
 	private boolean isFull;
 	
 	public Library(String name, int numberOfShelves, int shelfCapacity) {
 		this.name = name;
 		this.numberOfShelves = numberOfShelves;
 		this.shelfCapacity = shelfCapacity;
+		this.currentTotalBooks = 0;
+		this.totalBookCapacity = numberOfShelves * shelfCapacity;
 		
 		//Initializing 2D Array 
-		bookShelf = new Book [shelfCapacity][numberOfShelves];
+		bookShelf = new Book [numberOfShelves][shelfCapacity];
 		
 		//Fills bookShelf's rows and columns
-		for(int row = 0; row < shelfCapacity; row++) {
-			for(int col = 0; col < numberOfShelves; col++) {			
-				bookShelf[row][col] = (row + 1) * (col + 1);
+		for(int row = 0; row < numberOfShelves; row++) {
+			for(int col = 0; col < shelfCapacity; col++) {			
+				bookShelf[row][col] = null;
 			}
 		}
-			
-	}//End Library
+	}
 	
 	public String getName() {
 		return name;
+	}
+	
+	public int getCurrentTotalBooks() {
+		return currentTotalBooks;
+	}
+	
+	public int getTotalBookCapacity() {
+		return totalBookCapacity;
 	}
 	
 	public boolean addBook(Book book) {
@@ -133,13 +219,13 @@ class Library {
 		
 		//Can't add certain book if library is full
 		if (isFull) {
-			System.out.println("Library is full, can't add " + book.stringOfBookDetails());
+			System.out.println("Library is full, can't add " + book.toString());
 			return false;
 		}
 		
 		bookShelf[currentShelf][currentSlot] = book;
-		System.out.println("Added" + book.stringOfBookDetails() + "at shelf" + (currentShelf + 1) + "slot" + (currentSlot + 1));
-		currentTotalBooks = currentTotalbooks + 1;
+		System.out.println("Added" + book.toString() + "at shelf" + (currentShelf + 1) + "slot" + (currentSlot + 1));
+		currentTotalBooks++;
 		
 		if (currentTotalBooks >= totalBookCapacity) {
 			isFull = true;
@@ -149,12 +235,6 @@ class Library {
 			currentSlot = nextIndex % shelfCapacity;
 		}
 		return true;
-		
-		for (int i = 0; i < shelfCapacity; i++) {
-			if (shelfCapacity > shelfCapacity) {
-				System.out.println(isFull);
-			}		
-		}
 	}
 	
 	public void printAllBooks() {
@@ -165,10 +245,11 @@ class Library {
 		//For each slot it would display book details
 		for (int shelfIndex = 0; shelfIndex < numberOfShelves; shelfIndex++) {
 			
-			//
+			//Reuse helper method for each shelf row
 			printListBooks(bookShelf[shelfIndex], shelfIndex + 1);
 			
 		}
+		System.out.println();
 		System.out.println("(" + currentTotalBooks + " of " + (numberOfShelves * shelfCapacity) + "slots filled)\n");
 
 		}
@@ -178,21 +259,38 @@ class Library {
 		for (int columnIndex = 0; columnIndex < shelf.length; columnIndex++) {
 			Book currentBook = shelf[columnIndex];
 			if (currentBook != null) {
-				System.out.println(shelfIndex, columnIndex + 1, currentBook.stringOfBookDetails());
+				System.out.println("Shelf" + shelfIndex + " Slot " + (columnIndex + 1) + " " + currentBook.toString());
 			}
 		}
 	}
 	
-	public void oldestBook() {
+	public void displayOldest() {
 		
-		//get details of book and lowest year will be declared
-		int oldestYear = bookShelf[0].getYear();
-		int oldestBook = 0;
-		
-		for (int i = 1; i < shelfCapacity; i++) {
-			if (bookShelf.getYear() > oldestYear) {
-				oldestYear = bookShelf[i].getYear();
-				oldestBook = i;
+		Book[] allBooks = convertOneDimension();
+		if (allBooks.length == 0)
+		{
+			System.out.println("Display Oldest: Library is empty.");
+			return;
+		}
+		// Pass 1: find min year
+		int earliestYear = allBooks[0].getYear();
+		for (int i = 1; i < allBooks.length; i++)
+		{
+			if (allBooks[i].getYear() < earliestYear)
+			{
+				earliestYear = allBooks[i].getYear();
+			}
+		}
+		// Pass 2: print all matches
+		System.out.println("------------------------------------------------------------");
+		System.out.println("Oldest books in " + getName());
+		System.out.println("Earliest publication year: " + earliestYear);
+		System.out.println();
+		for (int i = 0; i < allBooks.length; i++)
+		{
+			if (allBooks[i].getYear() == earliestYear)
+			{
+				System.out.println(allBooks[i].toString());
 			}
 		}
 	}
@@ -215,7 +313,7 @@ class Library {
 		return oneDimension;
 	}
 	
-	public int countPerShelf() {
+	public void displayCountPerShelf() {
 		int rows = currentTotalBooks / shelfCapacity;
 		int remainder = currentTotalBooks % shelfCapacity;
 		
@@ -232,14 +330,65 @@ class Library {
 			{
 				thisShelf = 0;
 			}
-			System.out.println("Shelf " + (rowIndex + 1) + " has " + booksOnThisShelf + " books");
+			System.out.println("Shelf " + (rowIndex + 1) + " has " + thisShelf + " books");
 		}
 	}
 	
 }//End Library class
-	
-//Class Library Loader HERE
-	
-}
 
-}//End Class
+class LibraryLoader
+{
+public static void loadFromCsv(Library library, String filename)
+{
+    try (Scanner fileScan = new Scanner(new File(filename))){
+	int lineNumber = 0;
+	while (fileScan.hasNextLine()){
+		String line = fileScan.nextLine();
+		lineNumber++;
+		Book parsed = parseBookLine(line, lineNumber);
+		if (parsed != null){
+		     boolean added = library.addBook(parsed);
+		     if (!added){
+			System.out.println("Line " + lineNumber + ": library full or invalid book.");
+			}
+		}
+	}
+      } catch (FileNotFoundException ex){
+		System.out.println("Could not open file: " + filename);
+     }
+}
+/**
+* Parses one CSV line into a Book or returns null if invalid. Expected:
+* title,author,year,type (type = P or E) Keeps logic simple for lecture.
+*/
+private static Book parseBookLine(String line, int lineNumber){
+	if (line == null){
+		System.out.println("Line " + lineNumber + ": empty line.");
+		return null; // early return
+	}
+	String[] parts = line.split(",");
+	if (parts.length != 4){
+	      System.out.println("Line " + lineNumber + ": wrong number of fields → " + line);
+	      return null; // early return
+	}
+	String title = parts[0].trim();
+	String author = parts[1].trim();
+	String yearText = parts[2].trim();
+	String type = parts[3].trim();
+	int year;
+	try{
+		year = Integer.parseInt(yearText);
+	} catch (NumberFormatException ex){
+	     System.out.println("Line " + lineNumber + ": invalid year \"" + yearText + "\" → skipping line.");
+	     return null; // early return
+	}
+	if (type.equalsIgnoreCase("P")){
+		return new PrintBook(title, author, year);
+	} else if (type.equalsIgnoreCase("E")){
+		return new EBook(title, author, year);
+	} else{
+	     System.out.println("Line " + lineNumber + ": invalid type \"" + type + "\" (use P or E).");
+	     return null; // early return
+	}
+}
+}//End LibrariLoader
