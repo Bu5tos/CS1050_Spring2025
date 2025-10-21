@@ -16,33 +16,10 @@ public class MusicPlaylist {
 		int choice = input.nextInt();
 		System.out.println("Enter CSV filename: ");
 		String fileName = input.next();
-		//String filename = input.nextLine();
-		final String FILENAME = "codingSongs.csv";
-		loadSongsFromCsv(FILENAME);
-		
+		PlaylistLoader.loadSongsFromCsv(fileName);
 	}//End main
 	
-	public static void loadSongsFromCsv(String filename) {
-		
-		final String FILENAME = "codingSongs.csv";
-		File testFile = new File(FILENAME);
-		
-		try (Scanner fileScan = new Scanner(new File(filename))) {
-			int lineNumber = 0;
-			
-			while (fileScan.hasNextLine()){
-				String line = fileScan.nextLine();
-				lineNumber++;
-				
-				
-				
-			}
-			
-		} catch (FileNotFoundException ex){
-			System.out.println("Could not open file: " + filename);
-			System.out.println("No songs were loaded");
-	     }
-	}
+	
 }//End class
 
 class Song {
@@ -129,3 +106,38 @@ class Playlist {
 	
 	
 }//End Playlist class
+
+class PlaylistLoader {
+	
+	public static void loadSongsFromCsv(String filename) {
+	try (Scanner fileScan = new Scanner(new File(filename))){
+		int lineNumber = 0;
+		while (fileScan.hasNextLine()){
+			String line = fileScan.nextLine();
+			lineNumber++;
+			
+			String[] parts = line.split(",");
+			if(parts.length != 3) {
+				System.out.println("Line " + lineNumber + "skipped: " + "invalid values");
+			}
+			
+			String title = parts[0].trim();
+			String artist = parts[1].trim();
+			String durationText = parts[2].trim();
+			
+			int durationSeconds;
+			try {
+				durationSeconds = Integer.parseInt(durationText);
+			} catch (NumberFormatException ex) {
+			     System.out.println("Line " + lineNumber + ": invalid year \"" + durationText + "\" → skipping line.");
+			     
+		}
+
+		}
+			
+		} catch(FileNotFoundException e) {
+        System.out.println("Could not open file: " + filename);
+        System.out.println("No songs were loaded.");
+	}
+  }
+}//End PlaylistLoader
