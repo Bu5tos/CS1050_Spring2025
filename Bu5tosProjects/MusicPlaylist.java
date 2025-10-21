@@ -13,22 +13,34 @@ public class MusicPlaylist {
 		
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter your choice (1–7): ");
-		String filename = input.nextLine();
-		
+		int choice = input.nextInt();
+		System.out.println("Enter CSV filename: ");
+		String fileName = input.next();
+		//String filename = input.nextLine();
+		final String FILENAME = "codingSongs.csv";
+		loadSongsFromCsv(FILENAME);
 		
 	}//End main
 	
 	public static void loadSongsFromCsv(String filename) {
 		
+		final String FILENAME = "codingSongs.csv";
+		File testFile = new File(FILENAME);
+		
 		try (Scanner fileScan = new Scanner(new File(filename))) {
 			int lineNumber = 0;
+			
 			while (fileScan.hasNextLine()){
 				String line = fileScan.nextLine();
 				lineNumber++;
 				
+				
+				
 			}
+			
 		} catch (FileNotFoundException ex){
 			System.out.println("Could not open file: " + filename);
+			System.out.println("No songs were loaded");
 	     }
 	}
 }//End class
