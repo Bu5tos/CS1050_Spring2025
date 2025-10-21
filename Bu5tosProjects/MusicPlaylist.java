@@ -1,17 +1,36 @@
-/**
- * 
- */
+import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class MusicPlaylist {
 
 	public static void main(String[] args) {
 		
-		//Unit testing song info
+		/**Unit testing song info
 		Song unitTestSong = new Song("Joji", "Pixelated Kisses", 109);
 		System.out.println(unitTestSong.toString());
+		**/
+		
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter your choice (1–7): ");
+		String filename = input.nextLine();
+		
 		
 	}//End main
 	
+	public static void loadSongsFromCsv(String filename) {
+		
+		try (Scanner fileScan = new Scanner(new File(filename))) {
+			int lineNumber = 0;
+			while (fileScan.hasNextLine()){
+				String line = fileScan.nextLine();
+				lineNumber++;
+				
+			}
+		} catch (FileNotFoundException ex){
+			System.out.println("Could not open file: " + filename);
+	     }
+	}
 }//End class
 
 class Song {
@@ -72,3 +91,29 @@ class Song {
 	}
 	
 }//End Song class
+
+class Playlist {
+	
+	private String name;
+	private Song[] musicLibrary;
+	private int playlistCapacity;
+	private int currentSongsInPlaylist;
+	private int currentTotalSongs;
+	private boolean isFull;
+	
+	public Playlist(String name, int playlistCapacity) {
+		this.name = name;
+		this.playlistCapacity = playlistCapacity;
+		this.currentTotalSongs = 0;
+		
+		//Initialize Array
+		musicLibrary = new Song [playlistCapacity];
+		
+		for(int col = 0; col < playlistCapacity; col++) {
+			musicLibrary[col] = null;
+		}
+	}
+	
+	
+	
+}//End Playlist class
