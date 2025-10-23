@@ -19,13 +19,16 @@ public class FixSinglyLinkedOrderedList
 		list.printList();
 
 		// Use your unit testing to ensure it handles all cases
+		list.insertNode(2);
 		list.insertNode(4);
+		list.insertNode(6);
 
 		list.printList();
 
 		list.printList();
-		list.deleteNode(0);
-
+		
+		//deletes 4 and it would print 2 -> 6 -> null
+		list.deleteNode(4);
 		list.printList();
 
 	}
@@ -42,7 +45,6 @@ class SinglyLinkedListFix
 		NodeFix current = head;
 		NodeFix previous = null;
 
-		//
 		while (current != null && current.data < number)
 		{
 			previous = current;
@@ -56,7 +58,7 @@ class SinglyLinkedListFix
 		} else
 		{
 			previous.next = newNode;
-
+			//newNode.next = current;//hmmm
 		}
 	}
 
@@ -65,16 +67,23 @@ class SinglyLinkedListFix
 		NodeFix current = head;
 		NodeFix previous = null;
 
-		while (current.next != null && current.data != number)
+		/**Fixed while loop by deleting .next in current.
+		 * Problem was that it skipped last node and gave out a NullPointerException
+		 */
+		while (current != null && current.data != number)
 		{
 			previous = current;
 			current = current.next;
 		}
-
+ 
 		if (previous == null)
 		{
 			head = current.next;
-		} else
+		  //Added an if else statement to prevent error after runtime when last node was not found.
+		} else if (current == null) {
+			System.out.println("Node " + number + " was not found");
+		}
+		else
 		{
 			previous.next = current.next; // Bug #5: Should be previous.next = current.next
 		}
