@@ -125,14 +125,18 @@ class PlaylistLoader {
 			String artist = parts[1].trim();
 			String durationText = parts[2].trim();
 			
-			int durationSeconds;
+			int durationSeconds = 0;
 			try {
 				durationSeconds = Integer.parseInt(durationText);
 			} catch (NumberFormatException ex) {
-			     System.out.println("Line " + lineNumber + ": invalid year \"" + durationText + "\" → skipping line.");
+			     System.out.println("Line " + lineNumber + ": invalid duration \"" + durationText + "\" → skipping line.");
 			     
 		}
 
+			//Print song's info
+			Song song = new Song(artist, title, durationSeconds);
+			System.out.println(song.toString());
+			
 		}
 			
 		} catch(FileNotFoundException e) {
