@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -11,12 +12,18 @@ public class MusicPlaylist {
 		System.out.println(unitTestSong.toString());
 		**/
 		
+		ArrayList<Song> songs = new ArrayList<>();
+		
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter your choice (1–7): ");
 		int choice = input.nextInt();
 		System.out.println("Enter CSV filename: ");
 		String fileName = input.next();
+		
 		PlaylistLoader.loadSongsFromCsv(fileName);
+		
+		Playlist playlist = new Playlist("ow", 5);
+		playlist.displayPlaylist();
 	}//End main
 	
 	
@@ -84,7 +91,7 @@ class Song {
 class Playlist {
 	
 	private String name;
-	private Song[] musicLibrary;
+	private ArrayList<Song> musicLibrary;
 	private int playlistCapacity;
 	private int currentSongsInPlaylist;
 	private int currentTotalSongs;
@@ -94,16 +101,27 @@ class Playlist {
 		this.name = name;
 		this.playlistCapacity = playlistCapacity;
 		this.currentTotalSongs = 0;
+		this.musicLibrary = new ArrayList<>(playlistCapacity);
 		
-		//Initialize Array
-		musicLibrary = new Song [playlistCapacity];
+		//Initialize ArrayList
+		//musicLibrary = new ArrayList<>(playlistCapacity);
 		
 		for(int col = 0; col < playlistCapacity; col++) {
-			musicLibrary[col] = null;
+			musicLibrary.add(null); //Add song/s to be null
 		}
 	}
 	
-	
+	public void displayPlaylist() {
+		for(int i = 0; i < currentTotalSongs; i++) {
+			Song song = musicLibrary.get(i);
+			if(song != null) {
+				System.out.println("[" + i + "]" + song.getTitle() + "by " + song.getArtist() + "(" + song.getSongLength() + ")");
+			}
+		}
+		if(currentTotalSongs == 0) {
+			System.out.println("Playlist is empty");
+		}
+	}
 	
 }//End Playlist class
 
@@ -112,9 +130,11 @@ class PlaylistLoader {
 	public static void loadSongsFromCsv(String filename) {
 	try (Scanner fileScan = new Scanner(new File(filename))){
 		int lineNumber = 0;
+		int numOfSongsLoaded = 0;
 		while (fileScan.hasNextLine()){
 			String line = fileScan.nextLine();
 			lineNumber++;
+			numOfSongsLoaded++;
 			
 			String[] parts = line.split(",");
 			if(parts.length != 3) {
@@ -135,10 +155,14 @@ class PlaylistLoader {
 
 			//Print song's info
 			Song song = new Song(artist, title, durationSeconds);
+			
 			System.out.println(song.toString());
-			
+			//System.out.println("Loaded " + numOfSongsLoaded + " songs");
 		}
-			
+		
+		//Outside of while loop to prevent repetition of this line and only prints once after iteration
+		System.out.println("Loaded " + numOfSongsLoaded + " songs\n");
+		
 		} catch(FileNotFoundException e) {
         System.out.println("Could not open file: " + filename);
         System.out.println("No songs were loaded.");
