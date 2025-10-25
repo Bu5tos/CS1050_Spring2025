@@ -12,7 +12,8 @@ public class MusicPlaylist {
 		System.out.println(unitTestSong.toString());
 		**/
 		
-		ArrayList<Song> songs = new ArrayList<>();
+		//ArrayList<Song> songs = new ArrayList<>(); X
+		//ArrayList<Song> songs = PlaylistLoader.loadSongsFromCsv(fileName); X
 		
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter your choice (1–7): ");
@@ -22,7 +23,12 @@ public class MusicPlaylist {
 		
 		PlaylistLoader.loadSongsFromCsv(fileName);
 		
-		Playlist playlist = new Playlist("ow", 5);
+		ArrayList<Song> songs = PlaylistLoader.loadSongsFromCsv(fileName);
+		
+		Playlist playlist = new Playlist("ow", 5); //Hard code unit test
+		for(Song song : songs) {
+			playlist.addSongs(song);
+		}
 		playlist.displayPlaylist();
 	}//End main
 	
@@ -104,10 +110,17 @@ class Playlist {
 		this.musicLibrary = new ArrayList<>(playlistCapacity);
 		
 		//Initialize ArrayList
-		//musicLibrary = new ArrayList<>(playlistCapacity);
+		musicLibrary = new ArrayList<>(playlistCapacity);
 		
 		for(int col = 0; col < playlistCapacity; col++) {
 			musicLibrary.add(null); //Add song/s to be null
+		}
+	}
+	
+	public void addSongs(Song song) {
+		if(currentTotalSongs < playlistCapacity) {
+			musicLibrary.set(currentTotalSongs, song);
+			currentTotalSongs++;
 		}
 	}
 	
@@ -127,8 +140,11 @@ class Playlist {
 
 class PlaylistLoader {
 	
-	public static void loadSongsFromCsv(String filename) {
-	try (Scanner fileScan = new Scanner(new File(filename))){
+	public static ArrayList<Song> loadSongsFromCsv(String filename) {
+	
+		ArrayList<Song> songs = new ArrayList<>();
+		
+		try (Scanner fileScan = new Scanner(new File(filename))){
 		int lineNumber = 0;
 		int numOfSongsLoaded = 0;
 		while (fileScan.hasNextLine()){
@@ -150,13 +166,13 @@ class PlaylistLoader {
 				durationSeconds = Integer.parseInt(durationText);
 			} catch (NumberFormatException ex) {
 			     System.out.println("Line " + lineNumber + ": invalid duration \"" + durationText + "\" → skipping line.");
-			     
+			     numOfSongsLoaded--; //If invalid text, unload a song
 		}
-
 			//Print song's info
 			Song song = new Song(artist, title, durationSeconds);
+			songs.add(song);
 			
-			System.out.println(song.toString());
+			//System.out.println(song.toString());
 			//System.out.println("Loaded " + numOfSongsLoaded + " songs");
 		}
 		
@@ -167,5 +183,6 @@ class PlaylistLoader {
         System.out.println("Could not open file: " + filename);
         System.out.println("No songs were loaded.");
 	}
+	return songs;
   }
 }//End PlaylistLoader
