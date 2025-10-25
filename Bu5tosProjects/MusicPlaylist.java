@@ -12,16 +12,11 @@ public class MusicPlaylist {
 		System.out.println(unitTestSong.toString());
 		**/
 		
-		//ArrayList<Song> songs = new ArrayList<>(); X
-		//ArrayList<Song> songs = PlaylistLoader.loadSongsFromCsv(fileName); X
-		
 		Scanner input = new Scanner(System.in);
 		System.out.println("Enter your choice (1–7): ");
 		int choice = input.nextInt();
 		System.out.println("Enter CSV filename: ");
 		String fileName = input.next();
-		
-		PlaylistLoader.loadSongsFromCsv(fileName);
 		
 		ArrayList<Song> songs = PlaylistLoader.loadSongsFromCsv(fileName);
 		
@@ -128,7 +123,7 @@ class Playlist {
 		for(int i = 0; i < currentTotalSongs; i++) {
 			Song song = musicLibrary.get(i);
 			if(song != null) {
-				System.out.println("[" + i + "]" + song.getTitle() + "by " + song.getArtist() + "(" + song.getSongLength() + ")");
+				System.out.println("[" + i + "] '" + song.getTitle() + "' by " + song.getArtist() + " (" + song.getSongLength() + ")");
 			}
 		}
 		if(currentTotalSongs == 0) {
@@ -154,7 +149,7 @@ class PlaylistLoader {
 			
 			String[] parts = line.split(",");
 			if(parts.length != 3) {
-				System.out.println("Line " + lineNumber + "skipped: " + "invalid values");
+				System.out.println("Line " + lineNumber + "skipped: " + "invalid values.");
 			}
 			
 			String title = parts[0].trim();
@@ -165,7 +160,7 @@ class PlaylistLoader {
 			try {
 				durationSeconds = Integer.parseInt(durationText);
 			} catch (NumberFormatException ex) {
-			     System.out.println("Line " + lineNumber + ": invalid duration \"" + durationText + "\" → skipping line.");
+			     System.out.println("Line " + lineNumber + " skipped: bad number.");
 			     numOfSongsLoaded--; //If invalid text, unload a song
 		}
 			//Print song's info
