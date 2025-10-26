@@ -13,8 +13,6 @@ public class MusicPlaylist {
 		**/
 		
 		Scanner input = new Scanner(System.in);
-		System.out.println("Enter your choice (1–7): ");
-		int choice = input.nextInt();
 		System.out.println("Enter CSV filename: ");
 		String fileName = input.next();
 		
@@ -25,6 +23,10 @@ public class MusicPlaylist {
 			playlist.addSongs(song);
 		}
 		playlist.displayPlaylist();
+		
+		System.out.println("\nEnter your choice (1–7): ");
+		int choice = input.nextInt();
+		playlist.playCertainSong();
 	}//End main
 	
 	
@@ -123,12 +125,27 @@ class Playlist {
 		for(int i = 0; i < currentTotalSongs; i++) {
 			Song song = musicLibrary.get(i);
 			if(song != null) {
-				System.out.println("[" + i + "] '" + song.getTitle() + "' by " + song.getArtist() + " (" + song.getSongLength() + ")");
+				System.out.println("[" + i + "] \"" + song.getTitle() + "\" by " + song.getArtist() + " (" + song.getSongLength() + ")");
 			}
 		}
 		if(currentTotalSongs == 0) {
 			System.out.println("Playlist is empty");
 		}
+	}
+	
+	public void playCertainSong() {	
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("\nEnter index to play: ");
+		int choice = input.nextInt();
+		
+		if(choice < 0 || choice >= currentTotalSongs) {
+			System.out.println("Invalid index");
+			System.out.println("Please enter a number between 0 and 6");
+			input.nextInt();
+		}
+		Song song = musicLibrary.get(choice);
+		System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + " (" + song.getSongLength() + ")");
 	}
 	
 }//End Playlist class
