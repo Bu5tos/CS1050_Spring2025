@@ -23,14 +23,13 @@ public class FixSinglyLinkedOrderedList
 		list.insertNode(4);
 		list.insertNode(6);
 
-		list.printList();
+		//list.printList();
 
 		list.printList();
 		
 		//deletes 4 and it would print 2 -> 6 -> null
 		list.deleteNode(4);
 		list.printList();
-
 	}
 
 }
@@ -53,12 +52,13 @@ class SinglyLinkedListFix
 
 		if (previous == null)
 		{
+			//Inserts at the head
 			newNode.next = head;
 			head = newNode;
 		} else
 		{
 			previous.next = newNode;
-			//newNode.next = current;//hmmm
+			newNode.next = current;//Points new node to the current node
 		}
 	}
 
@@ -79,13 +79,16 @@ class SinglyLinkedListFix
 		if (previous == null)
 		{
 			head = current.next;
+			
 		  //Added an if else statement to prevent error after runtime when last node was not found.
-		} else if (current == null) {
+		} if (current == null) {
 			System.out.println("Node " + number + " was not found");
 		}
-		else
-		{
-			previous.next = current.next; // Bug #5: Should be previous.next = current.next
+		if (previous == null) {		
+			previous = current.next; // Bug #5: Should be previous.next = current.next
+		}
+		else {			
+			previous.next = current.next; //Between the middle of the nodes (4)
 		}
 	}
 
