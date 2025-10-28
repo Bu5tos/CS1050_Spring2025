@@ -6,3 +6,5 @@
 /Playlist.class
 /MusicPlaylist$Song.class
 /PlaylistLoader.class
+/SinglyLinkedList$Node.class
+/SinglyLinkedList.class

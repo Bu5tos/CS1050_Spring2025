@@ -195,8 +195,7 @@ class PlaylistLoader {
 			Song song = new Song(artist, title, durationSeconds);
 			songs.add(song);
 			
-			//System.out.println(song.toString());
-			//System.out.println("Loaded " + numOfSongsLoaded + " songs");
+			System.out.println(song.toString());
 		}
 		
 		//Outside of while loop to prevent repetition of this line and only prints once after iteration
@@ -209,3 +208,24 @@ class PlaylistLoader {
 	return songs;
   }
 }//End PlaylistLoader
+
+class SinglyLinkedList<S> {
+	
+	Node<S> head;
+	Node<S> tail;
+	int count;
+	
+	public SinglyLinkedList() {
+		
+	}
+	
+	private static class Node<S> {
+	
+        S value;
+		Node<S> next;
+		Node(S v) {
+			value = v;
+			next = null;
+		}
+	}
+}//End LinkedList 
