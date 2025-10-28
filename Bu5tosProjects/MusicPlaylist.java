@@ -133,6 +133,7 @@ class Playlist {
 		}
 	}
 	
+	//come back later. do-while??
 	public void playCertainSong() {	
 		Scanner input = new Scanner(System.in);
 		
@@ -142,10 +143,20 @@ class Playlist {
 		if(choice < 0 || choice >= currentTotalSongs) {
 			System.out.println("Invalid index");
 			System.out.println("Please enter a number between 0 and 6");
-			input.nextInt();
+			
 		}
+
 		Song song = musicLibrary.get(choice);
 		System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + " (" + song.getSongLength() + ")");
+	}
+	
+	public void addSongToQueue () {
+        Scanner input = new Scanner(System.in);
+		
+		System.out.println("\nEnter song number to add to Up-Next List (queue): ");
+		int choice = input.nextInt();
+		
+		
 	}
 	
 }//End Playlist class
