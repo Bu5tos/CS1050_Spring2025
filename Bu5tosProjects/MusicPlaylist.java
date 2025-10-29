@@ -31,6 +31,20 @@ public class MusicPlaylist {
 		playlist.playCertainSong();
 		
 		playlist.addSongToQueue();
+		
+		do {
+			//Playlist menu selection 
+			System.out.println("=== Music Playlist Menu ===");
+			System.out.println("1. Load Songs from CSV");
+			System.out.println("2. Display Playlist");
+			System.out.println("3. Play a Song by Index");
+			System.out.println("4. Add Song to Up-Next Queue");
+			System.out.println("5. Show Up-Next Queue");
+			System.out.println("6. Play Next from Queue");
+			System.out.println("7. Exit");
+		} while(input.equals(playlist));
+		
+
 	}//End main
 	
 	
@@ -84,13 +98,19 @@ class Song {
 		return songLength;
 	}
 	
+	public String convertSecondsToFormat() {
+		int minutes = songLength / 60;
+		int seconds = songLength % 60;
+		
+		return "(" + minutes + ":" + seconds + ")";
+	}
 	
 	//returns a string that describes the Song object
 	@Override // Overrides Playlist Class method to it's own version(behavior)
 	public String toString() {
 		
 		//Prints artist, title, songLength together as a string
-		return artist + ", "+ title + ", " + songLength + " Seconds";
+		return artist + ", "+ title + ", " + convertSecondsToFormat();
 	}
 	
 }//End Song class
@@ -130,7 +150,7 @@ class Playlist {
 		for(int i = 0; i < currentTotalSongs; i++) {
 			Song song = musicLibrary.get(i);
 			if(song != null) {
-				System.out.println("[" + i + "] \"" + song.getTitle() + "\" by " + song.getArtist() + " (" + song.getSongLength() + ")");
+				System.out.println("[" + i + "] \"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
 			}
 		}
 		if(currentTotalSongs == 0) {
@@ -169,6 +189,18 @@ class Playlist {
 		Song chosenSong = musicLibrary.get(choice);
 		upNextQueue.addLast(chosenSong);
 		System.out.println("Song added to Up-Next");
+		
+		//Unit Test to confirm chosen song is queued
+		//System.out.println(chosenSong);
+	}
+	
+	public void PlayNextFromQueue() {
+		if(musicLibrary == null) {
+			System.out.println("Queue is empty");
+		}
+		
+		
+		
 	}
 		
 	
@@ -183,10 +215,10 @@ class PlaylistLoader {
 		try (Scanner fileScan = new Scanner(new File(filename))){
 		int lineNumber = 0;
 		int numOfSongsLoaded = 0;
+		
 		while (fileScan.hasNextLine()){
 			String line = fileScan.nextLine();
 			lineNumber++;
-			numOfSongsLoaded++;
 			
 			String[] parts = line.split(",");
 			if(parts.length != 3) {
@@ -207,6 +239,7 @@ class PlaylistLoader {
 			//Print song's info
 			Song song = new Song(artist, title, durationSeconds);
 			songs.add(song);
+			numOfSongsLoaded++;
 			
 			System.out.println(song.toString());
 		}
@@ -263,8 +296,10 @@ class SinglyLinkedList<S> {
 		}
 	}
 	
-	//public S removeFirst() {
-	//}
+	public S removeFirst() {
+		
+		
+	}
 	
 	public void displayAll() {
 		
