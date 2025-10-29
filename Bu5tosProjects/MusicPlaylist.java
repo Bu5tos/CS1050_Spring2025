@@ -31,7 +31,8 @@ public class MusicPlaylist {
 		playlist.playCertainSong();
 		
 		playlist.addSongToQueue();
-		
+	
+		/** User story 7
 		do {
 			//Playlist menu selection 
 			System.out.println("=== Music Playlist Menu ===");
@@ -43,7 +44,7 @@ public class MusicPlaylist {
 			System.out.println("6. Play Next from Queue");
 			System.out.println("7. Exit");
 		} while(input.equals(playlist));
-		
+		*/
 
 	}//End main
 	
@@ -166,13 +167,13 @@ class Playlist {
 		int choice = input.nextInt();
 		
 		if(choice < 0 || choice >= currentTotalSongs) {
-			System.out.println("Invalid index");
+			System.out.println("\nInvalid index");
 			System.out.println("Please enter a number between 0 and 6");
 			
 		}
 
 		Song song = musicLibrary.get(choice);
-		System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + " (" + song.getSongLength() + ")");
+		System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
 	}
 	
 	public void addSongToQueue () {
