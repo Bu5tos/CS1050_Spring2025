@@ -23,6 +23,8 @@ public class MusicPlaylist {
 		ArrayList<Song> songs = PlaylistLoader.loadSongsFromCsv(fileName);
 		
 		Playlist playlist = new Playlist("ow", 5); //Hard code unit test
+		
+		//Loop through each song of the song ArrayList 
 		for(Song song : songs) {
 			playlist.addSongs(song);
 		}
@@ -31,6 +33,8 @@ public class MusicPlaylist {
 		playlist.playCertainSong();
 		
 		playlist.addSongToQueue();
+		
+		playlist.PlayNextFromQueue();
 	
 		/** User story 7
 		do {
@@ -196,11 +200,20 @@ class Playlist {
 	}
 	
 	public void PlayNextFromQueue() {
+		for(int i = 0; i < currentTotalSongs; i++) {
+			Song song = musicLibrary.get(i);
+			if(song != null) {
+				System.out.println("[" + i + "] \"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
+			}
+		}
+		
 		if(musicLibrary == null) {
 			System.out.println("Queue is empty");
 		}
-		
-		
+		else {
+			Song song = musicLibrary.get(currentSongsInPlaylist);
+			System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
+		}
 		
 	}
 		
@@ -246,7 +259,7 @@ class PlaylistLoader {
 		}
 		
 		//Outside of while loop to prevent repetition of this line and only prints once after iteration
-		System.out.println("Loaded " + numOfSongsLoaded + " songs\n");
+		//System.out.println("Loaded " + numOfSongsLoaded + " songs\n");
 		
 		} catch(FileNotFoundException e) {
         System.out.println("Could not open file: " + filename);
