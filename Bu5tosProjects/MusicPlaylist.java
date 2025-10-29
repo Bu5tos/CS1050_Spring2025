@@ -13,6 +13,10 @@ public class MusicPlaylist {
 		**/
 		
 		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter your choice (1–7): ");
+		int choice = input.nextInt();
+		
 		System.out.println("Enter CSV filename: ");
 		String fileName = input.next();
 		
@@ -24,9 +28,9 @@ public class MusicPlaylist {
 		}
 		playlist.displayPlaylist();
 		
-		System.out.println("\nEnter your choice (1–7): ");
-		int choice = input.nextInt();
 		playlist.playCertainSong();
+		
+		playlist.addSongToQueue();
 	}//End main
 	
 	
@@ -95,6 +99,7 @@ class Playlist {
 	
 	private String name;
 	private ArrayList<Song> musicLibrary;
+	private SinglyLinkedList<Song> upNextQueue = new SinglyLinkedList<>();
 	private int playlistCapacity;
 	private int currentSongsInPlaylist;
 	private int currentTotalSongs;
@@ -156,8 +161,16 @@ class Playlist {
 		System.out.println("\nEnter song number to add to Up-Next List (queue): ");
 		int choice = input.nextInt();
 		
+		if(choice < 0 || choice >= currentTotalSongs) {
+			System.out.println("Invalid index. Nothing enqueued");
+			System.out.println("Please enter a number between 0 and 6");
+		}
 		
+		Song chosenSong = musicLibrary.get(choice);
+		upNextQueue.addLast(chosenSong);
+		System.out.println("Song added to Up-Next");
 	}
+		
 	
 }//End Playlist class
 
@@ -216,6 +229,44 @@ class SinglyLinkedList<S> {
 	int count;
 	
 	public SinglyLinkedList() {
+		
+		//Head and tail is null when list is empty
+		this.head = null;
+		this.tail = null;
+		this.count = 0; //Start count at 0
+	}
+	
+	/**
+	 * Returns the current number of elements in linkedlist
+	 * In linkedlist, the number of elements can increase or decrease
+	 * (nodes can be added or removed)
+	 * @return
+	 */
+	public int size() {
+		return count;
+	}
+	
+	/**
+	 * Checks is linkedlist is empty
+	 * @returns true if there are no nodes in the list
+	 */
+	public boolean isEmpty() {
+		return head == null;
+	}
+	
+	//Adds a value after tail(last node)
+	public void addLast(S value) {
+		Node<S> newNode = new Node<>(value);
+		
+		if(head == null) {
+			tail = newNode;
+		}
+	}
+	
+	//public S removeFirst() {
+	//}
+	
+	public void displayAll() {
 		
 	}
 	
