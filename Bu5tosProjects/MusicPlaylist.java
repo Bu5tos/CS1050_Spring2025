@@ -14,16 +14,14 @@ public class MusicPlaylist {
 		
 		Scanner input = new Scanner(System.in);
 		
-		System.out.println("Enter your choice (1–7): ");
-		int choice = input.nextInt();
+		//System.out.println("Enter CSV filename: ");
+		String fileName; // = input.next();
 		
-		System.out.println("Enter CSV filename: ");
-		String fileName = input.next();
+		ArrayList<Song> songs = null; //= PlaylistLoader.loadSongsFromCsv(fileName);
 		
-		ArrayList<Song> songs = PlaylistLoader.loadSongsFromCsv(fileName);
+		Playlist playlist = null; //= new Playlist("ow", 5); //Hard code unit test
 		
-		Playlist playlist = new Playlist("ow", 5); //Hard code unit test
-		
+		/**
 		//Loop through each song of the song ArrayList 
 		for(Song song : songs) {
 			playlist.addSongs(song);
@@ -35,11 +33,13 @@ public class MusicPlaylist {
 		playlist.addSongToQueue();
 		
 		playlist.ShowUpNextQueue();
-	
-		/** User story 7
+		*/
+		
+		int choice;
 		do {
+			
 			//Playlist menu selection 
-			System.out.println("=== Music Playlist Menu ===");
+			System.out.println("\n=== Music Playlist Menu ===");
 			System.out.println("1. Load Songs from CSV");
 			System.out.println("2. Display Playlist");
 			System.out.println("3. Play a Song by Index");
@@ -47,11 +47,56 @@ public class MusicPlaylist {
 			System.out.println("5. Show Up-Next Queue");
 			System.out.println("6. Play Next from Queue");
 			System.out.println("7. Exit");
-		} while(input.equals(playlist));
-		*/
-
+			
+			choice = getValidInt(input, "Enter your choice (1-7): ", 1,7);
+			
+            switch (choice) {
+			
+            case 1:
+            	System.out.println("Enter CSV filename: ");
+        		fileName = input.next();
+        		
+        		songs = PlaylistLoader.loadSongsFromCsv(fileName);   		
+        		playlist = new Playlist("ow", 5); //Hard code unit test
+        		
+        		//Loop through each song of the song ArrayList 
+        		for(Song song : songs) {
+        			playlist.addSongs(song);
+        		}
+        		break;
+        		
+            case 2:
+            	playlist.displayPlaylist(); 
+            	break;
+            
+            case 3: 
+            	playlist.playCertainSong();
+            	break;
+            	
+            case 4:
+            	playlist.addSongToQueue();
+            	break;
+            	
+            case 5:
+            	playlist.ShowUpNextQueue();
+            	break;
+            }
+		} while (choice != 7);
 	}//End main
 	
+	//Validate input between 0 to 7
+	public static int getValidInt(Scanner inputKeyboard, String string, int min, int max) {
+		System.out.println("\n" + string);
+		
+		int currentInt = inputKeyboard.nextInt();
+		
+	      while(currentInt < min || currentInt > max) {
+	    	  System.out.println("Invalid input. Choose between " + min + "-" + max);
+	    	  currentInt = inputKeyboard.nextInt();
+	    	  
+	      }
+	            return currentInt; 
+	}
 	
 }//End class
 
@@ -297,11 +342,12 @@ class SinglyLinkedList<S> {
 		Node<S> newNode = new Node<>(value);
 		
 		if(isEmpty()) {
-			tail.next = newNode;
+			tail = newNode;
+			head = newNode;
 		} else {
-		tail = newNode;
-		count++;
+		tail.next = newNode;
 		}
+		count++;
 	}
 	
 	public S removeFirst() {	
