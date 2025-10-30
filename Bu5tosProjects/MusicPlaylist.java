@@ -34,7 +34,7 @@ public class MusicPlaylist {
 		
 		playlist.addSongToQueue();
 		
-		playlist.PlayNextFromQueue();
+		playlist.ShowUpNextQueue();
 	
 		/** User story 7
 		do {
@@ -199,23 +199,14 @@ class Playlist {
 		//System.out.println(chosenSong);
 	}
 	
-	public void PlayNextFromQueue() {
-		for(int i = 0; i < currentTotalSongs; i++) {
-			Song song = musicLibrary.get(i);
-			if(song != null) {
-				System.out.println("[" + i + "] \"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
-			}
-		}
-		
-		if(musicLibrary == null) {
-			System.out.println("Queue is empty");
-		}
-		else {
-			Song song = musicLibrary.get(currentSongsInPlaylist);
-			System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
-		}
-		
+	public void ShowUpNextQueue() {
+		upNextQueue.displayAll();
 	}
+	
+	/**
+	public void PlayNextFromQueue() {
+		
+	}*/
 		
 	
 }//End Playlist class
@@ -259,7 +250,7 @@ class PlaylistLoader {
 		}
 		
 		//Outside of while loop to prevent repetition of this line and only prints once after iteration
-		//System.out.println("Loaded " + numOfSongsLoaded + " songs\n");
+		System.out.println("Loaded " + numOfSongsLoaded + " songs\n");
 		
 		} catch(FileNotFoundException e) {
         System.out.println("Could not open file: " + filename);
@@ -305,18 +296,45 @@ class SinglyLinkedList<S> {
 	public void addLast(S value) {
 		Node<S> newNode = new Node<>(value);
 		
-		if(head == null) {
-			tail = newNode;
+		if(isEmpty()) {
+			tail.next = newNode;
+		} else {
+		tail = newNode;
+		count++;
 		}
 	}
 	
-	public S removeFirst() {
+	public S removeFirst() {	
+		//SinglyLinkedList.Node<S> current = head;
+		//SinglyLinkedList.Node<S> previous = null;
 		
+		if(isEmpty()) {
+			return null;
+		}
 		
+		S value = head.value;
+		head = head.next;
+		count--;
+		
+		if(head == null) {
+			tail = null;
+		}
+		return value;
 	}
 	
 	public void displayAll() {
-		
+		 if (isEmpty()) {
+	            System.out.println("Queue is empty.");
+	            return;
+	        }
+
+	        Node<S> current = head;
+	        int index = 0;
+	        while (current != null) {
+	            System.out.println("[" + index + "] " + current.value);
+	            current = current.next;
+	            index++;
+	        }
 	}
 	
 	private static class Node<S> {
