@@ -21,7 +21,7 @@ public class MusicPlaylist {
 		
 		Playlist playlist = null; //= new Playlist("ow", 5); //Hard code unit test
 		
-		/**
+		/** Unit test
 		//Loop through each song of the song ArrayList 
 		for(Song song : songs) {
 			playlist.addSongs(song);
@@ -47,6 +47,7 @@ public class MusicPlaylist {
 			System.out.println("5. Show Up-Next Queue");
 			System.out.println("6. Play Next from Queue");
 			System.out.println("7. Exit");
+			System.out.println("-----------------------------");
 			
 			choice = getValidInt(input, "Enter your choice (1-7): ", 1,7);
 			
@@ -80,6 +81,9 @@ public class MusicPlaylist {
             case 5:
             	playlist.ShowUpNextQueue();
             	break;
+            	
+            case 6:
+            	playlist.PlayNextFromQueue();
             }
 		} while (choice != 7);
 	}//End main
@@ -171,7 +175,6 @@ class Playlist {
 	private ArrayList<Song> musicLibrary;
 	private SinglyLinkedList<Song> upNextQueue = new SinglyLinkedList<>();
 	private int playlistCapacity;
-	private int currentSongsInPlaylist;
 	private int currentTotalSongs;
 	private boolean isFull;
 	
@@ -215,11 +218,11 @@ class Playlist {
 		System.out.println("\nEnter index to play: ");
 		int choice = input.nextInt();
 		
-		if(choice < 0 || choice >= currentTotalSongs) {
+		if (choice < 0 || choice >= currentTotalSongs) {
 			System.out.println("\nInvalid index");
 			System.out.println("Please enter a number between 0 and 6");
-			
 		}
+		
 
 		Song song = musicLibrary.get(choice);
 		System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
@@ -228,7 +231,7 @@ class Playlist {
 	public void addSongToQueue () {
         Scanner input = new Scanner(System.in);
 		
-		System.out.println("\nEnter song number to add to Up-Next List (queue): ");
+        System.out.println("\nEnter song number to add to Up-Next List (queue): ");
 		int choice = input.nextInt();
 		
 		if(choice < 0 || choice >= currentTotalSongs) {
@@ -248,10 +251,14 @@ class Playlist {
 		upNextQueue.displayAll();
 	}
 	
-	/**
 	public void PlayNextFromQueue() {
-		
-	}*/
+		if(upNextQueue != null) {
+			musicLibrary.removeFirst();
+			System.out.println("Now playing: " + musicLibrary.getFirst());
+		} else {
+			System.out.println("Queue is empty.");
+		}
+	}
 		
 	
 }//End Playlist class
