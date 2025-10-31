@@ -92,6 +92,7 @@ public class MusicPlaylist {
             	playlist.PlayNextFromQueue();
             }
 		} while (choice != 7);
+		System.out.println("Menu exited");
 	}//End main
 	
 	//Validate input between 0 to 7
@@ -158,6 +159,7 @@ class Song {
 		return songLength;
 	}
 	
+	//Convert seconds to m:ss
 	public String convertSecondsToFormat() {
 		int minutes = songLength / 60;
 		int seconds = songLength % 60;
@@ -302,6 +304,7 @@ class PlaylistLoader {
 			String durationText = parts[2].trim();
 			
 			int durationSeconds = 0;
+				
 			try {
 				durationSeconds = Integer.parseInt(durationText);
 			} catch (NumberFormatException ex) {
@@ -319,6 +322,7 @@ class PlaylistLoader {
 		//Outside of while loop to prevent repetition of this line and only prints once after iteration
 		System.out.println("Loaded " + numOfSongsLoaded + " songs\n");
 		
+		//User enters wrong file name
 		} catch(FileNotFoundException e) {
         System.out.println("Could not open file: " + filename);
         System.out.println("No songs were loaded.");
