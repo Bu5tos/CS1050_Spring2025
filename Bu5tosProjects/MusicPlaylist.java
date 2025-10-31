@@ -377,8 +377,6 @@ class SinglyLinkedList<S> {
 	}
 	
 	public S removeFirst() {	
-		//SinglyLinkedList.Node<S> current = head;
-		//SinglyLinkedList.Node<S> previous = null;
 		
 		if(isEmpty()) {
 			return null;
