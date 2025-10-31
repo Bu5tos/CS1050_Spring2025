@@ -13,13 +13,10 @@ public class MusicPlaylist {
 		**/
 		
 		Scanner input = new Scanner(System.in);
+		String fileName; //Stores filename when user user types in keyboard
 		
-		//System.out.println("Enter CSV filename: ");
-		String fileName; // = input.next();
-		
-		ArrayList<Song> songs = null; //= PlaylistLoader.loadSongsFromCsv(fileName);
-		
-		Playlist playlist = null; //= new Playlist("ow", 5); //Hard code unit test
+		ArrayList<Song> songs = null; //variable songs will be holding songs from CSV file
+		Playlist playlist = null; //Created an object to use playlist class in this class
 		
 		/** Unit test
 		//Loop through each song of the song ArrayList 
@@ -53,6 +50,15 @@ public class MusicPlaylist {
 			
             switch (choice) {
 			
+            /**
+             * Case 1: Loads songs from CSV file
+             * Case 2: Displays songs in playlist
+             * Case 3: Plays certain song by user's choice of index
+             * Case 4: Adds song to queue (First line)
+             * Case 5: Peek what songs are next
+             * Case 6: Plays next Up-Next song
+             * Then exit menu when user inputs 7
+             */
             case 1:
             	System.out.println("Enter CSV filename: ");
         		fileName = input.next();
@@ -192,6 +198,7 @@ class Playlist {
 		}
 	}
 	
+	//Adds songs if there's still space to be filled in
 	public void addSongs(Song song) {
 		if(currentTotalSongs < playlistCapacity) {
 			musicLibrary.set(currentTotalSongs, song);
@@ -199,6 +206,7 @@ class Playlist {
 		}
 	}
 	
+	//Displays song's info in playlist
 	public void displayPlaylist() {
 		for(int i = 0; i < currentTotalSongs; i++) {
 			Song song = musicLibrary.get(i);
@@ -211,7 +219,10 @@ class Playlist {
 		}
 	}
 	
-	//come back later. do-while??
+	/**
+	 * Plays searched song by index
+	 * (come back later. do-while??)
+	 */
 	public void playCertainSong() {	
 		Scanner input = new Scanner(System.in);
 		
@@ -228,6 +239,7 @@ class Playlist {
 		System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
 	}
 	
+	//Adds song to Up-Next
 	public void addSongToQueue () {
         Scanner input = new Scanner(System.in);
 		
@@ -247,10 +259,12 @@ class Playlist {
 		//System.out.println(chosenSong);
 	}
 	
+	//Displays queued song to be next
 	public void ShowUpNextQueue() {
 		upNextQueue.displayAll();
 	}
 	
+	//Plays Up-Next songs from queue
 	public void PlayNextFromQueue() {
 		if(upNextQueue != null) {
 			musicLibrary.removeFirst();
@@ -263,6 +277,7 @@ class Playlist {
 	
 }//End Playlist class
 
+//Reads CSV file
 class PlaylistLoader {
 	
 	public static ArrayList<Song> loadSongsFromCsv(String filename) {
