@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.io.File;
 import java.io.FileNotFoundException;
 
@@ -104,8 +105,15 @@ public class MusicPlaylist {
 	      while(currentInt < min || currentInt > max) {
 	    	  System.out.println("Invalid input. Choose between " + min + "-" + max);
 	    	  currentInt = inputKeyboard.nextInt();
-	    	  
 	      }
+	      try {
+    		  while(currentInt != 1) {
+    			  currentInt = inputKeyboard.nextInt();
+    		  }
+    	  } catch(InputMismatchException e) {
+    		  System.out.println("Enter number 1 first to access menu");
+    		  inputKeyboard.nextLine();
+    	  }
 	            return currentInt; 
 	}
 	
