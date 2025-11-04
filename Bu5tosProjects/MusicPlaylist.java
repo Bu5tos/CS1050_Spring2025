@@ -65,7 +65,7 @@ public class MusicPlaylist {
         		fileName = input.next();
         		
         		songs = PlaylistLoader.loadSongsFromCsv(fileName);   		
-        		playlist = new Playlist("ow", 7); //Hard code unit test
+        		playlist = new Playlist("Life debugger", 7); //Hard code unit test
         		
         		//Loop through each song of the song ArrayList 
         		for(Song song : songs) {
@@ -206,10 +206,13 @@ class Playlist {
 		
 		for(int col = 0; col < playlistCapacity; col++) {
 			musicLibrary.add(null); //Add song/s to be null
-		}
+		} //Exit loop when musicLibrary reaches to 6 indexes
 	}
 	
-	//Adds songs if there's still space to be filled in
+	/**Adds songs if there's still space to be filled in
+	 * (for each loop)
+	 * @param song
+	 */
 	public void addSongs(Song song) {
 		if(currentTotalSongs < playlistCapacity) {
 			musicLibrary.set(currentTotalSongs, song);
@@ -325,11 +328,12 @@ class PlaylistLoader {
 			songs.add(song);
 			numOfSongsLoaded++;
 			
-			System.out.println(song.toString());
+			//Unit test to see if songs info loads in console
+			//System.out.println(song.toString());
 		}
 		
 		//Outside of while loop to prevent repetition of this line and only prints once after iteration
-		System.out.println("Loaded " + numOfSongsLoaded + " songs\n");
+		System.out.println("Loaded " + numOfSongsLoaded + " songs");
 		
 		//User enters wrong file name
 		} catch(FileNotFoundException e) {
