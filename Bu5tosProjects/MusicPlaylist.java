@@ -65,7 +65,7 @@ public class MusicPlaylist {
         		fileName = input.next();
         		
         		songs = PlaylistLoader.loadSongsFromCsv(fileName);   		
-        		playlist = new Playlist("ow", 5); //Hard code unit test
+        		playlist = new Playlist("ow", 7); //Hard code unit test
         		
         		//Loop through each song of the song ArrayList 
         		for(Song song : songs) {
