@@ -215,7 +215,7 @@ class Playlist {
 	 */
 	public void addSongs(Song song) {
 		if(currentTotalSongs < playlistCapacity) {
-			musicLibrary.set(currentTotalSongs, song);
+			musicLibrary.set(currentTotalSongs, song); //Songs gets filled when loaded
 			currentTotalSongs++;
 		}
 	}
