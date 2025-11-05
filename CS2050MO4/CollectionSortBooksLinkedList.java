@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.*; //Uses everything. Pulling all the classes in the package
 
 /**
  * 
@@ -14,6 +14,8 @@ public class CollectionSortBooksLinkedList
 
 		// Step 1: Create a LinkedList (dynamic)
 		LinkedList<Book> bookInventory = new LinkedList<>();
+		//bookInventory. //Allows us to use all methods
+		
 		bookInventory.add(new Book("Unmasking AI", "Dr. Joy Buolamwini", 2023));
 		bookInventory.add(new Book("Hello World", "Hannah Fry", 2018));
 		bookInventory.add(new Book("The Mathematics of Love", "Hannah Fry", 2015));
@@ -29,12 +31,13 @@ public class CollectionSortBooksLinkedList
 		System.out.println();
 
 		// Step 2: Convert to ArrayList for sorting
-		List<Book> books = new ArrayList<>(bookInventory);
+		List<Book> books = new ArrayList<>(bookInventory); //convert linked list to ArrayList
+		//books. //Access to all the methods for ArrayList
 
 		// Step 3: Sort by Title
 		System.out.println("Books sorted by title:");
-		books.sort(Comparator.comparing(Book::getTitle));
-		for (Book currentBook : books)
+		books.sort(Comparator.comparing(Book::getTitle)); //Compare it based on title
+		for (Book currentBook : books) //Sorting a copy of books so it won't affect it?
 		{
 			System.out.println(currentBook);
 		}
@@ -44,7 +47,7 @@ public class CollectionSortBooksLinkedList
 		// Step 4: Sort by year (newest to oldest)
 		// add code
 		System.out.println("Sorted years by newest to oldest:");
-		books.sort(Comparator.comparingInt(Book::getYear).reversed());
+		books.sort(Comparator.comparingInt(Book::getYear).reversed()); //:: is a method reference operator
 		for (Book currentBook : books)
 		{
 			System.out.println(currentBook);
@@ -93,7 +96,58 @@ public class CollectionSortBooksLinkedList
         //create a method that
         List<Book> foundBooks = findBooks(bookInventory, "Hannah Fry", 2018);
         printBooks(foundBooks, "Hannah Fry", 2018);
-    }
+        
+        //Step 10: Use HashMap to organize books by title
+        System.out.println("\nStep 10 HashMap of books by title:");
+        Map<String, Book> bookMapByTitle = new HashMap<>();
+        // Using for loop to create hashmap quickly for book titles
+        // Remember title must be unique
+        for (Book currentBook : bookInventory)
+        {
+        	bookMapByTitle.put(currentBook.getTitle(), currentBook); // key = title, value = book
+        	//Overrides because key is unique.
+        }
+        // Try getting a book by title
+        String searchTitle = "Hello World";
+        // containsKey Returns true if the key exists
+        if (bookMapByTitle.containsKey(searchTitle))
+        {
+        	System.out.println("Found book: " + bookMapByTitle.get(searchTitle));
+        } else
+        {
+        	System.out.println("Book not found: " + searchTitle);
+        }
+        
+        System.out.println("\nFind a book by title:");
+        System.out.println(bookMapByTitle.get("Unmasking AI"));
+        System.out.println(bookMapByTitle.get("Not in list"));
+        
+        
+        // step 11 Create a TreeMap to organize books by year
+        System.out.println("\nCreate and print tree map");
+        TreeMap<Integer, List<Book>> booksByYear = new TreeMap<>();
+        // Group books by year (keys are sorted automatically)
+        for (Book currentBook : bookInventory){
+        	int year = currentBook.getYear();
+        	if (!booksByYear.containsKey(year)) {
+        	    booksByYear.put(year, new ArrayList<>());
+        	}
+        	booksByYear.get(year).add(currentBook);
+        	//System.out.println(booksByYear);
+        }
+
+     // step 12 Print books by year (TreeMap keeps them sorted)
+        for (Map.Entry<Integer, List<Book>> entry : booksByYear.entrySet()){
+         	System.out.println("\nYear: " + entry.getKey());
+        	for (Book book : entry.getValue())
+        	{
+        		System.out.println(book);
+        	}
+        }
+
+        
+        
+    }//End main
 	public static List<Book> findBooksByAuthor(List<Book> inventory, String author) {
 	    List<Book> results = new ArrayList<>();
 	    for (Book currentBook : inventory) {
@@ -128,10 +182,8 @@ public class CollectionSortBooksLinkedList
 	    }
 	}
 
-
 	
-	
-}
+}//End class
 
 class Book
 {
