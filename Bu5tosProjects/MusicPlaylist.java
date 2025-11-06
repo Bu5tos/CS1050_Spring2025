@@ -308,7 +308,7 @@ class PlaylistLoader {
 			
 			String[] parts = line.split(",");
 			if(parts.length != 3) {
-				System.out.println("Line " + lineNumber + "skipped: " + "invalid values.");
+				System.out.println("Line " + lineNumber + " skipped: " + "invalid values.");
 			}
 			
 			String title = parts[0].trim();
