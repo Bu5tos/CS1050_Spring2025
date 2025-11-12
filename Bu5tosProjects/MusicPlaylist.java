@@ -369,7 +369,7 @@ class SinglyLinkedList<S> {
 	}
 	
 	/**
-	 * Checks is linkedlist is empty
+	 * Checks if linkedlist is empty
 	 * @returns true if there are no nodes in the list
 	 */
 	public boolean isEmpty() {
@@ -428,5 +428,5 @@ class SinglyLinkedList<S> {
 			value = v;
 			next = null;
 		}
-	}
+	}// End Node<S>
 }//End LinkedList 

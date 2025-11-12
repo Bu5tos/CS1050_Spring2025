@@ -126,7 +126,7 @@ public class L16LabCustomerServiceQueue
     	}
     	
     	public Customer dequeue() {
-    		queue.removeFirst();
+    		return queue.removeFirst();
     	}
     	
     	
