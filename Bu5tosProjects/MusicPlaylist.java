@@ -248,7 +248,6 @@ class Playlist {
 			System.out.println("Please enter a number between 0 and 6");
 		}
 		
-
 		Song song = musicLibrary.get(choice);
 		System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
 	}
@@ -286,9 +285,7 @@ class Playlist {
 		} else {
 			System.out.println("Queue is empty.");
 		}
-	}
-		
-	
+	}	
 }//End Playlist class
 
 //Reads CSV file
@@ -306,10 +303,13 @@ class PlaylistLoader {
 			String line = fileScan.nextLine();
 			lineNumber++;
 			
+			try {
 			String[] parts = line.split(",");
+			/**
 			if(parts.length != 3) {
-				System.out.println("Line " + lineNumber + " skipped: " + "invalid values.");
-			}
+				System.out.println("Line " + lineNumber + " skipped: invalid values.");
+				
+			} */ //DELETE (PI2).
 			
 			String title = parts[0].trim();
 			String artist = parts[1].trim();
@@ -330,6 +330,9 @@ class PlaylistLoader {
 			
 			//Unit test to see if songs info loads in console
 			//System.out.println(song.toString());
+		} catch (ArrayIndexOutOfBoundsException ex) {
+			System.out.println("Line " + lineNumber + " skipped: invalid values.");
+		}
 		}
 		
 		//Outside of while loop to prevent repetition of this line and only prints once after iteration
@@ -346,10 +349,11 @@ class PlaylistLoader {
 
 class SinglyLinkedList<S> {
 	
-	Node<S> head;
-	Node<S> tail;
-	int count;
+	private Node<S> head;
+	private Node<S> tail;
+    private int count;
 	
+    //Construct an empty list 
 	public SinglyLinkedList() {
 		
 		//Head and tail is null when list is empty
@@ -395,11 +399,13 @@ class SinglyLinkedList<S> {
 			return null;
 		}
 		
-		S value = head.value;
-		head = head.next;
+		S value = head.value; // capture the value to return 
+		head = head.next; //move head forward one node
 		count--;
 		
 		if(head == null) {
+			
+			//If last node is removed, both head and tail must be null
 			tail = null;
 		}
 		return value;
@@ -415,7 +421,7 @@ class SinglyLinkedList<S> {
 	        int index = 0;
 	        while (current != null) {
 	            System.out.println("[" + index + "] " + current.value);
-	            current = current.next;
+	            current = current.next; //Move to next node
 	            index++;
 	        }
 	}
