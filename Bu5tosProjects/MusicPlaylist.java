@@ -225,7 +225,7 @@ class Playlist {
 		for(int i = 0; i < currentTotalSongs; i++) {
 			Song song = musicLibrary.get(i);
 			if(song != null) {
-				System.out.println("[" + i + "] \"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
+				System.out.println("[" + i + "] \"" + song.getTitle() + "\" by " + song.getArtist() + " " + song.convertSecondsToFormat());
 			}
 		}
 		if(currentTotalSongs == 0) {
