@@ -1,17 +1,15 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-//import java.util.InputMismatchException;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Map;
+import java.util.HashMap; // Iteration 02 UPDATE (User Story 8): for fast lookup by ID
+import java.util.Comparator; // Iteration 02 UPDATE (User Story 9): for sorting
+
 
 public class MusicPlaylist {
 
 	public static void main(String[] args) {
-		
-		/**Unit testing song info
-		Song unitTestSong = new Song("Joji", "Pixelated Kisses", 109);
-		System.out.println(unitTestSong.toString());
-		**/
 		
 		Scanner input = new Scanner(System.in);
 		String fileName; //Stores filename when user user types in keyboard
@@ -19,33 +17,21 @@ public class MusicPlaylist {
 		ArrayList<Song> songs = null; //variable songs will be holding songs from CSV file
 		Playlist playlist = null; //Created an object to use playlist class in this class
 		
-		/** Unit test
-		//Loop through each song of the song ArrayList 
-		for(Song song : songs) {
-			playlist.addSongs(song);
-		}
-		playlist.displayPlaylist();
-		
-		playlist.playCertainSong();
-		
-		playlist.addSongToQueue();
-		
-		playlist.ShowUpNextQueue();
-		*/
-		
 		int choice;
 		do {
 			
 			//Playlist menu selection 
-			System.out.println("\n=== Music Playlist Menu ===");
+			System.out.println("=== Music Playlist Menu ===");
 			System.out.println("1. Load Songs from CSV");
 			System.out.println("2. Display Playlist");
-			System.out.println("3. Play a Song by Index");
+			System.out.println("3. Play Song by Index");
 			System.out.println("4. Add Song to Up-Next Queue");
 			System.out.println("5. Show Up-Next Queue");
-			System.out.println("6. Play Next from Queue");
+			System.out.println("6. Play Next Song in Up-Next Queue");
+			//System.out.println("7. Search Songs (by ID or Artist)");
 			System.out.println("7. Exit");
-			System.out.println("-----------------------------");
+			//System.out.println("8. View Playlist Sorted");
+			//System.out.println("9. Exit");
 			
 			choice = getValidInt(input, "Enter your choice (1-7): ", 1,7);
 			
@@ -106,15 +92,6 @@ public class MusicPlaylist {
 	    	  System.out.println("Invalid input. Choose a number between (" + min + "-" + max + "): ");
 	    	  currentInt = inputKeyboard.nextInt();
 	      }
-	      /**
-	      try {
-    		  while(currentInt != 1) {
-    			  currentInt = inputKeyboard.nextInt();
-    		  }
-    	  } catch(InputMismatchException e) {
-    		  System.out.println("Enter number 1 first to access menu");
-    		  inputKeyboard.nextLine();
-    	  } */
 	            return currentInt; 
 	}
 	
