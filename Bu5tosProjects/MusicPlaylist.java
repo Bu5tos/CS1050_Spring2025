@@ -103,7 +103,7 @@ public class MusicPlaylist {
 		int currentInt = inputKeyboard.nextInt();
 		
 	      while(currentInt < min || currentInt > max) {
-	    	  System.out.println("Invalid input. Choose between " + min + "-" + max);
+	    	  System.out.println("Invalid input. Choose a number between (" + min + "-" + max + "): ");
 	    	  currentInt = inputKeyboard.nextInt();
 	      }
 	      /**
@@ -243,9 +243,10 @@ class Playlist {
 		System.out.println("\nEnter index to play: ");
 		int choice = input.nextInt();
 		
-		if (choice < 0 || choice >= currentTotalSongs) {
+		while (choice < 0 || choice >= currentTotalSongs) {
 			System.out.println("\nInvalid index");
-			System.out.println("Please enter a number between 0 and 6");
+			System.out.println("Please enter a number between 0 and " + (currentTotalSongs - 1));
+			choice = input.nextInt();
 		}
 		
 		Song song = musicLibrary.get(choice);
@@ -259,9 +260,10 @@ class Playlist {
         System.out.println("\nEnter song number to add to Up-Next List (queue): ");
 		int choice = input.nextInt();
 		
-		if(choice < 0 || choice >= currentTotalSongs) {
+		while (choice < 0 || choice >= currentTotalSongs) {
 			System.out.println("Invalid index. Nothing enqueued");
-			System.out.println("Please enter a number between 0 and 6");
+			System.out.println("Please enter a number between 0 and " + (currentTotalSongs - 1));
+			choice = input.nextInt();
 		}
 		
 		Song chosenSong = musicLibrary.get(choice);
