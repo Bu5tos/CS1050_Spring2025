@@ -17,7 +17,10 @@ public class MusicPlaylist {
 		ArrayList<Song> songs = null; //variable songs will be holding songs from CSV file
 		Playlist playlist = null; //Created an object to use playlist class in this class
 		
+		final int MENU_END = 9;
+		final String menuPrompt = "Enter your choice (1–" + MENU_END + "): ";
 		int choice;
+		
 		do {
 			
 			//Playlist menu selection 
@@ -33,7 +36,8 @@ public class MusicPlaylist {
 			//System.out.println("8. View Playlist Sorted");
 			//System.out.println("9. Exit");
 			
-			choice = getValidInt(input, "Enter your choice (1-7): ", 1,7);
+			//choice = getValidInt(input, "Enter your choice (1-7)", 1,7);
+			choice = getValidInt(input, menuPrompt, 1, MENU_END);
 			
             switch (choice) {
 			
@@ -83,8 +87,8 @@ public class MusicPlaylist {
 	}//End main
 	
 	//Validate input between 0 to 7
-	public static int getValidInt(Scanner inputKeyboard, String string, int min, int max) {
-		System.out.println("\n" + string);
+	public static int getValidInt(Scanner inputKeyboard, String prompt, int min, int max) {
+		System.out.println("\n" + prompt);
 		
 		int currentInt = inputKeyboard.nextInt();
 		
