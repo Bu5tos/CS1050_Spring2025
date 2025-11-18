@@ -24,7 +24,7 @@ public class MusicPlaylist {
 		do {
 			
 			//Playlist menu selection 
-			System.out.println("=== Music Playlist Menu ===");
+			System.out.println("\n=== Music Playlist Menu ===");
 			System.out.println("1. Load Songs from CSV");
 			System.out.println("2. Display Playlist");
 			System.out.println("3. Play Song by Index");
@@ -36,7 +36,6 @@ public class MusicPlaylist {
 			//System.out.println("8. View Playlist Sorted");
 			//System.out.println("9. Exit");
 			
-			//choice = getValidInt(input, "Enter your choice (1-7)", 1,7);
 			choice = getValidInt(input, menuPrompt, 1, MENU_END);
 			
             switch (choice) {
@@ -82,7 +81,7 @@ public class MusicPlaylist {
             case 6:
             	playlist.PlayNextFromQueue();
             }
-		} while (choice != 7);
+		} while (choice != MENU_END);
 		System.out.println("Menu exited");
 	}//End main
 	
@@ -110,6 +109,8 @@ class Song {
 	private String artist;
 	private String title;
 	private int songLength;
+	private int nextSongID = 1000;
+	private int uniqueSongID;
 	
 	/**
 	 * Constructor:
@@ -122,6 +123,8 @@ class Song {
 		this.artist = artist;
 		this.title = title;
 		this.songLength = songLength;
+		this.uniqueSongID = nextSongID;
+		nextSongID++;
 	}
 	
 	//Methods
@@ -157,12 +160,16 @@ class Song {
 		return "(" + minutes + ":" + seconds + ")";
 	}
 	
+	public String songID() {
+		return "S" + uniqueSongID;
+	}
+	
 	//returns a string that describes the Song object
 	@Override // Overrides Playlist Class method to it's own version(behavior)
 	public String toString() {
 		
 		//Prints artist, title, songLength together as a string
-		return artist + ", "+ title + ", " + convertSecondsToFormat();
+		return songID() + artist + ", "+ title + ", " + convertSecondsToFormat();
 	}
 	
 }//End Song class
@@ -206,7 +213,7 @@ class Playlist {
 		for(int i = 0; i < currentTotalSongs; i++) {
 			Song song = musicLibrary.get(i);
 			if(song != null) {
-				System.out.println("[" + i + "] \"" + song.getTitle() + "\" by " + song.getArtist() + " " + song.convertSecondsToFormat());
+				System.out.println("[" + i + "]" + song.songID() + " \"" + song.getTitle() + "\" by " + song.getArtist() + " " + song.convertSecondsToFormat());
 			}
 		}
 		if(currentTotalSongs == 0) {
@@ -288,18 +295,14 @@ class PlaylistLoader {
 			
 			try {
 			String[] parts = line.split(",");
-			/**
-			if(parts.length != 3) {
-				System.out.println("Line " + lineNumber + " skipped: invalid values.");
-				
-			} */ //DELETE (PI2).
 			
 			String title = parts[0].trim();
 			String artist = parts[1].trim();
 			String durationText = parts[2].trim();
 			
 			int durationSeconds = 0;
-				
+			int songIDincremented = 0;
+			
 			try {
 				durationSeconds = Integer.parseInt(durationText);
 			} catch (NumberFormatException ex) {
@@ -310,6 +313,7 @@ class PlaylistLoader {
 			Song song = new Song(artist, title, durationSeconds);
 			songs.add(song);
 			numOfSongsLoaded++;
+			
 			
 			//Unit test to see if songs info loads in console
 			//System.out.println(song.toString());
