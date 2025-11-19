@@ -31,10 +31,10 @@ public class MusicPlaylist {
 			System.out.println("4. Add Song to Up-Next Queue");
 			System.out.println("5. Show Up-Next Queue");
 			System.out.println("6. Play Next Song in Up-Next Queue");
-			//System.out.println("7. Search Songs (by ID or Artist)");
-			System.out.println("7. Exit");
-			//System.out.println("8. View Playlist Sorted");
-			//System.out.println("9. Exit");
+			System.out.println("7. Search Songs (by ID or Artist)");
+			//System.out.println("7. Exit");
+			System.out.println("8. View Playlist Sorted");
+			System.out.println("9. Exit");
 			
 			choice = getValidInt(input, menuPrompt, 1, MENU_END);
 			
@@ -80,6 +80,12 @@ public class MusicPlaylist {
             	
             case 6:
             	playlist.PlayNextFromQueue();
+            	break;
+            	
+            case 7:
+            	System.out.println("\nSearch Options");
+            	System.out.println("1. Find song by ID");
+            	System.out.println("2. List songs by artist");
             }
 		} while (choice != MENU_END);
 		System.out.println("Menu exited");
@@ -109,7 +115,7 @@ class Song {
 	private String artist;
 	private String title;
 	private int songLength;
-	private int nextSongID = 1000;
+	//private int nextSongID = 1000; //Start ID at 1000
 	private int uniqueSongID;
 	
 	/**
@@ -123,8 +129,10 @@ class Song {
 		this.artist = artist;
 		this.title = title;
 		this.songLength = songLength;
-		this.uniqueSongID = nextSongID;
-		nextSongID++;
+		//this.uniqueSongID = nextSongID;
+		//nextSongID++;
+		this.uniqueSongID = 1000;	
+		uniqueSongID++;
 	}
 	
 	//Methods
@@ -169,7 +177,7 @@ class Song {
 	public String toString() {
 		
 		//Prints artist, title, songLength together as a string
-		return songID() + artist + ", "+ title + ", " + convertSecondsToFormat();
+		return artist + ", "+ title + ", " + convertSecondsToFormat();
 	}
 	
 }//End Song class
@@ -301,7 +309,6 @@ class PlaylistLoader {
 			String durationText = parts[2].trim();
 			
 			int durationSeconds = 0;
-			int songIDincremented = 0;
 			
 			try {
 				durationSeconds = Integer.parseInt(durationText);
