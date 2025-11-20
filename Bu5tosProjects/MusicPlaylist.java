@@ -54,18 +54,27 @@ public class MusicPlaylist {
         		fileName = input.next();
         		
         		songs = PlaylistLoader.loadSongsFromCsv(fileName);   		
-        		playlist = new Playlist("Life debugger", 7); //Hard code unit test
+        		playlist = new Playlist("Life debugger", 50); //Hard code unit test
         		
         		//Loop through each song of the song ArrayList 
         		for(Song song : songs) {
         			playlist.addSongs(song);
         		}
         		
+        		/** ????
         		System.out.println("Enter CSV filename: ");
         		String filename = input.next();
-        		boolean loaded = playlist.loadSongsFromCsv(filename);
-
-        		
+        		boolean loaded = playlist.loadSongsFromCsv(fileName);  
+        		if (!loaded)
+				{
+					System.out.println("No songs were loaded.");
+					System.out.println("Working directory: " + java.nio.file.Paths.get("").toAbsolutePath());
+				} else
+				{
+					// Iteration 02 UPDATE (User Story 8): build HashMap for ID lookup after loading
+					playlist.buildByIdMap();
+				}
+        		*/
         		break;
         		
             case 2:
@@ -210,7 +219,6 @@ class Playlist {
 	private int playlistCapacity;
 	private int currentTotalSongs;
 	private boolean isFull;
-	private String thisSongId;
 	
 	public Playlist(String name, int playlistCapacity) {
 		this.name = name;
@@ -267,7 +275,7 @@ class Playlist {
 		}
 		
 		Song song = musicLibrary.get(choice);
-		System.out.println("Now playing: " + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
+		System.out.println("Now playing: " + song.songID() + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
 	}
 	
 	//Adds song to Up-Next
@@ -309,8 +317,8 @@ class Playlist {
 	public void playSongById(String searchId) {
 		Map<String, Song> songMapById = new HashMap<>();
 	
-		for (Song currentSong : musicLibrary) {
-			songMapById.put(currentSong.songID(), currentSong);
+		for (Song currentSongId : musicLibrary) {
+			songMapById.put(currentSongId.songID(), currentSongId);
 		}
 		
 		if (songMapById.containsKey(searchId))
@@ -326,12 +334,11 @@ class Playlist {
 		Map<String, Song> songMapByArtist = new HashMap<>();
 		
 		for (Song currentSong : musicLibrary) {
-			songMapByArtist.put(currentSong.songID(), currentSong);
+			songMapByArtist.put(currentSong.getArtist(), currentSong);
 		}
 		
-		if (songMapByArtist.containsKey(searchArtist))
-        {
-        	System.out.println(songMapByArtist.get(searchArtist));
+		if (songMapByArtist.containsKey(searchArtist)) {
+			System.out.println(songMapByArtist.get(searchArtist));
 	  }
     }
 }//End Playlist class
