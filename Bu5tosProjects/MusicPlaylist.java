@@ -86,6 +86,22 @@ public class MusicPlaylist {
             	System.out.println("\nSearch Options");
             	System.out.println("1. Find song by ID");
             	System.out.println("2. List songs by artist");
+            	
+            	int searchChoice = getValidInt(input, "Enter search choice: ", 1, 2);
+
+            	if (searchChoice == 1)
+				{
+					System.out.print("Enter song ID (e.g., S1000): ");
+					String id = input.next();
+					playlist.playSongById(id);
+				} else
+				{
+					System.out.print("Enter artist name: ");
+					String artist = input.next();
+					playlist.displaySongsByArtist(artist);
+				}
+				break;
+
             }
 		} while (choice != MENU_END);
 		System.out.println("Menu exited");
@@ -115,7 +131,7 @@ class Song {
 	private String artist;
 	private String title;
 	private int songLength;
-	//private int nextSongID = 1000; //Start ID at 1000
+	private static int nextSongID = 1000; //Start ID at 1000
 	private int uniqueSongID;
 	
 	/**
@@ -129,10 +145,8 @@ class Song {
 		this.artist = artist;
 		this.title = title;
 		this.songLength = songLength;
-		//this.uniqueSongID = nextSongID;
-		//nextSongID++;
-		this.uniqueSongID = 1000;	
-		uniqueSongID++;
+		this.uniqueSongID = nextSongID;
+		nextSongID++;
 	}
 	
 	//Methods
@@ -190,6 +204,7 @@ class Playlist {
 	private int playlistCapacity;
 	private int currentTotalSongs;
 	private boolean isFull;
+	private String thisSongId;
 	
 	public Playlist(String name, int playlistCapacity) {
 		this.name = name;
@@ -283,7 +298,36 @@ class Playlist {
 		} else {
 			System.out.println("Queue is empty.");
 		}
-	}	
+	}
+	
+	public void playSongById(String searchId) {
+		Map<String, Song> songMapById = new HashMap<>();
+	
+		for (Song currentSong : musicLibrary) {
+			songMapById.put(currentSong.songID(), currentSong);
+		}
+		
+		if (songMapById.containsKey(searchId))
+        {
+        	System.out.println("Now playing: " + songMapById.get(searchId));
+        } else
+        {
+        	System.out.println("ID not found.");
+        }
+	}
+	
+	public void displaySongsByArtist(String searchArtist) {
+		Map<String, Song> songMapByArtist = new HashMap<>();
+		
+		for (Song currentSong : musicLibrary) {
+			songMapByArtist.put(currentSong.songID(), currentSong);
+		}
+		
+		if (songMapByArtist.containsKey(searchArtist))
+        {
+        	System.out.println(songMapByArtist.get(searchArtist));
+	  }
+    }
 }//End Playlist class
 
 //Reads CSV file
