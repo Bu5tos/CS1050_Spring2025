@@ -60,6 +60,12 @@ public class MusicPlaylist {
         		for(Song song : songs) {
         			playlist.addSongs(song);
         		}
+        		
+        		System.out.println("Enter CSV filename: ");
+        		String filename = input.next();
+        		boolean loaded = playlist.loadSongsFromCsv(filename);
+
+        		
         		break;
         		
             case 2:
