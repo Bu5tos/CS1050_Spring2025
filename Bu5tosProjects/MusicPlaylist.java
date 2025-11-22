@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.HashMap; // Iteration 02 UPDATE (User Story 8): for fast lookup by ID
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Comparator; // Iteration 02 UPDATE (User Story 9): for sorting
 
 
@@ -116,7 +118,20 @@ public class MusicPlaylist {
 					playlist.displaySongsByArtist(artist);
 				}
 				break;
-
+				
+            case 8:
+            	System.out.println("\nSort Options");
+				System.out.println("1. Sort by title A–Z");
+				System.out.println("2. Sort by duration longest first");
+				int sortChoice = getValidInt(input, "Enter sort choice: ", 1, 2);
+				if (sortChoice == 1)
+				{
+					playlist.displayPlaylistSortedByTitle();
+				} else
+				{
+					playlist.displayPlaylistSortedByDuration();
+				}
+				break;
             }
 		} while (choice != MENU_END);
 		System.out.println("Menu exited");
@@ -163,7 +178,7 @@ class Song {
 		this.uniqueSongID = nextSongID;
 		nextSongID++;
 	}
-	
+
 	//Methods
 	public void setArtist(String artist) {
 		this.artist = artist;
@@ -341,6 +356,32 @@ class Playlist {
 			System.out.println(songMapByArtist.get(searchArtist));
 	  }
     }
+	
+	public void displayPlaylistSortedByTitle() {
+		LinkedList<Song> songInventory = new LinkedList<>();
+		
+		songInventory.addAll(musicLibrary);
+		
+		for (Song currentSong : musicLibrary) {
+			System.out.println(currentSong);
+		}
+		System.out.println();
+		
+		List<Song> songs = new ArrayList<>(songInventory);
+		
+		songs.sort(Comparator.comparing(Song::getTitle));
+		for (Song currentSong : songs)
+		{
+			System.out.println(currentSong);
+		}
+
+		System.out.println();	
+	}
+	
+	public void displayPlaylistSortedByDuration() {
+		
+	}
+	
 }//End Playlist class
 
 //Reads CSV file
