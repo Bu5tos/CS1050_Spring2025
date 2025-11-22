@@ -357,15 +357,18 @@ class Playlist {
 	  }
     }
 	
+	//Display song's title by A-Z 
 	public void displayPlaylistSortedByTitle() {
 		LinkedList<Song> songInventory = new LinkedList<>();
 		
 		songInventory.addAll(musicLibrary);
 		
+		/** Prints original playlist
 		for (Song currentSong : musicLibrary) {
 			System.out.println(currentSong);
 		}
 		System.out.println();
+		*/
 		
 		List<Song> songs = new ArrayList<>(songInventory);
 		
@@ -379,9 +382,21 @@ class Playlist {
 	}
 	
 	public void displayPlaylistSortedByDuration() {
+		LinkedList<Song> durationInventory = new LinkedList<>();
 		
+		durationInventory.addAll(musicLibrary);
+		
+		List<Song> songs = new ArrayList<>(durationInventory);
+		
+		//songs.sort(Comparator.comparingInt(Song::getYear).reversed());
+		songs.sort(Comparator.comparingInt(Song::getSongLength).reversed());
+		for (Song currentSong : songs)
+		{
+			System.out.println(currentSong);
+		}
+
+		System.out.println();	
 	}
-	
 }//End Playlist class
 
 //Reads CSV file
