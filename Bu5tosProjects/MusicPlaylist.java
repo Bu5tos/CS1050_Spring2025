@@ -54,28 +54,14 @@ public class MusicPlaylist {
             	System.out.println("Enter CSV filename: ");
         		fileName = input.next();
         		
-        		songs = PlaylistLoader.loadSongsFromCsv(fileName);   		
+        		songs = PlaylistLoader.loadSongsFromCsv(fileName);  
+        		
         		playlist = new Playlist("Life debugger", 50); //Hard code unit test
         		
         		//Loop through each song of the song ArrayList 
         		for(Song song : songs) {
         			playlist.addSongs(song);
         		}
-        		
-        		/** ????
-        		System.out.println("Enter CSV filename: ");
-        		String filename = input.next();
-        		boolean loaded = playlist.loadSongsFromCsv(fileName);  
-        		if (!loaded)
-				{
-					System.out.println("No songs were loaded.");
-					System.out.println("Working directory: " + java.nio.file.Paths.get("").toAbsolutePath());
-				} else
-				{
-					// Iteration 02 UPDATE (User Story 8): build HashMap for ID lookup after loading
-					playlist.buildByIdMap();
-				}
-        		*/
         		break;
         		
             case 2:
