@@ -34,7 +34,6 @@ public class MusicPlaylist {
 			System.out.println("5. Show Up-Next Queue");
 			System.out.println("6. Play Next Song in Up-Next Queue");
 			System.out.println("7. Search Songs (by ID or Artist)");
-			//System.out.println("7. Exit");
 			System.out.println("8. View Playlist Sorted");
 			System.out.println("9. Exit");
 			
@@ -132,9 +131,13 @@ public class MusicPlaylist {
 					playlist.displayPlaylistSortedByDuration();
 				}
 				break;
+				
+            case 9:
+            	System.out.println("Goodbye!");
+				break;
             }
 		} while (choice != MENU_END);
-		System.out.println("Menu exited");
+		input.close();
 	}//End main
 	
 	//Validate input between 0 to 7
@@ -221,7 +224,7 @@ class Song {
 	public String toString() {
 		
 		//Prints artist, title, songLength together as a string
-		return artist + ", "+ title + ", " + convertSecondsToFormat();
+		return songID() + " \"" + title + "\" by " + artist + " " + convertSecondsToFormat();
 	}
 	
 }//End Song class
@@ -354,6 +357,8 @@ class Playlist {
 		
 		if (songMapByArtist.containsKey(searchArtist)) {
 			System.out.println(songMapByArtist.get(searchArtist));
+	  } else {
+		  System.out.println("No songs found.");
 	  }
     }
 	
@@ -388,7 +393,6 @@ class Playlist {
 		
 		List<Song> songs = new ArrayList<>(durationInventory);
 		
-		//songs.sort(Comparator.comparingInt(Song::getYear).reversed());
 		songs.sort(Comparator.comparingInt(Song::getSongLength).reversed());
 		for (Song currentSong : songs)
 		{
