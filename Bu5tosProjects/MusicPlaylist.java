@@ -152,7 +152,8 @@ class Song {
 	private String artist;
 	private String title;
 	private int songLength;
-	private static int nextSongID = 1000; //Start ID at 1000
+	//Static so all songs will start on 1000 and have their own unique ID
+	private static int nextSongID = 1000;
 	private int uniqueSongID;
 	
 	/**
@@ -167,7 +168,7 @@ class Song {
 		this.title = title;
 		this.songLength = songLength;
 		this.uniqueSongID = nextSongID;
-		nextSongID++; //Increase ID number for the next song
+		nextSongID++; //Increase ID number for the next song (static)
 	}
 
 	//Methods
