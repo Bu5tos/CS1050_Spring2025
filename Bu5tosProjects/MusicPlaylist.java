@@ -48,7 +48,9 @@ public class MusicPlaylist {
              * Case 4: Adds song to queue (First line)
              * Case 5: Peek what songs are next
              * Case 6: Plays next Up-Next song
-             * Then exit menu when user inputs 7
+             * Case 7: Search options by ID or artist
+             * Case 8: Sorting options by A-Z or duration
+             * Case 9: Exit the program
              */
             case 1:
             	System.out.println("Enter CSV filename: ");
@@ -165,7 +167,7 @@ class Song {
 		this.title = title;
 		this.songLength = songLength;
 		this.uniqueSongID = nextSongID;
-		nextSongID++;
+		nextSongID++; //Increase ID number for the next song
 	}
 
 	//Methods
@@ -279,7 +281,7 @@ class Playlist {
 		}
 		
 		Song song = musicLibrary.get(choice);
-		System.out.println("Now playing: " + song.songID() + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
+		System.out.println("Now playing: " + song.songID() + " " + "\"" + song.getTitle() + "\" by " + song.getArtist() + song.convertSecondsToFormat());
 	}
 	
 	//Adds song to Up-Next
@@ -318,6 +320,7 @@ class Playlist {
 		}
 	}
 	
+	//Searches song by its unique ID using HashMap
 	public void playSongById(String searchId) {
 		Map<String, Song> songMapById = new HashMap<>();
 	
@@ -325,6 +328,7 @@ class Playlist {
 			songMapById.put(currentSongId.songID(), currentSongId);
 		}
 		
+		//Lookup for unique song ID
 		if (songMapById.containsKey(searchId))
         {
         	System.out.println("Now playing: " + songMapById.get(searchId));
@@ -334,6 +338,10 @@ class Playlist {
         }
 	}
 	
+	/**
+	 * Prints only a song when artist match
+	 * *Needs fixing to print all songs under the same artist*
+	 */
 	public void displaySongsByArtist(String searchArtist) {
 		Map<String, Song> songMapByArtist = new HashMap<>();
 		
@@ -348,7 +356,7 @@ class Playlist {
 	  }
     }
 	
-	//Display song's title by A-Z 
+	//Display sorted song's title by A-Z 
 	public void displayPlaylistSortedByTitle() {
 		LinkedList<Song> songInventory = new LinkedList<>();
 		
@@ -372,12 +380,9 @@ class Playlist {
 		System.out.println();	
 	}
 	
+	//Sorted by longest to shortest duration
 	public void displayPlaylistSortedByDuration() {
-		LinkedList<Song> durationInventory = new LinkedList<>();
-		
-		durationInventory.addAll(musicLibrary);
-		
-		List<Song> songs = new ArrayList<>(durationInventory);
+		List<Song> songs = new ArrayList<>(musicLibrary);
 		
 		songs.sort(Comparator.comparingInt(Song::getSongLength).reversed());
 		for (Song currentSong : songs)
