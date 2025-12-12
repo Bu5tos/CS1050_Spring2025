@@ -314,7 +314,7 @@ class Playlist {
 	//Plays Up-Next songs from queue
 	public void PlayNextFromQueue() {
 		if(upNextQueue != null) {
-			musicLibrary.removeFirst();
+			upNextQueue.removeFirst();
 			System.out.println("Now playing: " + musicLibrary.getFirst());
 		} else {
 			System.out.println("Queue is empty.");
@@ -492,6 +492,7 @@ class SinglyLinkedList<S> {
 			head = newNode;
 		} else {
 		tail.next = newNode;
+		tail = newNode;
 		}
 		count++;
 	}
@@ -504,13 +505,14 @@ class SinglyLinkedList<S> {
 		
 		S value = head.value; // capture the value to return 
 		head = head.next; //move head forward one node
-		count--;
+		//count--;
 		
 		if(head == null) {
 			
 			//If last node is removed, both head and tail must be null
 			tail = null;
 		}
+		count--;
 		return value;
 	}
 	
